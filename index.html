@@ -1,0 +1,499 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="南山亿的技术博客">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="南山亿的技术博客">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="南山亿的技术博客">
+<meta name="twitter:description">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 南山亿的技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">南山亿的技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/03/3dtouch1/" itemprop="url">
+                  3DTouch应用详解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-03T20:59:37+08:00" content="2016-05-03">
+              2016-05-03
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>3D touch也出了很长时间了，这次花时间好好研究了一下，把经验与大家分享一下</p>
+<h4 id="主界面重按APP图标，弹出Touch菜单"><a href="#主界面重按APP图标，弹出Touch菜单" class="headerlink" title="主界面重按APP图标，弹出Touch菜单"></a>主界面重按APP图标，弹出Touch菜单</h4><p>　静态快速选项<br>　　　(iOS数组)给APP指定静态主屏幕的快速选项，这个键包含了一个字典数组，每个字典包含关于一个快速选项的详细信息。你可以指定静态快速选项给你的APP用一个字典数组。<br><img src="http://upload-images.jianshu.io/upload_images/966908-a293ac389bddf444.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="http://images2015.cnblogs.com/blog/826360/201512/826360-20151214153420599-499361867.png"><br>　UIApplicationShortcutItems (iOS数组)给APP指定静态主屏幕的快速选项，这个键包含了一个字典数组，每个字典包含关于一个快速选项的详细信息。你可以指定静态快速选项给你的APP用一个字典数组。</p>
+<p>静态定义快速在运行时常用的key:<br>UIApplicationShortcutItemType (必须使用) 用来区分与其他快速选项的分类<br>UIApplicationShortcutItemTitle (必须使用) 快速选项显示的标题<br>UIApplicationShortcutItemSubtitle 快速选项显示的子标题<br>UIApplicationShortcutItemIconType 图片类型由系统提供（ iOS9.1之后新添加了许多图片类型）<br>UIApplicationShortcutItemIconFile 自定义的图标<br>UIApplicationShortcutItemUserInfo 附加信息</p>
+<h4 id="动态快速选项"><a href="#动态快速选项" class="headerlink" title="动态快速选项"></a>动态快速选项</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions &#123;</span><br><span class="line">UIApplicationShortcutItem * item = [[UIApplicationShortcutItem alloc]initWithType:@&quot;two&quot; localizedTitle:@&quot;搜索&quot; localizedSubtitle:@&quot;一步到达指定地点&quot; icon:[UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypeSearch] userInfo:nil];</span><br><span class="line">UIApplicationShortcutItem * item1 = [[UIApplicationShortcutItem alloc]initWithType:@&quot;three&quot; localizedTitle:@&quot;附近&quot; localizedSubtitle:@&quot;好吃的&quot; icon:[UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypeMarkLocation] userInfo:nil];</span><br><span class="line">[UIApplication sharedApplication].shortcutItems = @[item,item1];</span><br></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/966908-b0ccf43482e4f83d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h4 id="选择item后触发的方法"><a href="#选择item后触发的方法" class="headerlink" title="选择item后触发的方法"></a>选择item后触发的方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> - (void)application:(UIApplication *)application performActionForShortcutItem:(nonnull     UIApplicationShortcutItem *)shortcutItem completionHandler:(nonnull void   (^)(BOOL))completionHandler&#123; </span><br><span class="line">　　//通过shortcutItem.type来判断点击的是哪一个item，来进行不同的操作</span><br><span class="line">  if ([shortcutItem.type isEqualToString:@&quot;one&quot;]) &#123; </span><br><span class="line">        UITabBarController *mytab = (UITabBarController*)self.window.rootViewController; </span><br><span class="line">        mytab.selectedIndex = 0; </span><br><span class="line">    &#125;else if ([shortcutItem.type isEqualToString:@&quot;two&quot;])&#123; </span><br><span class="line">        SearchVC *searchVC = [[SearchVC alloc]init]; </span><br><span class="line">        UITabBarController *mytab = (UITabBarController*)self.window.rootViewController; </span><br><span class="line">        UINavigationController *myNAV = [mytab.viewControllers firstObject];</span><br><span class="line">      [myNAV pushViewController:searchVC animated:YES];</span><br><span class="line">// [self.window.rootViewController presentViewController:searchVC animated:YES completion:nil];</span><br><span class="line">  &#125;else&#123;</span><br><span class="line">      FPHNearbyVC *vc = [[FPHNearbyVC alloc] init];</span><br><span class="line">      UITabBarController *mytab = (UITabBarController*)self.window.rootViewController;</span><br><span class="line">      UINavigationController *myNAV = [mytab.viewControllers firstObject];</span><br><span class="line">      vc.hidesBottomBarWhenPushed = YES;</span><br><span class="line">       [myNAV pushViewController:vc animated:YES];</span><br><span class="line">     &#125;</span><br><span class="line">     completionHandler(YES);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="APP内部peek和pop的使用（以tableView中的使用为例）"><a href="#APP内部peek和pop的使用（以tableView中的使用为例）" class="headerlink" title="APP内部peek和pop的使用（以tableView中的使用为例）"></a>APP内部peek和pop的使用（以tableView中的使用为例）</h4><p>　　首先遵守协议UIViewControllerPreviewingDelegate<br>　　检测是否有3Dtouch；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- (void)check3DTouch&#123; </span><br><span class="line">if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) </span><br><span class="line">&#123;</span><br><span class="line">   NSLog(@&quot;3D Touch 开启&quot;); </span><br><span class="line"></span><br><span class="line">    &#125; </span><br><span class="line">   else&#123; </span><br><span class="line"></span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　下面来实现相应的代理方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//peek的代理方法，轻按即可触发弹出vc</span><br><span class="line"> - (UIViewController *)previewingContext:(id &lt;UIViewControllerPreviewing&gt;)previewingContext viewControllerForLocation:(CGPoint)location&#123; </span><br><span class="line">     NSIndexPath *indexPath = [_tableView indexPathForCell:(UITableViewCell* )[previewingContext sourceView]]; </span><br><span class="line">//通过[previewingContext sourceView]拿到对应的cell；　　 </span><br><span class="line">  NewVC *vc = [[FPHNewHouseDetailVC alloc] init];</span><br><span class="line">  newModel *model= [_tableView objectAtIndex:indexPath.row]; </span><br><span class="line">  vc.pid = house.id; </span><br><span class="line"> </span><br><span class="line">  NSLog(@&quot;%@&quot;,location); </span><br><span class="line">  return vc;</span><br><span class="line">   &#125;</span><br><span class="line">//pop的代理方法，在此处可对将要进入的vc进行处理，比如隐藏tabBar；</span><br><span class="line"> - (void)previewingContext:(id &lt;UIViewControllerPreviewing&gt;)previewingContext commitViewController:(UIViewController *)viewControllerToCommit</span><br><span class="line"> &#123;</span><br><span class="line">     viewControllerToCommit.hidesBottomBarWhenPushed = YES;</span><br><span class="line">    [self showViewController:viewControllerToCommit sender:self];</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<p> <strong>注意：</strong>tableView在<br>　　　　- (UITableViewCell<em>)tableView:(UITableView </em>)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath<br>　　方法中一定要对每个cell进行注册代理方法如下<br>　　[self registerForPreviewingWithDelegate:self sourceView:cell];</p>
+<h4 id="预览时底部菜单的添加"><a href="#预览时底部菜单的添加" class="headerlink" title="预览时底部菜单的添加"></a>预览时底部菜单的添加</h4><p>在要预览的VC中添加以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">-(NSArray&lt;id&lt;UIPreviewActionItem&gt;&gt; *)previewActionItems </span><br><span class="line">&#123; </span><br><span class="line">UIPreviewAction * action1 = [UIPreviewAction actionWithTitle:@&quot;标题1&quot; style:1 handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) &#123; </span><br><span class="line">    NSLog(@&quot;标题1&quot;); </span><br><span class="line"> &#125;]; </span><br><span class="line"> </span><br><span class="line">UIPreviewAction * action2 = [UIPreviewAction actionWithTitle:@&quot;标题2&quot; style:0 handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) &#123; </span><br><span class="line">    NSLog(@&quot;标题2&quot;); </span><br><span class="line"></span><br><span class="line"> &#125;];</span><br><span class="line">UIPreviewAction * action3 = [UIPreviewAction actionWithTitle:@&quot;标题3&quot; style:2 handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) &#123;</span><br><span class="line">NSLog(@&quot;标题3&quot;);</span><br><span class="line"> &#125;];</span><br><span class="line"></span><br><span class="line">NSArray * actions = @[action1,action2,action3];</span><br><span class="line"></span><br><span class="line">return actions;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　　　block里面直接写点击后要实现的操作<br>最终效果：<br><img src="http://upload-images.jianshu.io/upload_images/966908-976af00f57dd4439.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br> 　　暂时就写这么多，有什么不对的地方请大家指教，大家互相学习。</p>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="南山忆" />
+          <p class="site-author-name" itemprop="name">南山忆</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">南山忆</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
