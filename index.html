@@ -249,6 +249,110 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/10/qrcode/" itemprop="url">
+                  iOS原生方法实现二维码生成与扫描
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-10T22:18:52+08:00" content="2016-05-10">
+              2016-05-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/10/qrcode/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/10/qrcode/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>&#x4E8C;&#x7EF4;&#x7801;&#x7684;&#x751F;&#x6210;&#x6709;&#x597D;&#x591A;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;&#xFF0C;&#x5982;Z-Xing&#x3002;&#x4F46;&#x662F;&#x4E3A;&#x4E86;&#x63A7;&#x5236;&#x5B89;&#x88C5;&#x5305;&#x7684;&#x5927;&#x5C0F;&#xFF0C;&#x6216;&#x8005;&#x5E76;&#x4E0D;&#x9700;&#x8981;&#x5176;&#x4ED6;&#x7684;&#x4E00;&#x4E9B;&#x989D;&#x5916;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x7528;&#x7CFB;&#x7EDF;&#x7684;&#x65B9;&#x6CD5;&#x5373;&#x53EF;&#x6EE1;&#x8DB3;.</p>
+<h3 id="&#x4E8C;&#x7EF4;&#x7801;&#x7684;&#x751F;&#x6210;"><a href="#&#x4E8C;&#x7EF4;&#x7801;&#x7684;&#x751F;&#x6210;" class="headerlink" title="&#x4E8C;&#x7EF4;&#x7801;&#x7684;&#x751F;&#x6210;"></a>&#x4E8C;&#x7EF4;&#x7801;&#x7684;&#x751F;&#x6210;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">- (UIImage *)createNonInterpolatedUIImageFormCIImage:(CIImage *)image withSize:(CGFloat) size waterImageSize:(CGFloat)waterImagesize{</span><br><span class="line">    CGRect extent = CGRectIntegral(image.extent);</span><br><span class="line">    CGFloat scale = MIN(size/CGRectGetWidth(extent), size/CGRectGetHeight(extent));</span><br><span class="line"></span><br><span class="line">    // 1.&#x521B;&#x5EFA;bitmap;</span><br><span class="line">    size_t width = CGRectGetWidth(extent) * scale;</span><br><span class="line">    size_t height = CGRectGetHeight(extent) * scale;</span><br><span class="line">    //&#x521B;&#x5EFA;&#x4E00;&#x4E2A;DeviceGray&#x989C;&#x8272;&#x7A7A;&#x95F4;</span><br><span class="line">    CGColorSpaceRef cs = CGColorSpaceCreateDeviceGray();</span><br><span class="line">    //CGBitmapContextCreate(void * _Nullable data, size_t width, size_t height, size_t bitsPerComponent, size_t bytesPerRow, CGColorSpaceRef  _Nullable space, uint32_t bitmapInfo)</span><br><span class="line">    //width&#xFF1A;&#x56FE;&#x7247;&#x5BBD;&#x5EA6;&#x50CF;&#x7D20;</span><br><span class="line">    //height&#xFF1A;&#x56FE;&#x7247;&#x9AD8;&#x5EA6;&#x50CF;&#x7D20;</span><br><span class="line">    //bitsPerComponent&#xFF1A;&#x6BCF;&#x4E2A;&#x989C;&#x8272;&#x7684;&#x6BD4;&#x7279;&#x503C;&#xFF0C;&#x4F8B;&#x5982;&#x5728;rgba-32&#x6A21;&#x5F0F;&#x4E0B;&#x4E3A;8</span><br><span class="line">    //bitmapInfo&#xFF1A;&#x6307;&#x5B9A;&#x7684;&#x4F4D;&#x56FE;&#x5E94;&#x8BE5;&#x5305;&#x542B;&#x4E00;&#x4E2A;alpha&#x901A;&#x9053;&#x3002;</span><br><span class="line">    CGContextRef bitmapRef = CGBitmapContextCreate(nil, width, height, 8, 0, cs, (CGBitmapInfo)kCGImageAlphaNone);</span><br><span class="line">    CIContext *context = [CIContext contextWithOptions:nil];</span><br><span class="line">    //&#x521B;&#x5EFA;CoreGraphics image</span><br><span class="line">    CGImageRef bitmapImage = [context createCGImage:image fromRect:extent];</span><br><span class="line"></span><br><span class="line">    CGContextSetInterpolationQuality(bitmapRef, kCGInterpolationNone);</span><br><span class="line">    CGContextScaleCTM(bitmapRef, scale, scale);</span><br><span class="line">    CGContextDrawImage(bitmapRef, extent, bitmapImage);</span><br><span class="line"></span><br><span class="line">    // 2.&#x4FDD;&#x5B58;bitmap&#x5230;&#x56FE;&#x7247;</span><br><span class="line">    CGImageRef scaledImage = CGBitmapContextCreateImage(bitmapRef);</span><br><span class="line">    CGContextRelease(bitmapRef); CGImageRelease(bitmapImage);</span><br><span class="line"></span><br><span class="line">    //&#x539F;&#x56FE;</span><br><span class="line">    UIImage *outputImage = [UIImage imageWithCGImage:scaledImage];</span><br><span class="line">    //&#x7ED9;&#x4E8C;&#x7EF4;&#x7801;&#x52A0; logo &#x56FE;</span><br><span class="line">    UIGraphicsBeginImageContextWithOptions(outputImage.size, NO, [[UIScreen mainScreen] scale]);</span><br><span class="line">    [outputImage drawInRect:CGRectMake(0,0 , size, size)];</span><br><span class="line">    //logo&#x56FE;</span><br><span class="line">    UIImage *waterimage = [UIImage imageNamed:@&quot;icon_imgApp&quot;];</span><br><span class="line">    //&#x628A;logo&#x56FE;&#x753B;&#x5230;&#x751F;&#x6210;&#x7684;&#x4E8C;&#x7EF4;&#x7801;&#x56FE;&#x7247;&#x4E0A;&#xFF0C;&#x6CE8;&#x610F;&#x5C3A;&#x5BF8;&#x4E0D;&#x8981;&#x592A;&#x5927;&#xFF08;&#x6700;&#x5927;&#x4E0D;&#x8D85;&#x8FC7;&#x4E8C;&#x7EF4;&#x7801;&#x56FE;&#x7247;&#x7684;%30&#xFF09;&#xFF0C;&#x592A;&#x5927;&#x4F1A;&#x9020;&#x6210;&#x626B;&#x4E0D;&#x51FA;&#x6765;</span><br><span class="line">    [waterimage drawInRect:CGRectMake((size-waterImagesize)/2.0, (size-waterImagesize)/2.0, waterImagesize, waterImagesize)];</span><br><span class="line">    UIImage *newPic = UIGraphicsGetImageFromCurrentImageContext();</span><br><span class="line">    UIGraphicsEndImageContext();</span><br><span class="line">    return newPic;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/05/10/qrcode/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/07/xiangji/" itemprop="url">
                   30分钟搞定iOS自定义相机
                 </a>
@@ -476,7 +580,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
