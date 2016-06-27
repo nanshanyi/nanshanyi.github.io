@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="南山忆, 南山忆的技术博客，iOS" />
+  <meta name="keywords" content="iOS," />
 
 
 
@@ -83,17 +83,17 @@
 <meta name="description" content="3D touch&amp;#x4E5F;&amp;#x51FA;&amp;#x4E86;&amp;#x5F88;&amp;#x957F;&amp;#x65F6;&amp;#x95F4;&amp;#x4E86;&amp;#xFF0C;&amp;#x8FD9;&amp;#x6B21;&amp;#x82B1;&amp;#x65F6;&amp;#x95F4;&amp;#x597D;&amp;#x597D;&amp;#x7814;&amp;#x7A76;&amp;#x4E86;&amp;#x4E00;&amp;#x4E0B;&amp;#xFF0C;&amp;#x628A;&amp;#x7ECF;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="3DTouch应用详解">
-<meta property="og:url" content="http://nanshanyi.github.io/2016/05/03/3dtouch/index.html">
+<meta property="og:url" content="http://nanshanyi.github.io/2016/04/20/3dtouch/index.html">
 <meta property="og:site_name" content="南山忆的技术博客">
 <meta property="og:description" content="3D touch&amp;#x4E5F;&amp;#x51FA;&amp;#x4E86;&amp;#x5F88;&amp;#x957F;&amp;#x65F6;&amp;#x95F4;&amp;#x4E86;&amp;#xFF0C;&amp;#x8FD9;&amp;#x6B21;&amp;#x82B1;&amp;#x65F6;&amp;#x95F4;&amp;#x597D;&amp;#x597D;&amp;#x7814;&amp;#x7A76;&amp;#x4E86;&amp;#x4E00;&amp;#x4E0B;&amp;#xFF0C;&amp;#x628A;&amp;#x7ECF;">
-<meta property="og:image" content="http://nanshanyi.github.io/2016/05/03/3dtouch/966908-a293ac389bddf444.png">
-<meta property="og:image" content="http://nanshanyi.github.io/2016/05/03/3dtouch/966908-b0ccf43482e4f83d.png">
-<meta property="og:image" content="http://nanshanyi.github.io/2016/05/03/3dtouch/966908-976af00f57dd4439.png">
-<meta property="og:updated_time" content="2016-05-07T11:23:24.000Z">
+<meta property="og:image" content="http://nanshanyi.github.io/2016/04/20/3dtouch/966908-a293ac389bddf444.png">
+<meta property="og:image" content="http://nanshanyi.github.io/2016/04/20/3dtouch/966908-b0ccf43482e4f83d.png">
+<meta property="og:image" content="http://nanshanyi.github.io/2016/04/20/3dtouch/966908-976af00f57dd4439.png">
+<meta property="og:updated_time" content="2016-06-27T12:57:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="3DTouch应用详解">
 <meta name="twitter:description" content="3D touch&amp;#x4E5F;&amp;#x51FA;&amp;#x4E86;&amp;#x5F88;&amp;#x957F;&amp;#x65F6;&amp;#x95F4;&amp;#x4E86;&amp;#xFF0C;&amp;#x8FD9;&amp;#x6B21;&amp;#x82B1;&amp;#x65F6;&amp;#x95F4;&amp;#x597D;&amp;#x597D;&amp;#x7814;&amp;#x7A76;&amp;#x4E86;&amp;#x4E00;&amp;#x4E0B;&amp;#xFF0C;&amp;#x628A;&amp;#x7ECF;">
-<meta name="twitter:image" content="http://nanshanyi.github.io/2016/05/03/3dtouch/966908-a293ac389bddf444.png">
+<meta name="twitter:image" content="http://nanshanyi.github.io/2016/04/20/3dtouch/966908-a293ac389bddf444.png">
 
 
 
@@ -183,11 +183,21 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
 
       
         <li class="menu-item menu-item-search">
           
-            <a href="#" class="st-search-show-outputs">
+            <a href="#" class="popup-trigger">
           
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
@@ -202,19 +212,12 @@
   
     <div class="site-search">
       
-  <form class="site-search-form">
-  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
-</form>
-
-<script type="text/javascript">
-  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
-
-  _st('install', 'DZQvJNjZ1ekH_mySf862','2.0.0');
-</script>
-
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
 
 
     </div>
@@ -263,8 +266,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-03T20:59:37+08:00" content="2016-05-03">
-              2016-05-03
+            <time itemprop="dateCreated" datetime="2016-04-20T20:06:24+08:00" content="2016-04-20">
+              2016-04-20
             </time>
           </span>
 
@@ -274,8 +277,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/03/3dtouch/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/03/3dtouch/" itemprop="commentsCount"></span>
+                <a href="/2016/04/20/3dtouch/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/20/3dtouch/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -299,16 +302,16 @@
 
       
         <p>3D touch&#x4E5F;&#x51FA;&#x4E86;&#x5F88;&#x957F;&#x65F6;&#x95F4;&#x4E86;&#xFF0C;&#x8FD9;&#x6B21;&#x82B1;&#x65F6;&#x95F4;&#x597D;&#x597D;&#x7814;&#x7A76;&#x4E86;&#x4E00;&#x4E0B;&#xFF0C;&#x628A;&#x7ECF;&#x9A8C;&#x4E0E;&#x5927;&#x5BB6;&#x5206;&#x4EAB;&#x4E00;&#x4E0B;</p>
-<h4 id="&#x4E3B;&#x754C;&#x9762;&#x91CD;&#x6309;APP&#x56FE;&#x6807;&#xFF0C;&#x5F39;&#x51FA;Touch&#x83DC;&#x5355;"><a href="#&#x4E3B;&#x754C;&#x9762;&#x91CD;&#x6309;APP&#x56FE;&#x6807;&#xFF0C;&#x5F39;&#x51FA;Touch&#x83DC;&#x5355;" class="headerlink" title="&#x4E3B;&#x754C;&#x9762;&#x91CD;&#x6309;APP&#x56FE;&#x6807;&#xFF0C;&#x5F39;&#x51FA;Touch&#x83DC;&#x5355;"></a>&#x4E3B;&#x754C;&#x9762;&#x91CD;&#x6309;APP&#x56FE;&#x6807;&#xFF0C;&#x5F39;&#x51FA;Touch&#x83DC;&#x5355;</h4><p>&#x3000;&#x9759;&#x6001;&#x5FEB;&#x901F;&#x9009;&#x9879;<br>&#x3000;&#x3000;&#x3000;(iOS&#x6570;&#x7EC4;)&#x7ED9;APP&#x6307;&#x5B9A;&#x9759;&#x6001;&#x4E3B;&#x5C4F;&#x5E55;&#x7684;&#x5FEB;&#x901F;&#x9009;&#x9879;&#xFF0C;&#x8FD9;&#x4E2A;&#x952E;&#x5305;&#x542B;&#x4E86;&#x4E00;&#x4E2A;&#x5B57;&#x5178;&#x6570;&#x7EC4;&#xFF0C;&#x6BCF;&#x4E2A;&#x5B57;&#x5178;&#x5305;&#x542B;&#x5173;&#x4E8E;&#x4E00;&#x4E2A;&#x5FEB;&#x901F;&#x9009;&#x9879;&#x7684;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x9759;&#x6001;&#x5FEB;&#x901F;&#x9009;&#x9879;&#x7ED9;&#x4F60;&#x7684;APP&#x7528;&#x4E00;&#x4E2A;&#x5B57;&#x5178;&#x6570;&#x7EC4;&#x3002;<br><img src="/2016/05/03/3dtouch/966908-a293ac389bddf444.png" alt=""><br>&#x3000;UIApplicationShortcutItems (iOS&#x6570;&#x7EC4;)&#x7ED9;APP&#x6307;&#x5B9A;&#x9759;&#x6001;&#x4E3B;&#x5C4F;&#x5E55;&#x7684;&#x5FEB;&#x901F;&#x9009;&#x9879;&#xFF0C;&#x8FD9;&#x4E2A;&#x952E;&#x5305;&#x542B;&#x4E86;&#x4E00;&#x4E2A;&#x5B57;&#x5178;&#x6570;&#x7EC4;&#xFF0C;&#x6BCF;&#x4E2A;&#x5B57;&#x5178;&#x5305;&#x542B;&#x5173;&#x4E8E;&#x4E00;&#x4E2A;&#x5FEB;&#x901F;&#x9009;&#x9879;&#x7684;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x9759;&#x6001;&#x5FEB;&#x901F;&#x9009;&#x9879;&#x7ED9;&#x4F60;&#x7684;APP&#x7528;&#x4E00;&#x4E2A;&#x5B57;&#x5178;&#x6570;&#x7EC4;&#x3002;<br><a id="more"></a><br>&#x9759;&#x6001;&#x5B9A;&#x4E49;&#x5FEB;&#x901F;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x7528;&#x7684;key:<br>UIApplicationShortcutItemType (&#x5FC5;&#x987B;&#x4F7F;&#x7528;) &#x7528;&#x6765;&#x533A;&#x5206;&#x4E0E;&#x5176;&#x4ED6;&#x5FEB;&#x901F;&#x9009;&#x9879;&#x7684;&#x5206;&#x7C7B;<br>UIApplicationShortcutItemTitle (&#x5FC5;&#x987B;&#x4F7F;&#x7528;) &#x5FEB;&#x901F;&#x9009;&#x9879;&#x663E;&#x793A;&#x7684;&#x6807;&#x9898;<br>UIApplicationShortcutItemSubtitle &#x5FEB;&#x901F;&#x9009;&#x9879;&#x663E;&#x793A;&#x7684;&#x5B50;&#x6807;&#x9898;<br>UIApplicationShortcutItemIconType &#x56FE;&#x7247;&#x7C7B;&#x578B;&#x7531;&#x7CFB;&#x7EDF;&#x63D0;&#x4F9B;&#xFF08; iOS9.1&#x4E4B;&#x540E;&#x65B0;&#x6DFB;&#x52A0;&#x4E86;&#x8BB8;&#x591A;&#x56FE;&#x7247;&#x7C7B;&#x578B;&#xFF09;<br>UIApplicationShortcutItemIconFile &#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x56FE;&#x6807;<br>UIApplicationShortcutItemUserInfo &#x9644;&#x52A0;&#x4FE1;&#x606F;</p>
+<h4 id="&#x4E3B;&#x754C;&#x9762;&#x91CD;&#x6309;APP&#x56FE;&#x6807;&#xFF0C;&#x5F39;&#x51FA;Touch&#x83DC;&#x5355;"><a href="#&#x4E3B;&#x754C;&#x9762;&#x91CD;&#x6309;APP&#x56FE;&#x6807;&#xFF0C;&#x5F39;&#x51FA;Touch&#x83DC;&#x5355;" class="headerlink" title="&#x4E3B;&#x754C;&#x9762;&#x91CD;&#x6309;APP&#x56FE;&#x6807;&#xFF0C;&#x5F39;&#x51FA;Touch&#x83DC;&#x5355;"></a>&#x4E3B;&#x754C;&#x9762;&#x91CD;&#x6309;APP&#x56FE;&#x6807;&#xFF0C;&#x5F39;&#x51FA;Touch&#x83DC;&#x5355;</h4><p>&#x3000;&#x9759;&#x6001;&#x5FEB;&#x901F;&#x9009;&#x9879;<br>&#x3000;&#x3000;&#x3000;(iOS&#x6570;&#x7EC4;)&#x7ED9;APP&#x6307;&#x5B9A;&#x9759;&#x6001;&#x4E3B;&#x5C4F;&#x5E55;&#x7684;&#x5FEB;&#x901F;&#x9009;&#x9879;&#xFF0C;&#x8FD9;&#x4E2A;&#x952E;&#x5305;&#x542B;&#x4E86;&#x4E00;&#x4E2A;&#x5B57;&#x5178;&#x6570;&#x7EC4;&#xFF0C;&#x6BCF;&#x4E2A;&#x5B57;&#x5178;&#x5305;&#x542B;&#x5173;&#x4E8E;&#x4E00;&#x4E2A;&#x5FEB;&#x901F;&#x9009;&#x9879;&#x7684;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x9759;&#x6001;&#x5FEB;&#x901F;&#x9009;&#x9879;&#x7ED9;&#x4F60;&#x7684;APP&#x7528;&#x4E00;&#x4E2A;&#x5B57;&#x5178;&#x6570;&#x7EC4;&#x3002;<br><img src="/2016/04/20/3dtouch/966908-a293ac389bddf444.png" alt=""><br>&#x3000;UIApplicationShortcutItems (iOS&#x6570;&#x7EC4;)&#x7ED9;APP&#x6307;&#x5B9A;&#x9759;&#x6001;&#x4E3B;&#x5C4F;&#x5E55;&#x7684;&#x5FEB;&#x901F;&#x9009;&#x9879;&#xFF0C;&#x8FD9;&#x4E2A;&#x952E;&#x5305;&#x542B;&#x4E86;&#x4E00;&#x4E2A;&#x5B57;&#x5178;&#x6570;&#x7EC4;&#xFF0C;&#x6BCF;&#x4E2A;&#x5B57;&#x5178;&#x5305;&#x542B;&#x5173;&#x4E8E;&#x4E00;&#x4E2A;&#x5FEB;&#x901F;&#x9009;&#x9879;&#x7684;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x9759;&#x6001;&#x5FEB;&#x901F;&#x9009;&#x9879;&#x7ED9;&#x4F60;&#x7684;APP&#x7528;&#x4E00;&#x4E2A;&#x5B57;&#x5178;&#x6570;&#x7EC4;&#x3002;<br><a id="more"></a><br>&#x9759;&#x6001;&#x5B9A;&#x4E49;&#x5FEB;&#x901F;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x7528;&#x7684;key:<br>UIApplicationShortcutItemType (&#x5FC5;&#x987B;&#x4F7F;&#x7528;) &#x7528;&#x6765;&#x533A;&#x5206;&#x4E0E;&#x5176;&#x4ED6;&#x5FEB;&#x901F;&#x9009;&#x9879;&#x7684;&#x5206;&#x7C7B;<br>UIApplicationShortcutItemTitle (&#x5FC5;&#x987B;&#x4F7F;&#x7528;) &#x5FEB;&#x901F;&#x9009;&#x9879;&#x663E;&#x793A;&#x7684;&#x6807;&#x9898;<br>UIApplicationShortcutItemSubtitle &#x5FEB;&#x901F;&#x9009;&#x9879;&#x663E;&#x793A;&#x7684;&#x5B50;&#x6807;&#x9898;<br>UIApplicationShortcutItemIconType &#x56FE;&#x7247;&#x7C7B;&#x578B;&#x7531;&#x7CFB;&#x7EDF;&#x63D0;&#x4F9B;&#xFF08; iOS9.1&#x4E4B;&#x540E;&#x65B0;&#x6DFB;&#x52A0;&#x4E86;&#x8BB8;&#x591A;&#x56FE;&#x7247;&#x7C7B;&#x578B;&#xFF09;<br>UIApplicationShortcutItemIconFile &#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x56FE;&#x6807;<br>UIApplicationShortcutItemUserInfo &#x9644;&#x52A0;&#x4FE1;&#x606F;</p>
 <h4 id="&#x52A8;&#x6001;&#x5FEB;&#x901F;&#x9009;&#x9879;"><a href="#&#x52A8;&#x6001;&#x5FEB;&#x901F;&#x9009;&#x9879;" class="headerlink" title="&#x52A8;&#x6001;&#x5FEB;&#x901F;&#x9009;&#x9879;"></a>&#x52A8;&#x6001;&#x5FEB;&#x901F;&#x9009;&#x9879;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {</span><br><span class="line">UIApplicationShortcutItem * item = [[UIApplicationShortcutItem alloc]initWithType:@&quot;two&quot; localizedTitle:@&quot;&#x641C;&#x7D22;&quot; localizedSubtitle:@&quot;&#x4E00;&#x6B65;&#x5230;&#x8FBE;&#x6307;&#x5B9A;&#x5730;&#x70B9;&quot; icon:[UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypeSearch] userInfo:nil];</span><br><span class="line">UIApplicationShortcutItem * item1 = [[UIApplicationShortcutItem alloc]initWithType:@&quot;three&quot; localizedTitle:@&quot;&#x9644;&#x8FD1;&quot; localizedSubtitle:@&quot;&#x597D;&#x5403;&#x7684;&quot; icon:[UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypeMarkLocation] userInfo:nil];</span><br><span class="line">[UIApplication sharedApplication].shortcutItems = @[item,item1];</span><br></pre></td></tr></table></figure>
-<p><img src="/2016/05/03/3dtouch/966908-b0ccf43482e4f83d.png" alt=""></p>
+<p><img src="/2016/04/20/3dtouch/966908-b0ccf43482e4f83d.png" alt=""></p>
 <h4 id="&#x9009;&#x62E9;item&#x540E;&#x89E6;&#x53D1;&#x7684;&#x65B9;&#x6CD5;"><a href="#&#x9009;&#x62E9;item&#x540E;&#x89E6;&#x53D1;&#x7684;&#x65B9;&#x6CD5;" class="headerlink" title="&#x9009;&#x62E9;item&#x540E;&#x89E6;&#x53D1;&#x7684;&#x65B9;&#x6CD5;"></a>&#x9009;&#x62E9;item&#x540E;&#x89E6;&#x53D1;&#x7684;&#x65B9;&#x6CD5;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> - (void)application:(UIApplication *)application performActionForShortcutItem:(nonnull     UIApplicationShortcutItem *)shortcutItem completionHandler:(nonnull void   (^)(BOOL))completionHandler{</span><br><span class="line">&#x3000;&#x3000;//&#x901A;&#x8FC7;shortcutItem.type&#x6765;&#x5224;&#x65AD;&#x70B9;&#x51FB;&#x7684;&#x662F;&#x54EA;&#x4E00;&#x4E2A;item&#xFF0C;&#x6765;&#x8FDB;&#x884C;&#x4E0D;&#x540C;&#x7684;&#x64CD;&#x4F5C;</span><br><span class="line">  if ([shortcutItem.type isEqualToString:@&quot;one&quot;]) {</span><br><span class="line">        UITabBarController *mytab = (UITabBarController*)self.window.rootViewController;</span><br><span class="line">        mytab.selectedIndex = 0;</span><br><span class="line">    }else if ([shortcutItem.type isEqualToString:@&quot;two&quot;]){</span><br><span class="line">        SearchVC *searchVC = [[SearchVC alloc]init];</span><br><span class="line">        UITabBarController *mytab = (UITabBarController*)self.window.rootViewController;</span><br><span class="line">        UINavigationController *myNAV = [mytab.viewControllers firstObject];</span><br><span class="line">      [myNAV pushViewController:searchVC animated:YES];</span><br><span class="line">// [self.window.rootViewController presentViewController:searchVC animated:YES completion:nil];</span><br><span class="line">  }else{</span><br><span class="line">      FPHNearbyVC *vc = [[FPHNearbyVC alloc] init];</span><br><span class="line">      UITabBarController *mytab = (UITabBarController*)self.window.rootViewController;</span><br><span class="line">      UINavigationController *myNAV = [mytab.viewControllers firstObject];</span><br><span class="line">      vc.hidesBottomBarWhenPushed = YES;</span><br><span class="line">       [myNAV pushViewController:vc animated:YES];</span><br><span class="line">     }</span><br><span class="line">     completionHandler(YES);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 <h4 id="APP&#x5185;&#x90E8;peek&#x548C;pop&#x7684;&#x4F7F;&#x7528;&#xFF08;&#x4EE5;tableView&#x4E2D;&#x7684;&#x4F7F;&#x7528;&#x4E3A;&#x4F8B;&#xFF09;"><a href="#APP&#x5185;&#x90E8;peek&#x548C;pop&#x7684;&#x4F7F;&#x7528;&#xFF08;&#x4EE5;tableView&#x4E2D;&#x7684;&#x4F7F;&#x7528;&#x4E3A;&#x4F8B;&#xFF09;" class="headerlink" title="APP&#x5185;&#x90E8;peek&#x548C;pop&#x7684;&#x4F7F;&#x7528;&#xFF08;&#x4EE5;tableView&#x4E2D;&#x7684;&#x4F7F;&#x7528;&#x4E3A;&#x4F8B;&#xFF09;"></a>APP&#x5185;&#x90E8;peek&#x548C;pop&#x7684;&#x4F7F;&#x7528;&#xFF08;&#x4EE5;tableView&#x4E2D;&#x7684;&#x4F7F;&#x7528;&#x4E3A;&#x4F8B;&#xFF09;</h4><p>&#x3000;&#x3000;&#x9996;&#x5148;&#x9075;&#x5B88;&#x534F;&#x8BAE;UIViewControllerPreviewingDelegate<br>&#x3000;&#x3000;&#x68C0;&#x6D4B;&#x662F;&#x5426;&#x6709;3Dtouch&#xFF1B;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- (void)check3DTouch{</span><br><span class="line">if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable)</span><br><span class="line">{</span><br><span class="line">   NSLog(@&quot;3D Touch &#x5F00;&#x542F;&quot;);</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">   else{</span><br><span class="line"></span><br><span class="line">      }</span><br><span class="line">  }</span><br></pre></td></tr></table></figure></p>
 <p>&#x3000;&#x3000;&#x4E0B;&#x9762;&#x6765;&#x5B9E;&#x73B0;&#x76F8;&#x5E94;&#x7684;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//peek&#x7684;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;&#xFF0C;&#x8F7B;&#x6309;&#x5373;&#x53EF;&#x89E6;&#x53D1;&#x5F39;&#x51FA;vc</span><br><span class="line"> - (UIViewController *)previewingContext:(id &lt;UIViewControllerPreviewing&gt;)previewingContext viewControllerForLocation:(CGPoint)location{</span><br><span class="line">     NSIndexPath *indexPath = [_tableView indexPathForCell:(UITableViewCell* )[previewingContext sourceView]];</span><br><span class="line">//&#x901A;&#x8FC7;[previewingContext sourceView]&#x62FF;&#x5230;&#x5BF9;&#x5E94;&#x7684;cell&#xFF1B;&#x3000;&#x3000;</span><br><span class="line">  NewVC *vc = [[FPHNewHouseDetailVC alloc] init];</span><br><span class="line">  newModel *model= [_tableView objectAtIndex:indexPath.row];</span><br><span class="line">  vc.pid = house.id;</span><br><span class="line"></span><br><span class="line">  NSLog(@&quot;%@&quot;,location);</span><br><span class="line">  return vc;</span><br><span class="line">   }</span><br><span class="line">//pop&#x7684;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;&#xFF0C;&#x5728;&#x6B64;&#x5904;&#x53EF;&#x5BF9;&#x5C06;&#x8981;&#x8FDB;&#x5165;&#x7684;vc&#x8FDB;&#x884C;&#x5904;&#x7406;&#xFF0C;&#x6BD4;&#x5982;&#x9690;&#x85CF;tabBar&#xFF1B;</span><br><span class="line"> - (void)previewingContext:(id &lt;UIViewControllerPreviewing&gt;)previewingContext commitViewController:(UIViewController *)viewControllerToCommit</span><br><span class="line"> {</span><br><span class="line">     viewControllerToCommit.hidesBottomBarWhenPushed = YES;</span><br><span class="line">    [self showViewController:viewControllerToCommit sender:self];</span><br><span class="line"> }</span><br></pre></td></tr></table></figure></p>
 <p> <strong>&#x6CE8;&#x610F;&#xFF1A;</strong>tableView&#x5728;<br>&#x3000;&#x3000;&#x3000;&#x3000;- (UITableViewCell<em>)tableView:(UITableView </em>)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath<br>&#x3000;&#x3000;&#x65B9;&#x6CD5;&#x4E2D;&#x4E00;&#x5B9A;&#x8981;&#x5BF9;&#x6BCF;&#x4E2A;cell&#x8FDB;&#x884C;&#x6CE8;&#x518C;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;&#x5982;&#x4E0B;<br>&#x3000;&#x3000;[self registerForPreviewingWithDelegate:self sourceView:cell];</p>
 <h4 id="&#x9884;&#x89C8;&#x65F6;&#x5E95;&#x90E8;&#x83DC;&#x5355;&#x7684;&#x6DFB;&#x52A0;"><a href="#&#x9884;&#x89C8;&#x65F6;&#x5E95;&#x90E8;&#x83DC;&#x5355;&#x7684;&#x6DFB;&#x52A0;" class="headerlink" title="&#x9884;&#x89C8;&#x65F6;&#x5E95;&#x90E8;&#x83DC;&#x5355;&#x7684;&#x6DFB;&#x52A0;"></a>&#x9884;&#x89C8;&#x65F6;&#x5E95;&#x90E8;&#x83DC;&#x5355;&#x7684;&#x6DFB;&#x52A0;</h4><p>&#x5728;&#x8981;&#x9884;&#x89C8;&#x7684;VC&#x4E2D;&#x6DFB;&#x52A0;&#x4EE5;&#x4E0B;&#x4EE3;&#x7801;&#xFF1A;</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">-(NSArray&lt;id&lt;UIPreviewActionItem&gt;&gt; *)previewActionItems</span><br><span class="line">{</span><br><span class="line">UIPreviewAction * action1 = [UIPreviewAction actionWithTitle:@&quot;&#x6807;&#x9898;1&quot; style:1 handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {</span><br><span class="line">    NSLog(@&quot;&#x6807;&#x9898;1&quot;);</span><br><span class="line"> }];</span><br><span class="line"></span><br><span class="line">UIPreviewAction * action2 = [UIPreviewAction actionWithTitle:@&quot;&#x6807;&#x9898;2&quot; style:0 handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {</span><br><span class="line">    NSLog(@&quot;&#x6807;&#x9898;2&quot;);</span><br><span class="line"></span><br><span class="line"> }];</span><br><span class="line">UIPreviewAction * action3 = [UIPreviewAction actionWithTitle:@&quot;&#x6807;&#x9898;3&quot; style:2 handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {</span><br><span class="line">NSLog(@&quot;&#x6807;&#x9898;3&quot;);</span><br><span class="line"> }];</span><br><span class="line"></span><br><span class="line">NSArray * actions = @[action1,action2,action3];</span><br><span class="line"></span><br><span class="line">return actions;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-<p>&#x3000;&#x3000;&#x3000;&#x3000;block&#x91CC;&#x9762;&#x76F4;&#x63A5;&#x5199;&#x70B9;&#x51FB;&#x540E;&#x8981;&#x5B9E;&#x73B0;&#x7684;&#x64CD;&#x4F5C;<br>&#x6700;&#x7EC8;&#x6548;&#x679C;&#xFF1A;<br><img src="/2016/05/03/3dtouch/966908-976af00f57dd4439.png" alt=""><br> &#x3000;&#x3000;&#x6682;&#x65F6;&#x5C31;&#x5199;&#x8FD9;&#x4E48;&#x591A;&#xFF0C;&#x6709;&#x4EC0;&#x4E48;&#x4E0D;&#x5BF9;&#x7684;&#x5730;&#x65B9;&#x8BF7;&#x5927;&#x5BB6;&#x6307;&#x6559;&#xFF0C;&#x5927;&#x5BB6;&#x4E92;&#x76F8;&#x5B66;&#x4E60;&#x3002;</p>
+<p>&#x3000;&#x3000;&#x3000;&#x3000;block&#x91CC;&#x9762;&#x76F4;&#x63A5;&#x5199;&#x70B9;&#x51FB;&#x540E;&#x8981;&#x5B9E;&#x73B0;&#x7684;&#x64CD;&#x4F5C;<br>&#x6700;&#x7EC8;&#x6548;&#x679C;&#xFF1A;<br><img src="/2016/04/20/3dtouch/966908-976af00f57dd4439.png" alt=""><br> &#x3000;&#x3000;&#x6682;&#x65F6;&#x5C31;&#x5199;&#x8FD9;&#x4E48;&#x591A;&#xFF0C;&#x6709;&#x4EC0;&#x4E48;&#x4E0D;&#x5BF9;&#x7684;&#x5730;&#x65B9;&#x8BF7;&#x5927;&#x5BB6;&#x6307;&#x6559;&#xFF0C;&#x5927;&#x5BB6;&#x4E92;&#x76F8;&#x5B66;&#x4E60;&#x3002;</p>
 
       
     </div>
@@ -326,6 +329,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+        </div>
       
 
       
@@ -364,8 +373,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/03/3dtouch/"
-           data-title="3DTouch应用详解" data-url="http://nanshanyi.github.io/2016/05/03/3dtouch/">
+      <div class="ds-thread" data-thread-key="2016/04/20/3dtouch/"
+           data-title="3DTouch应用详解" data-url="http://nanshanyi.github.io/2016/04/20/3dtouch/">
       </div>
     
   </div>
@@ -410,7 +419,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -419,10 +428,10 @@
 
           
             <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">1</span>
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
-              
+              </a>
             </div>
           
 

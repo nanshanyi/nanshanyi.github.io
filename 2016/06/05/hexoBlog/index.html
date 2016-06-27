@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="博客," />
+  <meta name="keywords" content="Hexo," />
 
 
 
@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/966908-8cfb4600366ab1c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/966908-6673e77e95e084da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/966908-fd0c0885439ef44d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2016-06-05T02:05:31.000Z">
+<meta property="og:updated_time" content="2016-06-27T12:57:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo创建个人博客">
 <meta name="twitter:description" content="&amp;#x4F60;&amp;#x662F;&amp;#x4E0D;&amp;#x662F;&amp;#x89C1;&amp;#x591A;&amp;#x4E86;&amp;#x5404;&amp;#x79CD;&amp;#x5927;v&amp;#x7684;&amp;#x4E2A;&amp;#x4EBA;&amp;#x535A;&amp;#x5BA2;&amp;#xFF0C;&amp;#x662F;&amp;#x4E0D;&amp;#x662F;&amp;#x4E5F;&amp;#x60F3;&amp;#x62E5;&amp;#x6709;&amp;#x8FD9;&amp;#x6837">
@@ -190,11 +190,21 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
 
       
         <li class="menu-item menu-item-search">
           
-            <a href="#" class="st-search-show-outputs">
+            <a href="#" class="popup-trigger">
           
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
@@ -209,19 +219,12 @@
   
     <div class="site-search">
       
-  <form class="site-search-form">
-  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
-</form>
-
-<script type="text/javascript">
-  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
-
-  _st('install', 'DZQvJNjZ1ekH_mySf862','2.0.0');
-</script>
-
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
 
 
     </div>
@@ -358,7 +361,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/博客/" rel="tag">#博客</a>
+            <a href="/tags/Hexo/" rel="tag">#Hexo</a>
           
         </div>
       
@@ -374,6 +377,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/27/xiaojiqiao/" rel="prev" title="iOS开发10个使用小技巧">
+                iOS开发10个使用小技巧 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -445,7 +452,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -454,10 +461,10 @@
 
           
             <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">1</span>
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
-              
+              </a>
             </div>
           
 

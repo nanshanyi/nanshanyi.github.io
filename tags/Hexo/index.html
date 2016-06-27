@@ -83,7 +83,7 @@
 <meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="南山忆的技术博客">
-<meta property="og:url" content="http://nanshanyi.github.io/tags/博客/index.html">
+<meta property="og:url" content="http://nanshanyi.github.io/tags/Hexo/index.html">
 <meta property="og:site_name" content="南山忆的技术博客">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -106,7 +106,7 @@
   };
 </script>
 
-  <title> 标签: 博客 | 南山忆的技术博客 </title>
+  <title> 标签: Hexo | 南山忆的技术博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -178,11 +178,21 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
 
       
         <li class="menu-item menu-item-search">
           
-            <a href="#" class="st-search-show-outputs">
+            <a href="#" class="popup-trigger">
           
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
@@ -197,19 +207,12 @@
   
     <div class="site-search">
       
-  <form class="site-search-form">
-  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
-</form>
-
-<script type="text/javascript">
-  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
-
-  _st('install', 'DZQvJNjZ1ekH_mySf862','2.0.0');
-</script>
-
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
 
 
     </div>
@@ -228,7 +231,7 @@
   <div id="posts" class="posts-collapse">
     <div class="collection-title">
       <h2 >
-        博客
+        Hexo
         <small>标签</small>
       </h2>
     </div>
@@ -303,7 +306,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -312,10 +315,10 @@
 
           
             <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">1</span>
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
-              
+              </a>
             </div>
           
 

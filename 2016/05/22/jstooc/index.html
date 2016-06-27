@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="南山忆, 南山忆的技术博客，iOS" />
+  <meta name="keywords" content="iOS," />
 
 
 
@@ -86,7 +86,7 @@
 <meta property="og:url" content="http://nanshanyi.github.io/2016/05/22/jstooc/index.html">
 <meta property="og:site_name" content="南山忆的技术博客">
 <meta property="og:description" content="JS &amp;#x4E0E; OC &amp;#x7684;&amp;#x4EA4;&amp;#x4E92;&amp;#x539F;&amp;#x6765;&amp;#x6CA1;&amp;#x6709;&amp;#x597D;&amp;#x597D;&amp;#x7814;&amp;#x7A76;&amp;#x8FC7;&amp;#xFF0C;&amp;#x7528;&amp;#x7684;&amp;#x90FD;&amp;#x662F;&amp;#x6BD4;&amp;#x8F83;&amp;#x7B80;&amp;#x5355;&amp;#x62E6;&amp;#x622A">
-<meta property="og:updated_time" content="2016-05-22T07:59:59.000Z">
+<meta property="og:updated_time" content="2016-06-27T12:57:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS JavaScriptCore实现OC与JS的交互">
 <meta name="twitter:description" content="JS &amp;#x4E0E; OC &amp;#x7684;&amp;#x4EA4;&amp;#x4E92;&amp;#x539F;&amp;#x6765;&amp;#x6CA1;&amp;#x6709;&amp;#x597D;&amp;#x597D;&amp;#x7814;&amp;#x7A76;&amp;#x8FC7;&amp;#xFF0C;&amp;#x7528;&amp;#x7684;&amp;#x90FD;&amp;#x662F;&amp;#x6BD4;&amp;#x8F83;&amp;#x7B80;&amp;#x5355;&amp;#x62E6;&amp;#x622A">
@@ -179,11 +179,21 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
 
       
         <li class="menu-item menu-item-search">
           
-            <a href="#" class="st-search-show-outputs">
+            <a href="#" class="popup-trigger">
           
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
@@ -198,19 +208,12 @@
   
     <div class="site-search">
       
-  <form class="site-search-form">
-  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
-</form>
-
-<script type="text/javascript">
-  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
-
-  _st('install', 'DZQvJNjZ1ekH_mySf862','2.0.0');
-</script>
-
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
 
 
     </div>
@@ -323,6 +326,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
@@ -410,7 +419,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -419,10 +428,10 @@
 
           
             <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">1</span>
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
-              
+              </a>
             </div>
           
 
