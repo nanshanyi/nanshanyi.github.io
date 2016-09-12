@@ -1,0 +1,749 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="南山忆, 南山忆的技术博客，iOS" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x5148;&amp;#x6765;&amp;#x770B;&amp;#x4E00;&amp;#x4E0B;&amp;#x6548;&amp;#x679C;&amp;#x8FD9;&amp;#x662F;&amp;#x901A;&amp;#x8FC7;&amp;#x8C03;&amp;#x7528;iOS&amp;#x7684;&amp;#x9640;&amp;#x87BA;&amp;#x4EEA;&amp;#x548C;&amp;#x52A0;&amp;#x901F;&amp;#x5EA6;&amp;#x8BA1;&amp;#x3002;&amp;#x901A;&amp;#x8F">
+<meta property="og:type" content="article">
+<meta property="og:title" content="研究一下陀螺仪和加速度计">
+<meta property="og:url" content="http://nanshanyi.github.io/2016/07/18/研究一下陀螺仪和加速度计/index.html">
+<meta property="og:site_name" content="南山忆的技术博客">
+<meta property="og:description" content="&amp;#x5148;&amp;#x6765;&amp;#x770B;&amp;#x4E00;&amp;#x4E0B;&amp;#x6548;&amp;#x679C;&amp;#x8FD9;&amp;#x662F;&amp;#x901A;&amp;#x8FC7;&amp;#x8C03;&amp;#x7528;iOS&amp;#x7684;&amp;#x9640;&amp;#x87BA;&amp;#x4EEA;&amp;#x548C;&amp;#x52A0;&amp;#x901F;&amp;#x5EA6;&amp;#x8BA1;&amp;#x3002;&amp;#x901A;&amp;#x8F">
+<meta property="og:image" content="http://nanshanyi.github.io/2016/07/18/研究一下陀螺仪和加速度计/motion.gif">
+<meta property="og:image" content="http://nanshanyi.github.io/2016/07/18/研究一下陀螺仪和加速度计/xyz.png">
+<meta property="og:updated_time" content="2016-09-12T04:15:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="研究一下陀螺仪和加速度计">
+<meta name="twitter:description" content="&amp;#x5148;&amp;#x6765;&amp;#x770B;&amp;#x4E00;&amp;#x4E0B;&amp;#x6548;&amp;#x679C;&amp;#x8FD9;&amp;#x662F;&amp;#x901A;&amp;#x8FC7;&amp;#x8C03;&amp;#x7528;iOS&amp;#x7684;&amp;#x9640;&amp;#x87BA;&amp;#x4EEA;&amp;#x548C;&amp;#x52A0;&amp;#x901F;&amp;#x5EA6;&amp;#x8BA1;&amp;#x3002;&amp;#x901A;&amp;#x8F">
+<meta name="twitter:image" content="http://nanshanyi.github.io/2016/07/18/研究一下陀螺仪和加速度计/motion.gif">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 研究一下陀螺仪和加速度计 | 南山忆的技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">南山忆的技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">回忆是抓不住的月光，握紧就变黑暗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                研究一下陀螺仪和加速度计
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-18T11:33:28+08:00" content="2016-07-18">
+              2016-07-18
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/18/研究一下陀螺仪和加速度计/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/18/研究一下陀螺仪和加速度计/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h5 id="&#x5148;&#x6765;&#x770B;&#x4E00;&#x4E0B;&#x6548;&#x679C;"><a href="#&#x5148;&#x6765;&#x770B;&#x4E00;&#x4E0B;&#x6548;&#x679C;" class="headerlink" title="&#x5148;&#x6765;&#x770B;&#x4E00;&#x4E0B;&#x6548;&#x679C;"></a>&#x5148;&#x6765;&#x770B;&#x4E00;&#x4E0B;&#x6548;&#x679C;</h5><p><img src="/2016/07/18/&#x7814;&#x7A76;&#x4E00;&#x4E0B;&#x9640;&#x87BA;&#x4EEA;&#x548C;&#x52A0;&#x901F;&#x5EA6;&#x8BA1;/motion.gif" width="40%" height="40%"><br>&#x8FD9;&#x662F;&#x901A;&#x8FC7;&#x8C03;&#x7528;iOS&#x7684;&#x9640;&#x87BA;&#x4EEA;&#x548C;&#x52A0;&#x901F;&#x5EA6;&#x8BA1;&#x3002;&#x901A;&#x8FC7;&#x503E;&#x659C;&#x624B;&#x673A;&#x5B9E;&#x73B0;&#x7684;&#x6548;&#x679C;</p>
+<h5 id="Core-Motion"><a href="#Core-Motion" class="headerlink" title="Core Motion"></a>Core Motion</h5><p> &#x3000;&#x3000;&#x52A0;&#x901F;&#x5EA6;&#x8BA1;&#x548C;&#x9640;&#x87BA;&#x4EEA;&#x662F;&#x901A;&#x8FC7;Core Motion&#x6846;&#x67B6;&#xFF0C;&#x6765;&#x7BA1;&#x7406;&#x8BBF;&#x95EE;&#x7684;&#x3002;&#x6B64;&#x6846;&#x67B6;&#x63D0;&#x4F9B;&#x4E86;CMMotionManager&#x7C7B;&#xFF0C;&#x5B83;&#x63D0;&#x4F9B;&#x7684;&#x6570;&#x636E;&#x90FD;&#x662F;&#x7528;&#x6765;&#x63CF;&#x8FF0;&#x8BBE;&#x5907;&#x7684;&#x79FB;&#x52A8;&#x7684;&#x3002;&#x8FD8;&#x63D0;&#x4F9B;&#x4E86;CMAccelerometerData&#x548C;CMGroData&#xFF0C;&#x4ED6;&#x4EEC;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x539F;&#x751F;&#x7684;&#x52A0;&#x901F;&#x5EA6;&#x8BA1;&#x548C;&#x9640;&#x87BA;&#x4EEA;&#x4FE1;&#x606F;&#x3002;&#x53E6;&#x5916;&#x8FD8;&#x6709;CMDeviceMotion&#xFF0C;&#x8FD9;&#x4E2A;&#x7C7B;&#x91CC;&#x9762;&#x5305;&#x542B;&#x6709;&#x52A0;&#x901F;&#x5EA6;&#x8BA1;&#x548C;&#x9640;&#x87BA;&#x4EEA;&#x7684;&#x6D4B;&#x91CF;&#x6570;&#x636E;&#xFF0C;&#x4EE5;&#x53CA;&#x65B9;&#x4F4D;&#x4FE1;&#x606F;&#x3002;&#x5373;&#x8BBE;&#x5907;&#x662F;&#x5E73;&#x653E;&#xFF0C;&#x671D;&#x4E0A;&#xFF0C;&#x671D;&#x4E0B;&#xFF0C;&#x8FD8;&#x662F;&#x671D;&#x5DE6;&#x7B49;&#x4FE1;&#x606F;&#x3002;&#x8BDD;&#x4E0D;&#x591A;&#x8BF4;&#x8FD8;&#x662F;&#x76F4;&#x63A5;&#x4E0A;&#x4EE3;&#x7801;&#x3002;<br> &#x3000;&#x3000;&#x5148;&#x6765;&#x4E2A;&#x5750;&#x6807;&#x7CFB;&#x4F5C;&#x4E3A;&#x53C2;&#x8003;<br> <img src="/2016/07/18/&#x7814;&#x7A76;&#x4E00;&#x4E0B;&#x9640;&#x87BA;&#x4EEA;&#x548C;&#x52A0;&#x901F;&#x5EA6;&#x8BA1;/xyz.png" width="40%" height="40%"><br><a id="more"></a></p>
+<h5 id="&#x770B;&#x4E00;&#x4E0B;&#x5404;&#x9879;&#x6570;&#x636E;"><a href="#&#x770B;&#x4E00;&#x4E0B;&#x5404;&#x9879;&#x6570;&#x636E;" class="headerlink" title="&#x770B;&#x4E00;&#x4E0B;&#x5404;&#x9879;&#x6570;&#x636E;"></a>&#x770B;&#x4E00;&#x4E0B;&#x5404;&#x9879;&#x6570;&#x636E;</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">#define kUpdateInterval (1.f / 60.f)//&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x66F4;&#x65B0;&#x65F6;&#x95F4;</span><br><span class="line">@property (nonatomic,strong)CMMotionManager *motionManager;</span><br><span class="line">@property (nonatomic,strong)NSOperationQueue *quene;</span><br><span class="line">//&#x58F0;&#x660E;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;</span><br><span class="line"></span><br><span class="line">self.motionManager = [[CMMotionManager alloc]init];</span><br><span class="line">NSOperationQueue *quene = [[NSOperationQueue alloc]init];</span><br><span class="line">&#x521D;&#x59CB;&#x5316;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#xFF0C;&#x52A8;&#x4F5C;&#x7BA1;&#x7406;&#x5668;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x5355;&#x72EC;&#x7684;&#x7EBF;&#x7A0B;&#x6765;&#x8FD0;&#x884C;&#xFF0C;&#x4EE5;&#x4FBF;&#x5728;&#x6BCF;&#x6B21;&#x53D1;&#x751F;&#x4E8B;&#x4EF6;&#x65F6;&#x653E;&#x5165;&#x8981;&#x6267;&#x884C;&#x7684;&#x5DE5;&#x4F5C;&#x3002;&#x82F9;&#x679C;&#x6587;&#x6863;&#x4E4B;&#x5904;&#x4E0D;&#x8981;&#x653E;&#x5728;&#x9ED8;&#x8BA4;&#x961F;&#x5217;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x88AB;&#x4E8B;&#x4EF6;&#x586B;&#x6EE1;&#xFF0C;&#x65E0;&#x6CD5;&#x5904;&#x7406;&#x522B;&#x7684;&#x4E8B;&#x4EF6;</span><br><span class="line"></span><br><span class="line">    if (self.motionManager.deviceMotionAvailable) {</span><br><span class="line">        self.motionManager.deviceMotionUpdateInterval = 0.1;</span><br><span class="line">        //&#x8BBE;&#x7F6E;&#x66F4;&#x65B0;&#x6570;&#x636E;&#x7684;&#x65F6;&#x95F4;&#x95F4;&#x9694;</span><br><span class="line">        [self.motionManager startDeviceMotionUpdatesToQueue: quene withHandler:^(CMDeviceMotion * _Nullable motion, NSError * _Nullable error) {</span><br><span class="line">            CMRotationRate rotationRate = motion.rotationRate;</span><br><span class="line">           //&#x65CB;&#x8F6C;&#x901F;&#x7387;&#x5BF9;&#x5E94;x&#xFF0C;y&#xFF0C;z&#x5206;&#x522B;&#x662F;&#x8BBE;&#x5907;&#x7ED5;x&#xFF0C;y&#xFF0C;z &#x8F74;&#xFF08;&#x4E0A;&#x9762;&#x6709;&#x56FE;&#x53C2;&#x8003;&#xFF09;</span><br><span class="line">           &#x7684;&#x65CB;&#x8F6C;&#x901F;&#x7387;&#xFF0C;&#x987A;&#x65F6;&#x9488;&#x4E3A;&#x6B63;&#xFF0C;&#x9006;&#x65F6;&#x9488;&#x4E3A;&#x8D1F;</span><br><span class="line">            CMAcceleration gravity = motion.gravity;</span><br><span class="line">            //&#x81EA;&#x7136;&#x52A0;&#x901F;&#x5EA6;&#xFF0C;&#x53EF;&#x662F;&#x8BC6;&#x522B;&#x624B;&#x673A;&#x7684;&#x653E;&#x7F6E;&#x65B9;&#x5411;&#xFF0C;&#x8BBE;&#x5907;&#x5E73;&#x653E;&#x5728;&#x684C;&#x4E0A;&#xFF0C;z=-1;</span><br><span class="line">               &#x5C4F;&#x5E55;&#x671D;&#x5DE6;&#x4FA7;&#x7ACB;&#xFF0C;x = -1&#xFF1B;&#x5145;&#x7535;&#x53E3;&#x671D;&#x4E0B;&#x5782;&#x76F4;&#x653E;&#x7F6E;&#xFF0C;y=-1</span><br><span class="line">            CMAcceleration userAcc = motion.userAcceleration;</span><br><span class="line">            //&#x7528;&#x6237;&#x8FD0;&#x52A8;&#x624B;&#x673A;&#x9020;&#x6210;&#x7684;&#x52A0;&#x901F;&#x5EA6;&#xFF0C;&#x5206;&#x522B;&#x5411;xyz&#x65B9;&#x5411;&#x8FD0;&#x52A8;&#x65F6;&#xFF0C;&#x6B63;&#x5411;&#x65F6;&#x5373;&#x4E3A;&#x6B63;&#x503C;</span><br><span class="line">            CMAttitude *attitude = motion.attitude;</span><br><span class="line">            //&#x8BBE;&#x5907;&#x7684;&#x65CB;&#x8F6C;&#x7A0B;&#x5EA6;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x8BBE;&#x5907;&#x7ED5;xyz&#x8F74;&#x65CB;&#x8F6C;&#x7684;&#x7A0B;&#x5EA6;&#xFF0C;&#x5355;&#x4F4D;&#x662F;</span><br><span class="line">            &#x5F27;&#x5EA6;&#xFF0C;&#x5373;&#x65CB;&#x8F6C;&#x4E00;&#x5468;&#x7684;&#x503C;&#x4E3A;2&#x3C0;&#xFF0C;&#x624B;&#x673A;&#x7ED5;&#x4E3E;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;&#x628A;&#x624B;&#x673A;&#x5E73;&#x653E;&#x5728;&#x684C;&#x9762;&#x4E0A;&#xFF0C;</span><br><span class="line">            &#x65CB;&#x8F6C;&#x624B;&#x673A;Yaw(&#x504F;&#x79FB;)&#x5F00;&#x59CB;&#x53D8;&#x5316;&#xFF0C;&#x65CB;&#x8F6C;180&#xB0;&#x65F6;yaw = 3.14;</span><br><span class="line">            &#x7ED5;Y&#x8F74;&#x65CB;&#x8F6C;&#x65F6;Roll&#x53D8;&#x5316;&#xFF1B;&#x7ED5;X&#x8F74;&#x65CB;&#x8F6C;&#x65F6;Pitch&#x53D8;&#x5316;&#xFF08;&#x65B9;&#x5411;&#x4E0D;&#x5728;&#x591A;&#x505A;&#x8BA8;&#x8BBA;&#xFF0C;&#x53C2;&#x8003;&#x7CFB;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x6CA1;&#x6CD5;&#x7EDF;&#x4E00;&#xFF09;</span><br><span class="line">            NSString *gyroscopeText = [NSString   stringWithFormat:@&quot;Rotation:\\n x = %.2f\\n y = %.2f\\n</span><br><span class="line">  z = %.2f&quot;,rotationRate.x,rotationRate.y,rotationRate.z];</span><br><span class="line">            NSString *acceleratiorText = [NSString stringWithFormat:@&quot;Accelertion: \\n Gravity x = %.2f\\tUser x = %.2f</span><br><span class="line">\\n Gravity y = %.2f\\tUser y = %.2f \\n Gravity z = %.2f\\tUser z = %.2f \\n&quot;,gravity.x,userAcc.x,gravity.y,userAcc.y,gravity.z,userAcc.z];</span><br><span class="line"></span><br><span class="line">            NSString *attitudeText = [NSString stringWithFormat:@&quot;Attitute:\\n Roll = %.2f\\nPitch = %.2f</span><br><span class="line">\\nYaw = %.2f\\n&quot;,attitude.roll,attitude.pitch,attitude.yaw];</span><br><span class="line">//            NSLog(@&quot;%@&quot;,gyroscopeText);</span><br><span class="line">            dispatch_async(dispatch_get_main_queue(), ^{</span><br><span class="line">                _gyroscopeLabel.text = gyroscopeText;</span><br><span class="line">                _accelerometerLabel.text = acceleratiorText;</span><br><span class="line">                _attitudeLabel.text = attitudeText;</span><br><span class="line">            });</span><br><span class="line">        }];</span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
+<p>#####&#x7136;&#x540E;&#x6211;&#x4EEC;&#x6765;&#x505A;&#x4E00;&#x4E2A;Demo<br>  controller&#x4E2D;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#define kUpdateInterval (1.f / 60.f)//&#x66F4;&#x65B0;&#x9891;&#x7387;&#x9AD8;&#x4E00;&#x70B9;</span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">BallViewController</span> ()</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>)CMMotionManager *motionManager;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>)<span class="built_in">NSOperationQueue</span> *quene;</span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line">- (<span class="keyword">void</span>)viewDidLoad {</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">    BallView *ballView = [[BallView alloc]initWithFrame:<span class="keyword">self</span>.view.bounds];</span><br><span class="line"><span class="comment">//&#x81EA;&#x5DF1;&#x5199;&#x7684;&#x7C7B;&#x7EE7;&#x627F;&#x81EA;UIView</span></span><br><span class="line">    [<span class="keyword">self</span>.view addSubview:ballView];</span><br><span class="line">    <span class="keyword">self</span>.motionManager = [[CMMotionManager alloc]init];</span><br><span class="line">    <span class="keyword">self</span>.quene = [[<span class="built_in">NSOperationQueue</span> alloc]init];</span><br><span class="line">    <span class="keyword">self</span>.motionManager.deviceMotionUpdateInterval = kUpdateInterval;</span><br><span class="line">    [<span class="keyword">self</span>.motionManager startDeviceMotionUpdatesToQueue:_quene withHandler:^(CMDeviceMotion * _Nullable motion, <span class="built_in">NSError</span> * _Nullable error) {</span><br><span class="line"><span class="comment">//&#x6B64;&#x5904;&#x4E5F;&#x53EF;&#x4EE5;&#x4F20;&#x5165;motion.userAcceleration&#x3002;&#xFF08;&#x7528;&#x6237;&#x79FB;&#x52A8;&#x624B;&#x673A;&#x4EA7;&#x751F;&#x7684;&#x52A0;&#x901F;&#x5EA6;&#xFF09;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x6447;&#x52A8;&#x6765;&#x63A7;&#x5236;&#xFF08;ballView&#x91CC;&#x9762;&#x7684;&#x653E;&#x5927;&#x500D;&#x6570;&#x8BB0;&#x5F97;&#x8981;&#x6539;&#x5927;&#x4E00;&#x70B9;&#xFF09;</span></span><br><span class="line">        [ballView setAcceleration:motion.gravity];</span><br><span class="line">        <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^{</span><br><span class="line">        [ballView update];</span><br><span class="line">       <span class="comment">//&#x4E3B;&#x7EBF;&#x7A0B;&#x66F4;&#x65B0;UI</span></span><br><span class="line">        });</span><br><span class="line">    }];</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+<p>BallView&#x7684;&#x5B9E;&#x73B0;<br>.h&#x6587;&#x4EF6;<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;CoreMotion/CoreMotion.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">BallView</span> : <span class="title">UIView</span></span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">assign</span>)CMAcceleration acceleration;</span><br><span class="line">- (<span class="keyword">void</span>)update;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure></p>
+<p>.m&#x6587;&#x4EF6;<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">BallView</span> ()</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">assign</span>)<span class="built_in">CGFloat</span> width;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">assign</span>)<span class="built_in">CGFloat</span> height;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">assign</span>)<span class="built_in">CGFloat</span> imageWidth;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">assign</span>)<span class="built_in">CGFloat</span> imageHeight;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>)<span class="built_in">UIImage</span> *image;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>)<span class="built_in">UIImageView</span> *imageView;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">assign</span>)<span class="built_in">CGPoint</span> currentPoint;<span class="comment">//&#x5F53;&#x524D;ImageView&#x4F4D;&#x7F6E;</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">assign</span>)<span class="built_in">CGFloat</span> ballXVelocity;<span class="comment">//X&#x65B9;&#x5411;&#x901F;&#x5EA6;</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">assign</span>)<span class="built_in">CGFloat</span> ballYVelocity;<span class="comment">//Y&#x65B9;&#x5411;&#x901F;&#x5EA6;</span></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">BallView</span></span></span><br><span class="line"></span><br><span class="line">- (instancetype)initWithFrame:(<span class="built_in">CGRect</span>)frame{</span><br><span class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> initWithFrame:frame];</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>) {</span><br><span class="line">        [<span class="keyword">self</span> commoninit];</span><br><span class="line">        <span class="keyword">self</span>.backgroundColor = [<span class="built_in">UIColor</span> whiteColor];</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">}</span><br><span class="line">- (<span class="keyword">void</span>)commoninit{</span><br><span class="line">    <span class="keyword">self</span>.image = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@&quot;btn_nav04@3x&quot;</span>];</span><br><span class="line">    <span class="keyword">self</span>.imageView = [[<span class="built_in">UIImageView</span> alloc]initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="keyword">self</span>.imageWidth, <span class="keyword">self</span>.imageHeight)];</span><br><span class="line">    <span class="keyword">self</span>.imageView.image = _image;</span><br><span class="line">    [<span class="keyword">self</span> addSubview:<span class="keyword">self</span>.imageView];</span><br><span class="line">    <span class="keyword">self</span>.currentPoint = <span class="built_in">CGPointMake</span>(<span class="keyword">self</span>.bounds.size.width/<span class="number">2.</span>f+<span class="keyword">self</span>.image.size.width/<span class="number">2.</span>f, <span class="keyword">self</span>.bounds.size.height/<span class="number">2.</span>f+<span class="keyword">self</span>.image.size.height/<span class="number">2.</span>f);</span><br><span class="line">    <span class="keyword">self</span>.imageView.center = _currentPoint;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)setCurrentPoint:(<span class="built_in">CGPoint</span>)newPoint{</span><br><span class="line">    _currentPoint = newPoint;</span><br><span class="line">        <span class="comment">//&#x8FB9;&#x7F18;&#x5224;&#x65AD;</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.currentPoint.x &lt;= <span class="keyword">self</span>.imageWidth/<span class="number">2.</span>f) {</span><br><span class="line">        _currentPoint.x = <span class="keyword">self</span>.imageWidth/<span class="number">2.</span>f;</span><br><span class="line">        <span class="keyword">self</span>.ballXVelocity = -_ballXVelocity/<span class="number">2.</span>f;</span><br><span class="line">        <span class="comment">//&#x53CD;&#x5F39;&#x6548;&#x679C;&#xFF0C;&#x63A5;&#x89E6;&#x8FB9;&#x7F18;&#x540E;&#x52A0;&#x901F;&#x5EA6;&#x53CD;&#x5411;&#x51CF;&#x534A;</span></span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.currentPoint.y &lt;= <span class="keyword">self</span>.imageHeight/<span class="number">2.</span>f) {</span><br><span class="line">        _currentPoint.y = <span class="keyword">self</span>.imageHeight/<span class="number">2.</span>f;</span><br><span class="line">        <span class="keyword">self</span>.ballYVelocity = -_ballYVelocity/<span class="number">2.</span>f;</span><br><span class="line">        <span class="comment">//&#x53CD;&#x5F39;&#x6548;&#x679C;&#xFF0C;&#x63A5;&#x89E6;&#x8FB9;&#x7F18;&#x540E;&#x52A0;&#x901F;&#x5EA6;&#x53CD;&#x5411;&#x51CF;&#x534A;</span></span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.currentPoint.x &gt;= <span class="keyword">self</span>.width -<span class="keyword">self</span>.imageWidth/<span class="number">2.</span>f ) {</span><br><span class="line">        _currentPoint.x = <span class="keyword">self</span>.width -<span class="keyword">self</span>.imageWidth/<span class="number">2.</span>f;</span><br><span class="line">        <span class="keyword">self</span>.ballXVelocity = -_ballXVelocity/<span class="number">2.</span>f;</span><br><span class="line">        <span class="comment">//&#x53CD;&#x5F39;&#x6548;&#x679C;&#xFF0C;&#x63A5;&#x89E6;&#x8FB9;&#x7F18;&#x540E;&#x52A0;&#x901F;&#x5EA6;&#x53CD;&#x5411;&#x51CF;&#x534A;</span></span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.currentPoint.y &gt;= <span class="keyword">self</span>.height -<span class="keyword">self</span>.imageHeight/<span class="number">2.</span>f ) {</span><br><span class="line">        _currentPoint.y = <span class="keyword">self</span>.height -<span class="keyword">self</span>.imageHeight/<span class="number">2.</span>f;</span><br><span class="line">        <span class="keyword">self</span>.ballYVelocity = -_ballYVelocity/<span class="number">2.</span>f;</span><br><span class="line">       <span class="comment">//&#x53CD;&#x5F39;&#x6548;&#x679C;&#xFF0C;&#x63A5;&#x89E6;&#x8FB9;&#x7F18;&#x540E;&#x52A0;&#x901F;&#x5EA6;&#x53CD;&#x5411;&#x51CF;&#x534A;</span></span><br><span class="line">    }</span><br><span class="line">    [<span class="keyword">self</span> updateCenter];</span><br><span class="line">}</span><br><span class="line">- (<span class="keyword">void</span>)updateCenter{</span><br><span class="line">    <span class="keyword">self</span>.imageView.center = _currentPoint;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)update{</span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">NSDate</span> *lastUpdateTime = <span class="literal">nil</span>;</span><br><span class="line">    <span class="keyword">if</span> (lastUpdateTime != <span class="literal">nil</span>) {</span><br><span class="line">        <span class="built_in">NSTimeInterval</span> secondsSinceLastDraw = [[<span class="built_in">NSDate</span> date] timeIntervalSinceDate:lastUpdateTime];<span class="comment">//&#x4E24;&#x6B21;&#x66F4;&#x65B0;&#x7684;&#x65F6;&#x95F4;&#x5DEE;</span></span><br><span class="line">        <span class="keyword">self</span>.ballXVelocity = <span class="keyword">self</span>.ballXVelocity + (<span class="keyword">self</span>.acceleration.x * secondsSinceLastDraw);</span><br><span class="line">        <span class="comment">//X&#x65B9;&#x5411;&#x4E0A;&#x539F;&#x901F;&#x5EA6;&#x52A0;&#x4E0A;&#x52A0;&#x901F;&#x5EA6;&#x4E58;&#x4EE5;&#x65F6;&#x95F4;&#xFF0C;&#x8BA1;&#x7B97;&#x5F53;&#x524D;&#x901F;&#x5EA6;</span></span><br><span class="line">        <span class="keyword">self</span>.ballYVelocity = <span class="keyword">self</span>.ballYVelocity - (<span class="keyword">self</span>.acceleration.y * secondsSinceLastDraw);</span><br><span class="line">        <span class="comment">//Y&#x65B9;&#x5411;&#x4E0A;&#x539F;&#x901F;&#x5EA6;&#x52A0;&#x4E0A;&#x52A0;&#x901F;&#x5EA6;&#x4E58;&#x4EE5;&#x65F6;&#x95F4;&#xFF0C;&#x8BA1;&#x7B97;&#x5F53;&#x524D;&#x901F;&#x5EA6;</span></span><br><span class="line">        <span class="built_in">CGFloat</span> xAccel = secondsSinceLastDraw * <span class="keyword">self</span>.ballXVelocity * <span class="number">1000</span>;</span><br><span class="line">        <span class="comment">//&#x8BA1;&#x7B97;&#x4F4D;&#x7F6E;&#x53D8;&#x5316;&#x91CF;&#x3002;&#x7531;&#x4E8E;&#x8FD9;&#x4E2A;&#x503C;&#x5F88;&#x5C0F;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x8981;&#x653E;&#x5927;&#x4E00;&#x4E9B;&#x624D;&#x66F4;&#x52A0;&#x771F;&#x5B9E;&#x6B64;&#x5904;</span></span><br><span class="line">        <span class="comment">//&#x82E5;&#x60F3;&#x4F7F;&#x7528;&#x6447;&#x52A8;&#xFF0C;&#x8981;&#x628A;&#x653E;&#x5927;&#x500D;&#x6570;&#x8C03;&#x5927;&#xFF0C;10000&#x6548;&#x679C;&#x4E0D;&#x9519;</span></span><br><span class="line">        <span class="built_in">CGFloat</span> yAccel = secondsSinceLastDraw * <span class="keyword">self</span>.ballYVelocity * <span class="number">1000</span>;</span><br><span class="line">        <span class="keyword">self</span>.currentPoint = <span class="built_in">CGPointMake</span>(<span class="keyword">self</span>.currentPoint.x + xAccel, <span class="keyword">self</span>.currentPoint.y + yAccel);</span><br><span class="line">    }</span><br><span class="line">    lastUpdateTime = [<span class="built_in">NSDate</span> date];</span><br><span class="line">}</span><br><span class="line"><span class="meta">#pragma mark - widthAndHeight</span></span><br><span class="line">- (<span class="built_in">CGFloat</span>)width{</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>.bounds.size.width;</span><br><span class="line">}</span><br><span class="line">- (<span class="built_in">CGFloat</span>)height{</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>.bounds.size.height;</span><br><span class="line">}</span><br><span class="line">- (<span class="built_in">CGFloat</span>)imageWidth{</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>.image.size.width;</span><br><span class="line">}</span><br><span class="line">- (<span class="built_in">CGFloat</span>)imageHeight{</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>.image.size.height;</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+<p>&#x3000;&#x3000;&#x8FD9;&#x6837;&#x4F60;&#x5C31;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#xFF0C;&#x503E;&#x659C;&#x624B;&#x673A;&#x6765;&#x79FB;&#x52A8;&#x56FE;&#x7247;&#xFF0C;&#x5C31;&#x50CF;&#x771F;&#x662F;&#x7684;&#x91CD;&#x529B;&#x4EA7;&#x751F;&#x7684;&#x6548;&#x679C;&#x4E00;&#x6837;&#x3002;&#x540C;&#x6837;&#x4E5F;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#xFF0C;&#x6447;&#x52A8;&#x7684;&#x6548;&#x679C;&#x3002;&#xFF08;&#x5C31;&#x50CF;&#x5B89;&#x5353;&#x7684;360&#x539F;&#x6765;&#x7684;&#x7248;&#x672C;&#x6709;&#x4E2A;&#x6447;&#x52A8;&#x7684;&#x7403;&#x6E05;&#x7406;&#x5185;&#x5B58;&#x90A3;&#x6837;&#x7684;&#x6548;&#x679C;&#xFF09;&#x3002;<br>&#x3000;&#x3000;&#x5982;&#x9700;&#x8F6C;&#x8F7D;&#x8BF7;&#x6CE8;&#x660E;&#x51FA;&#x5904;&#xFF0C;&#x8BF7;&#x5C0A;&#x91CD;&#x4F5C;&#x8005;&#x7684;&#x52B3;&#x52A8;&#x6210;&#x679C;&#x3002;</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/27/xiaojiqiao/" rel="next" title="iOS开发10个使用小技巧">
+                <i class="fa fa-chevron-left"></i> iOS开发10个使用小技巧
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/12/NSString的Copy与Strong你用对了吗？/" rel="prev" title="NSString的Copy与Strong你用对了吗？">
+                NSString的Copy与Strong你用对了吗？ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/18/研究一下陀螺仪和加速度计/"
+           data-title="研究一下陀螺仪和加速度计" data-url="http://nanshanyi.github.io/2016/07/18/研究一下陀螺仪和加速度计/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="南山忆" />
+          <p class="site-author-name" itemprop="name">南山忆</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/nanshanyi" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/774b1d5616a7/latest_articles" target="_blank" title="JianShu">
+                  
+                    <i class="fa fa-jianshu"></i>
+                  
+                  JianShu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#先来看一下效果"><span class="nav-number">1.</span> <span class="nav-text">先来看一下效果</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Core-Motion"><span class="nav-number">2.</span> <span class="nav-text">Core Motion</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#看一下各项数据"><span class="nav-number">3.</span> <span class="nav-text">看一下各项数据</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">南山忆</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"Nanshanyi"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

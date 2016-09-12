@@ -1,0 +1,753 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x8FD9;&amp;#x4E2A;&amp;#x529F;&amp;#x80FD;&amp;#x7528;&amp;#x7684;&amp;#x6700;&amp;#x591A;&amp;#x7684;&amp;#x5C31;&amp;#x662F;&amp;#x5728;&amp;#x5FAE;&amp;#x535A;&amp;#x91CC;&amp;#x9762;&amp;#xFF0C;&amp;#x91CC;&amp;#x9762;&amp;#x6709;&amp;#x7528;&amp;#x6237;&amp;#x540D;@&amp;#x5357;&amp;#x5C71">
+<meta property="og:type" content="article">
+<meta property="og:title" content="封装一个匹配特定字符可点击的Label">
+<meta property="og:url" content="http://nanshanyi.github.io/2016/09/10/封装一个匹配特定字符可点击的Label/index.html">
+<meta property="og:site_name" content="南山忆的技术博客">
+<meta property="og:description" content="&amp;#x8FD9;&amp;#x4E2A;&amp;#x529F;&amp;#x80FD;&amp;#x7528;&amp;#x7684;&amp;#x6700;&amp;#x591A;&amp;#x7684;&amp;#x5C31;&amp;#x662F;&amp;#x5728;&amp;#x5FAE;&amp;#x535A;&amp;#x91CC;&amp;#x9762;&amp;#xFF0C;&amp;#x91CC;&amp;#x9762;&amp;#x6709;&amp;#x7528;&amp;#x6237;&amp;#x540D;@&amp;#x5357;&amp;#x5C71">
+<meta property="og:image" content="http://nanshanyi.github.io/2016/09/10/封装一个匹配特定字符可点击的Label/966908-f27bbdadc93c7346.png">
+<meta property="og:image" content="http://nanshanyi.github.io/2016/09/10/封装一个匹配特定字符可点击的Label/966908-c7bbb6aa396eac57.png">
+<meta property="og:updated_time" content="2016-09-12T04:28:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="封装一个匹配特定字符可点击的Label">
+<meta name="twitter:description" content="&amp;#x8FD9;&amp;#x4E2A;&amp;#x529F;&amp;#x80FD;&amp;#x7528;&amp;#x7684;&amp;#x6700;&amp;#x591A;&amp;#x7684;&amp;#x5C31;&amp;#x662F;&amp;#x5728;&amp;#x5FAE;&amp;#x535A;&amp;#x91CC;&amp;#x9762;&amp;#xFF0C;&amp;#x91CC;&amp;#x9762;&amp;#x6709;&amp;#x7528;&amp;#x6237;&amp;#x540D;@&amp;#x5357;&amp;#x5C71">
+<meta name="twitter:image" content="http://nanshanyi.github.io/2016/09/10/封装一个匹配特定字符可点击的Label/966908-f27bbdadc93c7346.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 封装一个匹配特定字符可点击的Label | 南山忆的技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">南山忆的技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">回忆是抓不住的月光，握紧就变黑暗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                封装一个匹配特定字符可点击的Label
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-10T12:19:44+08:00" content="2016-09-10">
+              2016-09-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/10/封装一个匹配特定字符可点击的Label/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/10/封装一个匹配特定字符可点击的Label/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x8FD9;&#x4E2A;&#x529F;&#x80FD;&#x7528;&#x7684;&#x6700;&#x591A;&#x7684;&#x5C31;&#x662F;&#x5728;&#x5FAE;&#x535A;&#x91CC;&#x9762;&#xFF0C;&#x91CC;&#x9762;&#x6709;&#x7528;&#x6237;&#x540D;@&#x5357;&#x5C71;&#x5FC6;&#xFF0C;&#x7F51;&#x5740;<a href="http://www.jianshu.com/users/774b1d5616a7/latest_articles&#xFF0C;#&#x8BDD;&#x9898;#" target="_blank" rel="external">http://www.jianshu.com/users/774b1d5616a7/latest_articles&#xFF0C;#&#x8BDD;&#x9898;#</a> &#x7B49;&#x9700;&#x8981;&#x7279;&#x522B;&#x73B0;&#x5B9E;&#xFF0C;&#x8FD8;&#x9700;&#x8981;&#x6709;&#x70B9;&#x51FB;&#x4E8B;&#x4EF6;&#xFF0C;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#x666E;&#x901A;&#x7684;label&#x663E;&#x793A;&#x5DF2;&#x7ECF;&#x6EE1;&#x8DB3;&#x4E0D;&#x4E86;&#x9700;&#x6C42;&#x4E86;&#x3002;&#x9700;&#x8981;&#x6211;&#x4EEC;&#x6765;&#x81EA;&#x5DF1;&#x5199;&#x4E00;&#x4E2A;&#x53EF;&#x5B9E;&#x73B0;&#x76F8;&#x5E94;&#x529F;&#x80FD;&#x7684;label&#x3002;<br>&#x3000;&#x3000;&#x597D;&#x4E86;&#x5E9F;&#x8BDD;&#x4E0D;&#x591A;&#x8BF4;&#xFF0C;&#x8BA9;&#x6211;&#x4EEC;&#x5F00;&#x59CB;&#xFF0C;&#x5927;&#x81F4;&#x6D41;&#x7A0B;&#x5982;&#x4E0B;&#xFF1A;<br><img src="/2016/09/10/&#x5C01;&#x88C5;&#x4E00;&#x4E2A;&#x5339;&#x914D;&#x7279;&#x5B9A;&#x5B57;&#x7B26;&#x53EF;&#x70B9;&#x51FB;&#x7684;Label/966908-f27bbdadc93c7346.png" width="%60" height="%60"><br><a id="more"></a></p>
+<p>#####1&#x3001;&#x4E3B;&#x8981;&#x7528;&#x5230;&#x7684;&#x5C5E;&#x6027;<br>textStorage&#xFF0C;layoutManager&#xFF0C;textContainer&#x7684;&#x5173;&#x7CFB;<br>1&#xFF09;NSTextStorage&#x662F;NSMutableAttributedString&#x7684;&#x5B50;&#x7C7B;&#xFF0C;&#x7531;&#x4E8E;&#x53EF;&#x4EE5;&#x7075;&#x6D3B;&#x5730;&#x5F80;&#x6587;&#x5B57;&#x6DFB;&#x52A0;&#x6216;&#x4FEE;&#x6539;&#x5C5E;&#x6027;&#xFF0C;&#x6240;&#x4EE5;&#x975E;&#x5E38;&#x9002;&#x7528;&#x4E8E;&#x4FDD;&#x5B58;&#x5E76;&#x4FEE;&#x6539;&#x6587;&#x5B57;&#x5C5E;&#x6027;&#x3002;<br>2&#xFF09;NSLayoutManager&#x7528;&#x6765;&#x7BA1;&#x7406;NSTextStorage&#x5176;&#x4E2D;&#x7684;&#x6587;&#x5B57;&#x5185;&#x5BB9;&#x7684;&#x6392;&#x7248;&#x5E03;&#x5C40;&#x3002;<br>3&#xFF09;NSTextContainer&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;&#x77E9;&#x5F62;&#x533A;&#x57DF;&#x7528;&#x4E8E;&#x5B58;&#x653E;&#x5DF2;&#x7ECF;&#x8FDB;&#x884C;&#x4E86;&#x6392;&#x7248;&#x5E76;&#x8BBE;&#x7F6E;&#x597D;&#x5C5E;&#x6027;&#x7684;&#x6587;&#x5B57;<br>&#x4E09;&#x8005;&#x5173;&#x7CFB;&#x5982;&#x56FE;&#x6240;&#x793A;<br><img src="/2016/09/10/&#x5C01;&#x88C5;&#x4E00;&#x4E2A;&#x5339;&#x914D;&#x7279;&#x5B9A;&#x5B57;&#x7B26;&#x53EF;&#x70B9;&#x51FB;&#x7684;Label/966908-c7bbb6aa396eac57.png" width="%60" height="%60"></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//&#x662F;NSMutableAttributedString&#x7684;&#x5B50;&#x7C7B;&#xFF0C;&#x7531;&#x4E8E;&#x53EF;&#x4EE5;&#x7075;&#x6D3B;&#x5730;&#x5F80;&#x6587;&#x5B57;&#x6DFB;&#x52A0;&#x6216;&#x4FEE;&#x6539;&#x5C5E;&#x6027;&#xFF0C;&#x6240;&#x4EE5;&#x975E;&#x5E38;&#x9002;&#x7528;&#x4E8E;&#x4FDD;&#x5B58;&#x5E76;&#x4FEE;&#x6539;&#x6587;&#x5B57;&#x5C5E;&#x6027;&#x3002;</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSTextStorage</span> *textStorage;</span><br><span class="line"><span class="comment">//&#x7BA1;&#x7406;NSTextStorage&#x5176;&#x4E2D;&#x7684;&#x6587;&#x5B57;&#x5185;&#x5BB9;&#x7684;&#x6392;&#x7248;&#x5E03;&#x5C40;&#x3002;</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSLayoutManager</span> *layoutManager;</span><br><span class="line"><span class="comment">//&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;&#x77E9;&#x5F62;&#x533A;&#x57DF;&#x7528;&#x4E8E;&#x5B58;&#x653E;&#x5DF2;&#x7ECF;&#x8FDB;&#x884C;&#x4E86;&#x6392;&#x7248;&#x5E76;&#x8BBE;&#x7F6E;&#x597D;&#x5C5E;&#x6027;&#x7684;&#x6587;&#x5B57;</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSTextContainer</span> *textContainer;</span><br></pre></td></tr></table></figure>
+<p>&#x9700;&#x8981;&#x91CD;&#x5199;&#x7CFB;&#x7EDF;&#x65B9;&#x6CD5;&#xFF0C;&#x8FD9;&#x91CC;&#x8BB2;&#x4E3B;&#x8981;&#x7684;<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">- (instancetype)initWithFrame:(<span class="built_in">CGRect</span>)frame</span><br><span class="line">{</span><br><span class="line">&#xA0; &#xA0; <span class="keyword">self</span> = [<span class="keyword">super</span> initWithFrame:frame];</span><br><span class="line">&#xA0; &#xA0; <span class="keyword">if</span> (<span class="keyword">self</span>) {</span><br><span class="line">       <span class="comment">//&#x51C6;&#x5907;&#x6587;&#x672C;</span></span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; [<span class="keyword">self</span> prepareTextSystem];</span><br><span class="line">&#xA0; &#xA0; }</span><br><span class="line">&#xA0; &#xA0; <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">//&#x8BBE;&#x7F6E;&#x5BB9;&#x5668;&#x5927;&#x5C0F;&#x4E3A;label&#x7684;&#x5C3A;&#x5BF8;</span></span><br><span class="line">- (<span class="keyword">void</span>)layoutSubviews{</span><br><span class="line">&#xA0; &#xA0; <span class="keyword">self</span>.textContainer.size = <span class="keyword">self</span>.frame.size;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">//&#x91CD;&#x5199;drawTextInRect&#x65B9;&#x6CD5;&#x7ED8;&#x5236;&#x80CC;&#x666F;&#xFF0C;&#x6587;&#x5B57;</span></span><br><span class="line">- (<span class="keyword">void</span>)drawTextInRect:(<span class="built_in">CGRect</span>)rect{</span><br><span class="line">&#xA0;&#xA0; &#xA0;<span class="comment">//&#x5982;&#x679C;&#x6709;&#x9009;&#x4E2D;&#x7684;range&#xFF0C;&#x6539;&#x53D8;&#x6587;&#x5B57;&#x80CC;&#x666F;&#x989C;&#x8272;&#x3002;</span></span><br><span class="line">&#xA0; &#xA0; <span class="keyword">if</span> (_selectedRangeValue) {</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; <span class="built_in">UIColor</span> *selectColor = _isSelected ? [<span class="built_in">UIColor</span> colorWithWhite:<span class="number">0.6</span> alpha:<span class="number">0.2</span>] : [<span class="built_in">UIColor</span> clearColor];</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; <span class="comment">//&#x8BBE;&#x7F6E;&#x6587;&#x5B57;&#x80CC;&#x666F;&#x989C;&#x8272;</span></span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; [<span class="keyword">self</span>.textStorage addAttribute:<span class="built_in">NSBackgroundColorAttributeName</span> value:selectColor range:<span class="keyword">self</span>.selectedRangeValue.rangeValue];</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; <span class="comment">//&#x7ED8;&#x5236;&#x80CC;&#x666F;&#x989C;&#x8272;</span></span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; [<span class="keyword">self</span>.layoutManager drawBackgroundForGlyphRange:<span class="keyword">self</span>.selectedRangeValue.rangeValue atPoint:<span class="built_in">CGPointMake</span>(<span class="number">0</span>, <span class="number">0</span>)];</span><br><span class="line">&#xA0; &#xA0; }</span><br><span class="line">&#xA0; &#xA0; <span class="built_in">NSRange</span> range = <span class="built_in">NSMakeRange</span>(<span class="number">0</span>, <span class="keyword">self</span>.textStorage.length);</span><br><span class="line">&#xA0; &#xA0; [<span class="keyword">self</span>.layoutManager drawGlyphsForGlyphRange:range atPoint:<span class="built_in">CGPointZero</span>];</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+<p>#####2&#x3001;&#x51C6;&#x5907;&#x6587;&#x672C;&#x663E;&#x793A;<br>&#x3000;&#x3000;&#x8FD9;&#x91CC;&#x9762;&#x4F1A;&#x7528;&#x5230;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#xFF0C;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x662F;&#x4E00;&#x95E8;&#x633A;&#x6DF1;&#x7684;&#x5B66;&#x95EE;&#x3002;&#x6709;&#x4E0D;&#x592A;&#x4E86;&#x89E3;&#x7684;&#x7AE5;&#x978B;&#x53EF;&#x4EE5;&#x53C2;&#x8003;<br><a href="http://deerchao.net/tutorials/regex/regex-1.htm" target="_blank">&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;</a></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)prepareTextSystem {</span><br><span class="line"></span><br><span class="line">&#xA0; &#xA0; <span class="comment">//&#x5C06;&#x5E03;&#x5C40;&#x6DFB;&#x52A0;&#x5230;storage</span></span><br><span class="line">&#xA0; &#xA0; [<span class="keyword">self</span>.textStorage addLayoutManager:<span class="keyword">self</span>.layoutManager];</span><br><span class="line">&#xA0; &#xA0; <span class="comment">//&#x5C06;&#x5BB9;&#x5668;&#x6DFB;&#x52A0;&#x5230;&#x5E03;&#x5C40;&#x4E2D;</span></span><br><span class="line">&#xA0; &#xA0; [<span class="keyword">self</span>.layoutManager addTextContainer:<span class="keyword">self</span>.textContainer];</span><br><span class="line">&#xA0; &#xA0; <span class="keyword">self</span>.userInteractionEnabled = <span class="literal">YES</span>;</span><br><span class="line">&#xA0; &#xA0; <span class="comment">//&#x8BBE;&#x7F6E;&#x5DE6;&#x53F3;&#x8FB9;&#x8DDD;</span></span><br><span class="line">&#xA0; &#xA0; <span class="keyword">self</span>.textContainer.lineFragmentPadding = <span class="number">10</span>;</span><br><span class="line">}</span><br><span class="line">- (<span class="keyword">void</span>)prepareText{</span><br><span class="line">&#xA0; &#xA0; <span class="built_in">NSAttributedString</span> *attrString;</span><br><span class="line"><span class="comment">//&#x62FF;&#x5230;&#x6587;&#x672C;&#xFF0C;&#x6216;&#x8005;&#x5BCC;&#x6587;&#x672C;&#xFF0C;&#x62FF;&#x4E0D;&#x5230;&#x7F6E;&#x4E3A;&#x7A7A;</span></span><br><span class="line">&#xA0; &#xA0; <span class="keyword">if</span> (<span class="keyword">self</span>.attributedText) {</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; attrString = <span class="keyword">self</span>.attributedText;</span><br><span class="line">&#xA0; &#xA0; }<span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">self</span>.text){</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; attrString = [[<span class="built_in">NSAttributedString</span> alloc]initWithString:<span class="keyword">self</span>.text];</span><br><span class="line">&#xA0; &#xA0; }<span class="keyword">else</span> {</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; attrString = [[<span class="built_in">NSAttributedString</span> alloc]initWithString:<span class="string">@&quot;&quot;</span>];</span><br><span class="line">&#xA0; &#xA0; }</span><br><span class="line">&#xA0; &#xA0; <span class="keyword">self</span>.selectedRangeValue = <span class="literal">nil</span>;</span><br><span class="line">&#xA0; &#xA0; <span class="comment">//&#x8BBE;&#x7F6E;&#x6298;&#x884C;&#x6A21;&#x5F0F;</span></span><br><span class="line">&#xA0; &#xA0; <span class="built_in">NSMutableAttributedString</span> *attrMString = [<span class="keyword">self</span> addLineBreak:attrString];</span><br><span class="line">&#xA0; &#xA0; [<span class="keyword">self</span>.textStorage setAttributedString:attrMString];</span><br><span class="line">&#xA0;&#xA0; &#xA0;</span><br><span class="line">&#xA0; &#xA0; <span class="comment">//&#x6B63;&#x5219;&#x5339;&#x914D;&#xFF0C;&#x5339;&#x914D;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x7684;@XXX&#x548C;URL</span></span><br><span class="line">&#xA0;&#xA0; &#xA0; <span class="keyword">self</span>.linkRanges = [<span class="keyword">self</span> getRanges:<span class="string">@&quot;http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w- ./?%&amp;=]*)?&quot;</span>];</span><br><span class="line">&#xA0; &#xA0; <span class="built_in">UIColor</span> *attrColor = _attrStrColor == <span class="literal">nil</span> ? [<span class="built_in">UIColor</span> blueColor] : _attrStrColor;</span><br><span class="line">&#xA0; &#xA0; <span class="keyword">for</span> (<span class="built_in">NSValue</span> *rangeValue <span class="keyword">in</span> <span class="keyword">self</span>.linkRanges) {</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; [<span class="keyword">self</span>.textStorage addAttribute:<span class="built_in">NSForegroundColorAttributeName</span> value:attrColor range:rangeValue.rangeValue];</span><br><span class="line">&#xA0; &#xA0; }</span><br><span class="line">&#xA0;&#xA0; &#xA0;</span><br><span class="line">&#xA0; &#xA0; <span class="keyword">self</span>.userRanges = [<span class="keyword">self</span> getRanges:<span class="string">@&quot;@\\w{1,}?:&quot;</span>];</span><br><span class="line">&#xA0; &#xA0; <span class="keyword">for</span> (<span class="built_in">NSValue</span> *rangeValue <span class="keyword">in</span> <span class="keyword">self</span>.userRanges) {</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; [<span class="keyword">self</span>.textStorage addAttribute:<span class="built_in">NSForegroundColorAttributeName</span> value:attrColor range:rangeValue.rangeValue];</span><br><span class="line">&#xA0; &#xA0; }</span><br><span class="line">&#xA0;&#xA0; &#xA0;<span class="comment">//&#x5339;&#x914D;&#x5B8C;&#x6210;&#x8C03;&#x7528;setNeedsDisplay&#xFF0C;&#x6765;&#x89E6;&#x53D1;drawTextInRect&#x7ED8;&#x5236;&#x6587;&#x5B57;</span></span><br><span class="line">&#xA0; &#xA0; [<span class="keyword">self</span> setNeedsDisplay];</span><br><span class="line">}</span><br><span class="line"><span class="comment">//&#x6DFB;&#x52A0;&#x6298;&#x884C;&#x6A21;&#x5F0F;</span></span><br><span class="line">- (<span class="built_in">NSMutableAttributedString</span>*)addLineBreak:(<span class="built_in">NSAttributedString</span> *) attrString{</span><br><span class="line">&#xA0; &#xA0; <span class="built_in">NSMutableAttributedString</span> *attrMString = [[<span class="built_in">NSMutableAttributedString</span> alloc]initWithAttributedString:attrString];</span><br><span class="line">&#xA0; &#xA0; <span class="keyword">if</span> (attrMString.length == <span class="number">0</span>) {</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; <span class="keyword">return</span> attrMString;</span><br><span class="line">&#xA0; &#xA0; }</span><br><span class="line">&#xA0; &#xA0; <span class="built_in">NSRange</span> range = <span class="built_in">NSMakeRange</span>(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">&#xA0; &#xA0; <span class="built_in">NSMutableDictionary</span> *dict = (<span class="built_in">NSMutableDictionary</span>*)[attrMString attributesAtIndex:<span class="number">0</span> effectiveRange:&amp;range];</span><br><span class="line">&#xA0; &#xA0; <span class="comment">//&#x91CC;&#x9762;&#x6709;NSShadow,NSParagraphStyle,NSFont,NSColor&#x56DB;&#x4E2A;&#x503C;</span></span><br><span class="line">&#xA0; &#xA0; <span class="built_in">NSLog</span>(<span class="string">@&quot;%@&quot;</span>,dict);</span><br><span class="line">&#xA0;&#xA0; &#xA0;</span><br><span class="line">&#xA0; &#xA0; <span class="built_in">NSMutableParagraphStyle</span> *paragraphStyle = [dict[<span class="built_in">NSParagraphStyleAttributeName</span>] mutableCopy] ;</span><br><span class="line">&#xA0; &#xA0; <span class="comment">//&#x8BBE;&#x7F6E;paragraphStyle&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x4E3A;&#x7A7A;&#xFF0C;&#x5219;&#x8BBE;&#x7F6E;&#x6298;&#x884C;&#x6A21;&#x5F0F;,&#x4E3A;&#x7A7A;&#x5219;&#x81EA;&#x5DF1;&#x751F;&#x6210;&#x5E76;add</span></span><br><span class="line">&#xA0; &#xA0; <span class="keyword">if</span> (paragraphStyle) {</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; paragraphStyle.lineBreakMode = <span class="built_in">NSLineBreakByCharWrapping</span>;</span><br><span class="line">&#xA0; &#xA0; }<span class="keyword">else</span> {</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; paragraphStyle = [[<span class="built_in">NSMutableParagraphStyle</span> alloc]init];</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; paragraphStyle.lineBreakMode = <span class="built_in">NSLineBreakByCharWrapping</span>;</span><br><span class="line">&#xA0; &#xA0; }</span><br><span class="line">&#xA0; &#xA0; [attrMString addAttribute:<span class="built_in">NSParagraphStyleAttributeName</span> value:paragraphStyle range:range];</span><br><span class="line">&#xA0; &#xA0; <span class="keyword">return</span> attrMString;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>#####3&#x3001;&#x6B63;&#x5219;&#x7684;&#x5339;&#x914D;<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">NSMutableArray</span>&lt;<span class="built_in">NSValue</span> *&gt; *)getRanges:(<span class="built_in">NSString</span>*)pattern{</span><br><span class="line">&#xA0;&#xA0; &#xA0;<span class="comment">//&#x751F;&#x6210;&#x5339;&#x914D;&#x89C4;&#x5219;</span></span><br><span class="line">&#xA0; &#xA0; <span class="built_in">NSRegularExpression</span> *regular = [[<span class="built_in">NSRegularExpression</span> alloc]initWithPattern:pattern options:<span class="built_in">NSRegularExpressionCaseInsensitive</span> error:<span class="literal">nil</span>];</span><br><span class="line"><span class="comment">//&#x6839;&#x636E;&#x5339;&#x914D;&#x89C4;&#x5219;&#x5339;&#x914D;&#x76F8;&#x5E94;&#x7684;&#x6587;&#x5B57;</span></span><br><span class="line">&#xA0; &#xA0; <span class="built_in">NSArray</span> *results = [regular matchesInString:<span class="keyword">self</span>.textStorage.string options:<span class="built_in">NSMatchingReportCompletion</span> range:<span class="built_in">NSMakeRange</span>(<span class="number">0</span>, <span class="keyword">self</span>.textStorage.string.length)];</span><br><span class="line"><span class="comment">//&#x7531;&#x4E8E;OC&#x7684;&#x6570;&#x7EC4;&#x53EA;&#x80FD;&#x653E;&#x5BF9;&#x8C61;&#xFF0C;NSRange&#x662F;&#x4E0D;&#x80FD;&#x653E;&#x8FDB;&#x53BB;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x6B64;&#x8F6C;&#x6362;&#x4E3A;NSValue&#x6765;&#x653E;&#x5165;&#x6570;&#x7EC4;</span></span><br><span class="line">&#xA0; &#xA0; <span class="built_in">NSMutableArray</span> *ranges = [<span class="built_in">NSMutableArray</span> array];</span><br><span class="line">&#xA0; &#xA0; <span class="keyword">for</span> (<span class="built_in">NSTextCheckingResult</span> *result <span class="keyword">in</span> results) {</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; <span class="built_in">NSValue</span> *value = [<span class="built_in">NSValue</span> valueWithRange:result.range];</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; [ranges addObject:value];</span><br><span class="line">&#xA0; &#xA0; }</span><br><span class="line">&#xA0; &#xA0; <span class="keyword">return</span> ranges;</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+<p>#####4&#x3001;&#x70B9;&#x51FB;&#x4EA4;&#x4E92;&#x5904;&#x7406;<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event{</span><br><span class="line">  <span class="comment">//&#x8BB0;&#x5F55;&#x662F;&#x5426;&#x6709;&#x9009;&#x4E2D;</span></span><br><span class="line">&#xA0; &#xA0; _isSelected = <span class="literal">YES</span>;</span><br><span class="line"><span class="comment">//&#x62FF;&#x5230;touch&#x7684;&#x4F4D;&#x7F6E;</span></span><br><span class="line">&#xA0; &#xA0; <span class="built_in">CGPoint</span> selectPoint = [[touches anyObject] locationInView:<span class="keyword">self</span>];</span><br><span class="line"><span class="comment">//&#x83B7;&#x53D6;touch&#x7684;&#x4F4D;&#x7F6E;&#x5728;&#x90A3;&#x4E2A;range&#x8303;&#x56F4;&#x5185;&#xFF0C;&#x62FF;&#x5230;selectedRange</span></span><br><span class="line">&#xA0; &#xA0; <span class="keyword">self</span>.selectedRangeValue = [<span class="keyword">self</span> getSelectRange:selectPoint];</span><br><span class="line">&#xA0; &#xA0; <span class="keyword">if</span> (!_selectedRangeValue) {</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; [<span class="keyword">super</span> touchesBegan:touches withEvent:event];</span><br><span class="line">&#xA0; &#xA0; }</span><br><span class="line">}</span><br><span class="line">- (<span class="keyword">void</span>)touchesEnded:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event{</span><br><span class="line">&#xA0; &#xA0; <span class="keyword">if</span> (!_selectedRangeValue) {</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; [<span class="keyword">super</span> touchesEnded:touches withEvent:event];</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; <span class="keyword">return</span>;</span><br><span class="line">&#xA0; &#xA0; }</span><br><span class="line"><span class="comment">//&#x662F;&#x5426;&#x6709;&#x9009;&#x4E2D;&#x7F6E;&#x4E3A;NO</span></span><br><span class="line">&#xA0; &#xA0; _isSelected = <span class="literal">NO</span>;</span><br><span class="line"><span class="comment">//&#x66F4;&#x65B0;label&#x663E;&#x793A;</span></span><br><span class="line">&#xA0; &#xA0; [<span class="keyword">self</span> setNeedsDisplay];</span><br><span class="line"><span class="comment">//&#x56DE;&#x8C03;Block&#x89E6;&#x53D1;&#x76F8;&#x5E94;&#x7684;&#x4E8B;&#x4EF6;</span></span><br><span class="line">&#xA0; &#xA0; <span class="built_in">NSString</span> *contentText = [<span class="keyword">self</span>.textStorage.string substringWithRange:_selectedRangeValue.rangeValue];</span><br><span class="line">&#xA0; &#xA0; <span class="keyword">switch</span> (_tapHandleType) {</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; <span class="keyword">case</span> TapHandleUser:</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; <span class="keyword">if</span> (_userTaphandle) {</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; _userTaphandle(<span class="keyword">self</span>,contentText,_selectedRangeValue.rangeValue);</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; }</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; <span class="keyword">break</span>;</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; <span class="keyword">case</span> TapHandlelink:</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; <span class="keyword">if</span> (_linkTapHandle) {</span><br><span class="line">&#xA0;&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; _linkTapHandle(<span class="keyword">self</span>,contentText,_selectedRangeValue.rangeValue);</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; }</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; <span class="keyword">break</span>;</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; <span class="keyword">default</span>:</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; <span class="keyword">break</span>;</span><br><span class="line">&#xA0; &#xA0; }</span><br><span class="line">&#xA0;&#xA0; &#xA0;</span><br><span class="line">}</span><br><span class="line"><span class="comment">//&#x83B7;&#x53D6;&#x70B9;&#x51FB;&#x4F4D;&#x7F6E;&#x5728;&#x54EA;&#x4E2A;range&#x8303;&#x56F4;&#x5185;</span></span><br><span class="line">-(<span class="built_in">NSValue</span>*)getSelectRange:(<span class="built_in">CGPoint</span>)selectPoint{</span><br><span class="line">&#xA0; &#xA0; <span class="keyword">if</span> (<span class="keyword">self</span>.textStorage.length == <span class="number">0</span>) {</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; <span class="keyword">return</span> <span class="literal">nil</span>;</span><br><span class="line">&#xA0; &#xA0; }</span><br><span class="line">&#xA0; &#xA0; <span class="comment">//&#x6839;&#x636E;&#x7535;&#x673A;&#x7684;&#x4F4D;&#x7F6E;&#x5F97;&#x5230;&#x70B9;&#x51FB;&#x7684;&#x662F;label&#x5185;&#x7684;&#x7B2C;&#x51E0;&#x4E2A;&#x5B57;&#x7B26;&#x7D22;&#x5F15;</span></span><br><span class="line">&#xA0; &#xA0; <span class="built_in">NSInteger</span> index = [<span class="keyword">self</span>.layoutManager glyphIndexForPoint:selectPoint inTextContainer:<span class="keyword">self</span>.textContainer];</span><br><span class="line"><span class="comment">//&#x904D;&#x5386;&#x6240;&#x6709;range,&#x786E;&#x5B9A;index&#x5728;&#x54EA;&#x4E2A;range&#x8303;&#x56F4;&#x5185;</span></span><br><span class="line">&#xA0; &#xA0; <span class="keyword">for</span> (<span class="built_in">NSValue</span> *rangeValue <span class="keyword">in</span> <span class="keyword">self</span>.linkRanges) {</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; <span class="built_in">NSRange</span> range = rangeValue.rangeValue;</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; <span class="keyword">if</span> (index &gt;= range.location &amp;&amp; index &lt;range.location + range.length) {</span><br><span class="line"><span class="comment">//&#x4E00;&#x65E6;&#x904D;&#x5386;&#x5230;&#x5C31;&#x8BB0;&#x5F55;&#x70B9;&#x51FB;&#x7684;&#x8303;&#x56F4;&#x7C7B;&#x578B;&#xFF0C;&#x8C03;&#x7528;setNeedsDisplay&#x89E6;&#x53D1;&#x6587;&#x5B57;label&#x91CD;&#x65B0;&#x7ED8;&#x5236;</span></span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; _tapHandleType = TapHandlelink;</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; [<span class="keyword">self</span> setNeedsDisplay];</span><br><span class="line"><span class="comment">//&#x8FD4;&#x56DE;range&#x8303;&#x56F4;</span></span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; <span class="keyword">return</span> rangeValue;</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; }</span><br><span class="line">&#xA0; &#xA0; }</span><br><span class="line">&#xA0; &#xA0; <span class="keyword">for</span> (<span class="built_in">NSValue</span> *rangeValue <span class="keyword">in</span> <span class="keyword">self</span>.userRanges) {</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; <span class="built_in">NSRange</span> range = rangeValue.rangeValue;</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; <span class="keyword">if</span> (index &gt;= range.location &amp;&amp; index &lt;range.location + range.length) {</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; _tapHandleType = TapHandleUser;</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; [<span class="keyword">self</span> setNeedsDisplay];</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; <span class="keyword">return</span> rangeValue;</span><br><span class="line">&#xA0; &#xA0; &#xA0; &#xA0; }</span><br><span class="line">&#xA0; &#xA0; }</span><br><span class="line">&#xA0; &#xA0; _tapHandleType = TapHandleNone;</span><br><span class="line">&#xA0; &#xA0; <span class="keyword">return</span> <span class="literal">nil</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+<p>#####5&#x3001;&#x603B;&#x7ED3;<br>&#x3000;&#x3000;1&#x3001;&#x8FD9;&#x91CC;&#x9762;&#x4E3B;&#x8981;&#x7528;&#x5230;&#x4E86;&#x4E09;&#x4E2A;&#x91CD;&#x8981;&#x7684;&#x5C5E;&#x6027;&#xFF1A;NSTextStorage&#x3001;NSLayoutManager&#x3001;NSTextContainer&#x8981;&#x9AD8;&#x660E;&#x767D;&#x5176;&#x4E2D;&#x7684;&#x5173;&#x7CFB;&#x3002;&#x4E0A;&#x9762;&#x6709;&#x56FE;&#x4ECB;&#x7ECD;&#x3002;<br>&#x3000;&#x3000;2&#x3001;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x4F7F;&#x7528;&#xFF0C;&#x73B0;&#x5728;&#x57FA;&#x672C;&#x4E0A;&#x5927;&#x90E8;&#x5206;&#x8BED;&#x8A00;&#x90FD;&#x652F;&#x6301;&#x6B63;&#x5219;&#xFF0C;&#x91CC;&#x9762;&#x7684;&#x5B66;&#x95EE;&#x5F88;&#x591A;&#xFF0C;&#x9700;&#x8981;&#x591A;&#x52A0;&#x5B66;&#x4E60;&#x3002;<br>&#x3000;&#x3000;3&#x3001;&#x70B9;&#x51FB;&#x4E8B;&#x4EF6;&#x7684;&#x5904;&#x7406;&#x3002;<br>&#x8FD9;&#x662F;<a href="https://github.com/nanshanyi/GHLabel" target="_blank">GitHub&#x5730;&#x5740;</a>&#x53EF;&#x4EE5;&#x5728;&#x6B64;&#x67E5;&#x770B;&#x6E90;&#x7801;&#x3002;&#x672C;&#x6587;&#x4E3A;&#x539F;&#x521B;&#xFF0C;&#x5982;&#x9700;&#x8F6C;&#x8F7D;&#x8BF7;&#x6CE8;&#x660E;&#x51FA;&#x5904;&#x3002;</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/12/NSString的Copy与Strong你用对了吗？/" rel="next" title="NSString的Copy与Strong你用对了吗？">
+                <i class="fa fa-chevron-left"></i> NSString的Copy与Strong你用对了吗？
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/10/封装一个匹配特定字符可点击的Label/"
+           data-title="封装一个匹配特定字符可点击的Label" data-url="http://nanshanyi.github.io/2016/09/10/封装一个匹配特定字符可点击的Label/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="南山忆" />
+          <p class="site-author-name" itemprop="name">南山忆</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/nanshanyi" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/774b1d5616a7/latest_articles" target="_blank" title="JianShu">
+                  
+                    <i class="fa fa-jianshu"></i>
+                  
+                  JianShu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">南山忆</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"Nanshanyi"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>
