@@ -6,19 +6,15 @@
 
 
 <html class="theme-next pisces use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -27,7 +23,11 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -59,37 +59,39 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="iOS," />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="iOS,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
 
 
 
 
 
 
-<meta name="description" content="NSString&amp;#x6211;&amp;#x4EEC;&amp;#x5FC5;&amp;#x4E0D;&amp;#x53EF;&amp;#x5C11;&amp;#x7684;&amp;#x7C7B;,&amp;#x4F46;&amp;#x662F;&amp;#x5728;&amp;#x4F60;@property&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#xFF0C;&amp;#x5230;&amp;#x5E95;&amp;#x662F;&amp;#x7528;Strong&amp;#xFF0C;&amp;#x8FD8;">
+<meta name="description" content="NSString我们必不可少的类,但是在你@property的时候，到底是用Strong，还是Copy修饰。你用对了吗？ 用例子来说明一下先使用NSString1234@property (nonatomic, strong) NSString *strongStr;@property (nonatomic,   copy) NSString *copyedStr;//不可以写成copyStr会报">
+<meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NSString的Copy与Strong你用对了吗？">
 <meta property="og:url" content="http://nanshanyi.github.io/2016/08/12/NSString的Copy与Strong你用对了吗？/index.html">
 <meta property="og:site_name" content="南山忆的技术博客">
-<meta property="og:description" content="NSString&amp;#x6211;&amp;#x4EEC;&amp;#x5FC5;&amp;#x4E0D;&amp;#x53EF;&amp;#x5C11;&amp;#x7684;&amp;#x7C7B;,&amp;#x4F46;&amp;#x662F;&amp;#x5728;&amp;#x4F60;@property&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#xFF0C;&amp;#x5230;&amp;#x5E95;&amp;#x662F;&amp;#x7528;Strong&amp;#xFF0C;&amp;#x8FD8;">
+<meta property="og:description" content="NSString我们必不可少的类,但是在你@property的时候，到底是用Strong，还是Copy修饰。你用对了吗？ 用例子来说明一下先使用NSString1234@property (nonatomic, strong) NSString *strongStr;@property (nonatomic,   copy) NSString *copyedStr;//不可以写成copyStr会报">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-09-12T04:34:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NSString的Copy与Strong你用对了吗？">
-<meta name="twitter:description" content="NSString&amp;#x6211;&amp;#x4EEC;&amp;#x5FC5;&amp;#x4E0D;&amp;#x53EF;&amp;#x5C11;&amp;#x7684;&amp;#x7C7B;,&amp;#x4F46;&amp;#x662F;&amp;#x5728;&amp;#x4F60;@property&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#xFF0C;&amp;#x5230;&amp;#x5E95;&amp;#x662F;&amp;#x7528;Strong&amp;#xFF0C;&amp;#x8FD8;">
+<meta name="twitter:description" content="NSString我们必不可少的类,但是在你@property的时候，到底是用Strong，还是Copy修饰。你用对了吗？ 用例子来说明一下先使用NSString1234@property (nonatomic, strong) NSString *strongStr;@property (nonatomic,   copy) NSString *copyedStr;//不可以写成copyStr会报">
 
 
 
@@ -136,7 +138,7 @@
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">南山忆的技术博客</span>
       <span class="logo-line-after"><i></i></span>
@@ -163,7 +165,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br>
             
             首页
           </a>
@@ -173,7 +175,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br>
             
             归档
           </a>
@@ -183,7 +185,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br>
             
             标签
           </a>
@@ -196,7 +198,7 @@
             <a href="#" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -297,17 +299,17 @@
       
 
       
-        <p>NSString&#x6211;&#x4EEC;&#x5FC5;&#x4E0D;&#x53EF;&#x5C11;&#x7684;&#x7C7B;,&#x4F46;&#x662F;&#x5728;&#x4F60;@property&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5230;&#x5E95;&#x662F;&#x7528;Strong&#xFF0C;&#x8FD8;&#x662F;Copy&#x4FEE;&#x9970;&#x3002;&#x4F60;&#x7528;&#x5BF9;&#x4E86;&#x5417;&#xFF1F;</p>
-<h5 id="&#x7528;&#x4F8B;&#x5B50;&#x6765;&#x8BF4;&#x660E;&#x4E00;&#x4E0B;"><a href="#&#x7528;&#x4F8B;&#x5B50;&#x6765;&#x8BF4;&#x660E;&#x4E00;&#x4E0B;" class="headerlink" title="&#x7528;&#x4F8B;&#x5B50;&#x6765;&#x8BF4;&#x660E;&#x4E00;&#x4E0B;"></a>&#x7528;&#x4F8B;&#x5B50;&#x6765;&#x8BF4;&#x660E;&#x4E00;&#x4E0B;</h5><h6 id="&#x5148;&#x4F7F;&#x7528;NSString"><a href="#&#x5148;&#x4F7F;&#x7528;NSString" class="headerlink" title="&#x5148;&#x4F7F;&#x7528;NSString"></a>&#x5148;&#x4F7F;&#x7528;NSString</h6><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSString</span> *strongStr;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, &#xA0; <span class="keyword">copy</span>) <span class="built_in">NSString</span> *copyedStr;</span><br><span class="line"><span class="comment">//&#x4E0D;&#x53EF;&#x4EE5;&#x5199;&#x6210;copyStr&#x4F1A;&#x62A5;property follows cocoa naming convention for returning &apos;owned&apos; objects</span></span><br><span class="line"><span class="comment">//&#x610F;&#x601D;&#x662F;&#x4E0D;&#x80FD;&#x4F7F;&#x7528;copy&#x6765;&#x4F5C;&#x4E3A;&#x5F00;&#x5934;&#x547D;&#x540D;&#xFF0C;copy&#x662F;cocoa&#x7528;&#x7684;</span></span><br></pre></td></tr></table></figure>
-<p>&#x3000;&#x3000;&#x8FD9;&#x91CC;&#x58F0;&#x660E;&#x4E86;&#x4E24;&#x4E2A;NSString&#x53D8;&#x91CF;&#xFF0C;&#x4E00;&#x4E2A;&#x7528;strong&#x4FEE;&#x9970;&#xFF0C;&#x53E6;&#x4E00;&#x4E2A;&#x7528;copy&#x6765;&#x4FEE;&#x9970;&#xFF0C;&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x6765;&#x7528;&#x4E00;&#x4E2A;NSString&#x5BF9;&#x4E24;&#x4E2A;string&#x8D4B;&#x503C;&#x3002;<br><a id="more"></a></p>
-<h6 id="&#x8F93;&#x51FA;&#x67E5;&#x770B;&#x4E00;&#x4E0B;&#x7ED3;&#x679C;"><a href="#&#x8F93;&#x51FA;&#x67E5;&#x770B;&#x4E00;&#x4E0B;&#x7ED3;&#x679C;" class="headerlink" title="&#x8F93;&#x51FA;&#x67E5;&#x770B;&#x4E00;&#x4E0B;&#x7ED3;&#x679C;"></a>&#x8F93;&#x51FA;&#x67E5;&#x770B;&#x4E00;&#x4E0B;&#x7ED3;&#x679C;</h6><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#xA0; &#xA0; <span class="built_in">NSString</span> *testStr = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@&quot;nanshanyi&quot;</span>];</span><br><span class="line">&#xA0; &#xA0; <span class="keyword">self</span>.strongStr = testStr;</span><br><span class="line">&#xA0; &#xA0; <span class="keyword">self</span>.copyedStr = testStr;</span><br><span class="line">&#xA0;&#xA0; &#xA0;</span><br><span class="line">&#xA0; &#xA0; <span class="built_in">NSLog</span>(<span class="string">@&quot;testStr: &#xA0; %p, %p&quot;</span>,testStr,&amp;testStr);</span><br><span class="line">&#xA0; &#xA0; <span class="built_in">NSLog</span>(<span class="string">@&quot;strongStr: %p, %p&quot;</span>,_strongStr,&amp;_strongStr);</span><br><span class="line">&#xA0; &#xA0; <span class="built_in">NSLog</span>(<span class="string">@&quot;copyedStr: %p, %p&quot;</span>,_copyedStr,&amp;_copyedStr);</span><br><span class="line"><span class="comment">//&#x524D;&#x9762;&#x7684;&#x662F;&#x5185;&#x5B58;&#x5730;&#x5740;&#xFF0C;&#x540E;&#x9762;&#x7684;&#x662F;&#x6307;&#x9488;&#x5730;&#x5740;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">testStr: &#xA0; <span class="number">0xa01c06542cac2d0a</span>, <span class="number">0x16fdb1f48</span></span><br><span class="line">strongStr: <span class="number">0xa01c06542cac2d0a</span>, <span class="number">0x1346e6030</span></span><br><span class="line">copyedStr: <span class="number">0xa01c06542cac2d0a</span>, <span class="number">0x1346e6038</span></span><br></pre></td></tr></table></figure>
-<p>&#x3000;&#x3000;&#x6839;&#x636E;&#x8F93;&#x51FA;&#x7684;&#x5185;&#x5B58;&#x5730;&#x5740;&#xFF0C;&#x6211;&#x4EEC;&#x53D1;&#x73B0;&#xFF0C;&#x4E0D;&#x7BA1;&#x7528;&#x7684;&#x662F;strong&#x8FD8;&#x662F;copy&#xFF0C;&#x6307;&#x5411;&#x7684;&#x90FD;&#x662F;&#x540C;&#x4E00;&#x4E2A;&#x5730;&#x5740;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;testStr&#x7684;&#x5730;&#x5740;&#x3002;strongStr&#x548C;copyedStr&#x90FD;&#x53EA;&#x662F;&#x5BF9;testStr&#x7684;&#x5F15;&#x7528;&#xFF0C;&#x53EA;&#x4F1A;&#x5BFC;&#x81F4;testStr&#x7684;&#x8BA1;&#x6570;&#x5668;&#x52A0;1&#xFF0C;&#x5E76;&#x6CA1;&#x6709;&#x62F7;&#x8D1D;&#x4E00;&#x4EFD;&#x65B0;&#x7684;&#xFF0C;testStr&#x7684;retainCount&#x5E94;&#x8BE5;&#x662F;3&#x3002;</p>
-<h6 id="&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x6539;&#x7528;NSMutableString"><a href="#&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x6539;&#x7528;NSMutableString" class="headerlink" title="&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x6539;&#x7528;NSMutableString"></a>&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x6539;&#x7528;NSMutableString</h6><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#xA0; &#xA0; <span class="built_in">NSMutableString</span> *testStr = [<span class="built_in">NSMutableString</span> stringWithFormat:<span class="string">@&quot;nanshanyi&quot;</span>];</span><br><span class="line">&#xA0; &#xA0; <span class="keyword">self</span>.strongStr = testStr;</span><br><span class="line">&#xA0; &#xA0; <span class="keyword">self</span>.copyedStr = testStr;</span><br><span class="line">&#xA0;&#xA0; &#xA0;</span><br><span class="line">&#xA0; &#xA0; <span class="built_in">NSLog</span>(<span class="string">@&quot;testStr: &#xA0; %p, %p&quot;</span>,testStr,&amp;testStr);</span><br><span class="line">&#xA0; &#xA0; <span class="built_in">NSLog</span>(<span class="string">@&quot;strongStr: %p, %p&quot;</span>,_strongStr,&amp;_strongStr);</span><br><span class="line">&#xA0; &#xA0; <span class="built_in">NSLog</span>(<span class="string">@&quot;copyedStr: %p, %p&quot;</span>,_copyedStr,&amp;_copyedStr);</span><br><span class="line"></span><br><span class="line">&#xA0; &#xA0; [testStr appendString:<span class="string">@&quot;123&quot;</span>];<span class="comment">//&#x4FEE;&#x6539;&#x4E00;&#x4E0B;</span></span><br><span class="line">&#xA0; &#xA0; <span class="built_in">NSLog</span>(<span class="string">@&quot;testStr: &#xA0; %@, %p&quot;</span>,testStr,&amp;testStr);</span><br><span class="line">&#xA0; &#xA0; <span class="built_in">NSLog</span>(<span class="string">@&quot;strongStr: %@, %p&quot;</span>,_strongStr,&amp;_strongStr);</span><br><span class="line">&#xA0; &#xA0; <span class="built_in">NSLog</span>(<span class="string">@&quot;copyedStr: %@, %p&quot;</span>,_copyedStr,&amp;_copyedStr);</span><br></pre></td></tr></table></figure>
-<p>&#x3000;&#x3000;&#x6211;&#x4EEC;&#x518D;&#x6765;&#x770B;&#x4E00;&#x4E0B;&#x7ED3;&#x679C;&#xFF1A;<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">testStr: &#xA0; <span class="number">0x15cdf87f0</span>, <span class="number">0x16fd99f48</span></span><br><span class="line">strongStr: <span class="number">0x15cdf87f0</span>, <span class="number">0x15cdf3ad0</span></span><br><span class="line">copyedStr: <span class="number">0xa0b20b31520b9419</span>, <span class="number">0x15cdf3ad8</span></span><br><span class="line"><span class="comment">//&#x4FEE;&#x6539;&#x540E;&#x8F93;&#x51FA;&#x4E00;&#x4E0B;&#x5B57;&#x7B26;&#x4E32;&#x5185;&#x5BB9;</span></span><br><span class="line">testStr: &#xA0; nanshanyi123, <span class="number">0x16fd99f48</span></span><br><span class="line">strongStr: nanshanyi123, <span class="number">0x15cdf3ad0</span></span><br><span class="line">copyedStr: nanshanyi, <span class="number">0x15cdf3ad8</span></span><br></pre></td></tr></table></figure></p>
-<p>&#x3000;&#x3000;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#xFF0C;copy&#x4FEE;&#x9970;&#x7684;copyedStr&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5DF2;&#x7ECF;&#x4E0D;&#x518D;&#x662F;&#x7B80;&#x5355;&#x7684;&#x5F15;&#x7528;&#x4E86;&#xFF0C;&#x800C;&#x662F;&#x62F7;&#x8D1D;&#x4E86;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#xFF0C;&#x8BA9;copyedStr&#x6307;&#x5411;&#x4E86;&#x8FD9;&#x4E2A;&#x65B0;&#x7684;&#x5730;&#x5740;&#x3002;&#x6B64;&#x65F6;testStr&#x7684;retainCount&#x5E94;&#x8BE5;&#x662F;2&#x3002;<br>&#x3000;&#x3000;&#x7136;&#x540E;&#x6211;&#x4EEC;&#x628A;testStr&#x4FEE;&#x6539;&#x4E00;&#x4E0B;&#xFF0C;&#x540E;&#x9762;&#x63A5;&#x4E0A;&#x4E86;&#x201C;123&#x201D;&#xFF0C;&#x8F93;&#x51FA;&#x5185;&#x5BB9;&#x4F1A;&#x53D1;&#x73B0;testStr&#x53D8;&#x5316;&#x540E;&#xFF0C;strongStr&#x4F1A;&#x968F;&#x4E4B;&#x6539;&#x53D8;&#x3002;&#x800C;copyStr&#x5219;&#x4E0D;&#x4F1A;&#x968F;&#x4E4B;&#x53D8;&#x5316;&#x3002;</p>
-<h5 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h5><p>&#x3000;&#x3000;&#x7531;&#x4E0A;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#x53EF;&#x4EE5;&#x5F97;&#x51FA;&#xFF1A;&#x5F53;&#x539F;&#x5B57;&#x7B26;&#x4E32;&#x662F;NSString&#x65F6;&#xFF0C;&#x7531;&#x4E8E;&#x662F;&#x4E0D;&#x53EF;&#x53D8;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x6240;&#x4EE5;&#xFF0C;&#x4E0D;&#x7BA1;&#x662F;&#x4F7F;&#x7528;strong&#x8FD8;&#x662F;copy&#x4FEE;&#x9970;&#xFF0C;&#x90FD;&#x662F;&#x6307;&#x5411;&#x539F;&#x6765;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;copy&#x64CD;&#x4F5C;&#x53EA;&#x662F;&#x505A;&#x4E86;&#x6B21;<strong>&#x6D45;&#x62F7;&#x8D1D;</strong>&#x3002;<br>&#x3000;&#x3000;&#x800C;&#x5F53;&#x6E90;&#x5B57;&#x7B26;&#x4E32;&#x662F;NSMutableString&#x65F6;&#xFF0C;strong&#x53EA;&#x662F;&#x5C06;&#x539F;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x52A0;1&#xFF0C;&#x800C;copy<br>&#x5219;&#x662F;&#x5BF9;&#x539F;&#x5B57;&#x7B26;&#x4E32;&#x505A;&#x4E86;&#x6B21;<strong>&#x6DF1;&#x62F7;&#x8D1D;</strong>&#xFF0C;&#x4ECE;&#x800C;&#x751F;&#x6210;&#x4E86;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x4E14;copy&#x7684;&#x5BF9;&#x8C61;&#x6307;&#x5411;&#x8FD9;&#x4E2A;&#x65B0;&#x7684;&#x5BF9;&#x8C61;&#x3002;&#x53E6;&#x5916;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x8FD9;&#x4E2A;copy&#x5C5E;&#x6027;&#x5BF9;&#x8C61;&#x7684;&#x7C7B;&#x578B;&#x59CB;&#x7EC8;&#x662F;NSString&#xFF0C;&#x800C;&#x4E0D;&#x662F;NSMutableString&#xFF0C;&#x5982;&#x679C;&#x60F3;&#x8BA9;&#x62F7;&#x8D1D;&#x8FC7;&#x6765;&#x7684;&#x5BF9;&#x8C61;&#x662F;&#x53EF;&#x53D8;&#x7684;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x4F7F;mutableCopy&#x3002;<br>&#x3000;&#x3000;&#x6240;&#x4EE5;&#xFF0C;&#x5982;&#x679C;&#x539F;&#x5B57;&#x7B26;&#x4E32;&#x662F;NSMutableString&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F7F;&#x7528;strong&#x53EA;&#x4F1A;&#x589E;&#x52A0;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x5668;&#x3002;&#x4F46;&#x662F;copy&#x4F1A;&#x6267;&#x884C;&#x4E00;&#x6B21;<strong>&#x6DF1;&#x62F7;&#x8D1D;</strong>&#xFF0C;&#x4F1A;&#x9020;&#x6210;&#x4E0D;&#x5FC5;&#x8981;&#x7684;&#x5185;&#x5B58;&#x6D6A;&#x8D39;&#x3002;&#x800C;&#x5982;&#x679C;&#x539F;&#x5B57;&#x7B26;&#x4E32;&#x662F;NSString&#x65F6;&#xFF0C;copy&#x548C;strong&#x6548;&#x679C;&#x4E00;&#x6837;&#xFF0C;&#x5C31;&#x4E0D;&#x4F1A;&#x6709;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x3002;<br>&#x3000;&#x3000;&#x4F46;&#x662F;&#xFF0C;&#x4E00;&#x822C;&#x6211;&#x4EEC;&#x58F0;&#x660E;NSString&#x65F6;&#xFF0C;&#x4E5F;&#x4E0D;&#x4F1A;&#x5E0C;&#x671B;&#x5B83;&#x6539;&#x53D8;&#xFF0C;&#x6240;&#x4EE5;&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5EFA;&#x8BAE;&#x7528;copy&#xFF0C;&#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x907F;&#x514D;NSMutableString&#x5E26;&#x6765;&#x7684;&#x5947;&#x8469;&#x9519;&#x8BEF;&#x3002;</p>
-<h5 id="&#x987A;&#x4FBF;&#x63D0;&#x4E00;&#x4E0B;assign&#x4E0E;weak"><a href="#&#x987A;&#x4FBF;&#x63D0;&#x4E00;&#x4E0B;assign&#x4E0E;weak" class="headerlink" title="&#x987A;&#x4FBF;&#x63D0;&#x4E00;&#x4E0B;assign&#x4E0E;weak"></a>&#x987A;&#x4FBF;&#x63D0;&#x4E00;&#x4E0B;assign&#x4E0E;weak</h5><p>&#x3000;&#x3000;&#x6211;&#x4EEC;&#x90FD;&#x77E5;&#x9053;&#xFF0C;assign&#x7528;&#x6765;&#x4FEE;&#x9970;&#x57FA;&#x672C;&#x6570;&#x636E;&#x7C7B;&#x578B;&#xFF0C;weak&#x7528;&#x6765;&#x4FEE;&#x9970;OC&#x5BF9;&#x8C61;&#x3002;<br>&#x3000;&#x3000;&#x5176;&#x5B9E;&#x7167;&#x7406;&#x8BF4;assign&#x4E5F;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x4FEE;&#x9970;&#x5BF9;&#x8C61;&#x3002;&#x4F46;&#x662F;assign&#x4FEE;&#x9970;&#x7684;&#x5BF9;&#x8C61;&#x5728;&#x6B64;&#x5BF9;&#x8C61;&#x91CA;&#x653E;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6307;&#x9488;&#x5730;&#x5740;&#x4F9D;&#x7136;&#x5B58;&#x5728;&#xFF0C;&#x4E0D;&#x4F1A;&#x88AB;&#x7F6E;&#x4E3A;nil&#xFF0C;&#x8FD9;&#x5C31;&#x4F1A;&#x9020;&#x6210;&#x5F88;&#x4E25;&#x91CD;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x4F1A;&#x4EA7;&#x751F;&#x91CE;&#x6307;&#x9488;&#x3002;&#x4F46;&#x662F;&#x7528;weak&#x6765;&#x4FEE;&#x9970;&#x7684;&#x8BDD;&#x5728;&#x5BF9;&#x8C61;&#x91CA;&#x653E;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x628A;&#x6307;&#x9488;&#x7F6E;&#x4E3A;nil&#xFF0C;&#x4ECE;&#x800C;&#x907F;&#x514D;&#x91CE;&#x6307;&#x9488;&#x7684;&#x51FA;&#x73B0;&#x3002;<br>&#x3000;&#x3000;&#x90A3;&#x4F60;&#x53C8;&#x4F1A;&#x95EE;&#x4E86;&#xFF0C;&#x90A3;&#x51ED;&#x5565;&#x57FA;&#x672C;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;assign&#x3002;&#x8FD9;&#x4E2A;&#x5C31;&#x53C8;&#x8981;&#x626F;&#x5230;&#x5806;&#x548C;&#x6808;&#x7684;&#x95EE;&#x9898;&#x4E86;&#xFF0C;&#x57FA;&#x672C;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x4E00;&#x822C;&#x662F;&#x88AB;&#x5206;&#x914D;&#x5230;&#x6808;&#x7A7A;&#x95F4;&#x3002;&#x800C;&#x6808;&#x662F;&#x7531;&#x7CFB;&#x7EDF;&#x81EA;&#x52A8;&#x7BA1;&#x7406;&#x5206;&#x914D;&#x548C;&#x91CA;&#x653E;&#x3002;&#x5C31;&#x4E0D;&#x4F1A;&#x9020;&#x6210;&#x91CE;&#x6307;&#x9488;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+        <p>NSString我们必不可少的类,但是在你@property的时候，到底是用Strong，还是Copy修饰。你用对了吗？</p>
+<h5 id="用例子来说明一下"><a href="#用例子来说明一下" class="headerlink" title="用例子来说明一下"></a>用例子来说明一下</h5><h6 id="先使用NSString"><a href="#先使用NSString" class="headerlink" title="先使用NSString"></a>先使用NSString</h6><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSString</span> *strongStr;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,   <span class="keyword">copy</span>) <span class="built_in">NSString</span> *copyedStr;</span><br><span class="line"><span class="comment">//不可以写成copyStr会报property follows cocoa naming convention for returning 'owned' objects</span></span><br><span class="line"><span class="comment">//意思是不能使用copy来作为开头命名，copy是cocoa用的</span></span><br></pre></td></tr></table></figure>
+<p>　　这里声明了两个NSString变量，一个用strong修饰，另一个用copy来修饰，下面我们来用一个NSString对两个string赋值。<br><a id="more"></a></p>
+<h6 id="输出查看一下结果"><a href="#输出查看一下结果" class="headerlink" title="输出查看一下结果"></a>输出查看一下结果</h6><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    <span class="built_in">NSString</span> *testStr = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"nanshanyi"</span>];</span><br><span class="line">    <span class="keyword">self</span>.strongStr = testStr;</span><br><span class="line">    <span class="keyword">self</span>.copyedStr = testStr;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"testStr:   %p, %p"</span>,testStr,&amp;testStr);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"strongStr: %p, %p"</span>,_strongStr,&amp;_strongStr);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"copyedStr: %p, %p"</span>,_copyedStr,&amp;_copyedStr);</span><br><span class="line"><span class="comment">//前面的是内存地址，后面的是指针地址</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">testStr:   <span class="number">0xa01c06542cac2d0a</span>, <span class="number">0x16fdb1f48</span></span><br><span class="line">strongStr: <span class="number">0xa01c06542cac2d0a</span>, <span class="number">0x1346e6030</span></span><br><span class="line">copyedStr: <span class="number">0xa01c06542cac2d0a</span>, <span class="number">0x1346e6038</span></span><br></pre></td></tr></table></figure>
+<p>　　根据输出的内存地址，我们发现，不管用的是strong还是copy，指向的都是同一个地址，也就是testStr的地址。strongStr和copyedStr都只是对testStr的引用，只会导致testStr的计数器加1，并没有拷贝一份新的，testStr的retainCount应该是3。</p>
+<h6 id="下面我们改用NSMutableString"><a href="#下面我们改用NSMutableString" class="headerlink" title="下面我们改用NSMutableString"></a>下面我们改用NSMutableString</h6><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">    <span class="built_in">NSMutableString</span> *testStr = [<span class="built_in">NSMutableString</span> stringWithFormat:<span class="string">@"nanshanyi"</span>];</span><br><span class="line">    <span class="keyword">self</span>.strongStr = testStr;</span><br><span class="line">    <span class="keyword">self</span>.copyedStr = testStr;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"testStr:   %p, %p"</span>,testStr,&amp;testStr);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"strongStr: %p, %p"</span>,_strongStr,&amp;_strongStr);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"copyedStr: %p, %p"</span>,_copyedStr,&amp;_copyedStr);</span><br><span class="line"></span><br><span class="line">    [testStr appendString:<span class="string">@"123"</span>];<span class="comment">//修改一下</span></span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"testStr:   %@, %p"</span>,testStr,&amp;testStr);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"strongStr: %@, %p"</span>,_strongStr,&amp;_strongStr);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"copyedStr: %@, %p"</span>,_copyedStr,&amp;_copyedStr);</span><br></pre></td></tr></table></figure>
+<p>　　我们再来看一下结果：<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">testStr:   <span class="number">0x15cdf87f0</span>, <span class="number">0x16fd99f48</span></span><br><span class="line">strongStr: <span class="number">0x15cdf87f0</span>, <span class="number">0x15cdf3ad0</span></span><br><span class="line">copyedStr: <span class="number">0xa0b20b31520b9419</span>, <span class="number">0x15cdf3ad8</span></span><br><span class="line"><span class="comment">//修改后输出一下字符串内容</span></span><br><span class="line">testStr:   nanshanyi123, <span class="number">0x16fd99f48</span></span><br><span class="line">strongStr: nanshanyi123, <span class="number">0x15cdf3ad0</span></span><br><span class="line">copyedStr: nanshanyi, <span class="number">0x15cdf3ad8</span></span><br></pre></td></tr></table></figure></p>
+<p>　　可以看到这个时候，copy修饰的copyedStr字符串，已经不再是简单的引用了，而是拷贝了一个新的，让copyedStr指向了这个新的地址。此时testStr的retainCount应该是2。<br>　　然后我们把testStr修改一下，后面接上了“123”，输出内容会发现testStr变化后，strongStr会随之改变。而copyStr则不会随之变化。</p>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><p>　　由上面的例子可以得出：当原字符串是NSString时，由于是不可变字符串，所以，不管是使用strong还是copy修饰，都是指向原来的对象，copy操作只是做了次<strong>浅拷贝</strong>。<br>　　而当源字符串是NSMutableString时，strong只是将原字符串的引用计数加1，而copy<br>则是对原字符串做了次<strong>深拷贝</strong>，从而生成了一个新的对象，并且copy的对象指向这个新的对象。另外需要注意的是，这个copy属性对象的类型始终是NSString，而不是NSMutableString，如果想让拷贝过来的对象是可变的，就需要使mutableCopy。<br>　　所以，如果原字符串是NSMutableString的时候，使用strong只会增加引用计数器。但是copy会执行一次<strong>深拷贝</strong>，会造成不必要的内存浪费。而如果原字符串是NSString时，copy和strong效果一样，就不会有这个问题。<br>　　但是，一般我们声明NSString时，也不会希望它改变，所以一般情况下，建议用copy，这样可以避免NSMutableString带来的奇葩错误。</p>
+<h5 id="顺便提一下assign与weak"><a href="#顺便提一下assign与weak" class="headerlink" title="顺便提一下assign与weak"></a>顺便提一下assign与weak</h5><p>　　我们都知道，assign用来修饰基本数据类型，weak用来修饰OC对象。<br>　　其实照理说assign也可以用来修饰对象。但是assign修饰的对象在此对象释放的时候，指针地址依然存在，不会被置为nil，这就会造成很严重的问题，也就是会产生野指针。但是用weak来修饰的话在对象释放的时候会把指针置为nil，从而避免野指针的出现。<br>　　那你又会问了，那凭啥基本数据类型就可以使用assign。这个就又要扯到堆和栈的问题了，基本数据类型一般是被分配到栈空间。而栈是由系统自动管理分配和释放。就不会造成野指针的问题。</p>
 
       
     </div>
@@ -373,8 +375,7 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/12/NSString的Copy与Strong你用对了吗？/"
-           data-title="NSString的Copy与Strong你用对了吗？" data-url="http://nanshanyi.github.io/2016/08/12/NSString的Copy与Strong你用对了吗？/">
+      <div class="ds-thread" data-thread-key="2016/08/12/NSString的Copy与Strong你用对了吗？/" data-title="NSString的Copy与Strong你用对了吗？" data-url="http://nanshanyi.github.io/2016/08/12/NSString的Copy与Strong你用对了吗？/">
       </div>
     
   </div>
@@ -399,7 +400,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -410,9 +411,7 @@
 
       <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.png"
-               alt="南山忆" />
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="南山忆">
           <p class="site-author-name" itemprop="name">南山忆</p>
           <p class="site-description motion-element" itemprop="description"></p>
         </div>
@@ -494,7 +493,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy;  2015 - 
   <span itemprop="copyrightYear">2020</span>

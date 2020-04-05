@@ -6,19 +6,15 @@
 
 
 <html class="theme-next pisces use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -27,7 +23,11 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -59,40 +59,42 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="iOS," />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="iOS,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
 
 
 
 
 
 
-<meta name="description" content="3D touch&amp;#x4E5F;&amp;#x51FA;&amp;#x4E86;&amp;#x5F88;&amp;#x957F;&amp;#x65F6;&amp;#x95F4;&amp;#x4E86;&amp;#xFF0C;&amp;#x8FD9;&amp;#x6B21;&amp;#x82B1;&amp;#x65F6;&amp;#x95F4;&amp;#x597D;&amp;#x597D;&amp;#x7814;&amp;#x7A76;&amp;#x4E86;&amp;#x4E00;&amp;#x4E0B;&amp;#xFF0C;&amp;#x628A;&amp;#x7ECF;">
+<meta name="description" content="3D touch也出了很长时间了，这次花时间好好研究了一下，把经验与大家分享一下 主界面重按APP图标，弹出Touch菜单　静态快速选项　　　(iOS数组)给APP指定静态主屏幕的快速选项，这个键包含了一个字典数组，每个字典包含关于一个快速选项的详细信息。你可以指定静态快速选项给你的APP用一个字典数组。　UIApplicationShortcutItems (iOS数组)给APP指定静态主屏幕的">
+<meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="3DTouch应用详解">
 <meta property="og:url" content="http://nanshanyi.github.io/2016/04/20/3dtouch/index.html">
 <meta property="og:site_name" content="南山忆的技术博客">
-<meta property="og:description" content="3D touch&amp;#x4E5F;&amp;#x51FA;&amp;#x4E86;&amp;#x5F88;&amp;#x957F;&amp;#x65F6;&amp;#x95F4;&amp;#x4E86;&amp;#xFF0C;&amp;#x8FD9;&amp;#x6B21;&amp;#x82B1;&amp;#x65F6;&amp;#x95F4;&amp;#x597D;&amp;#x597D;&amp;#x7814;&amp;#x7A76;&amp;#x4E86;&amp;#x4E00;&amp;#x4E0B;&amp;#xFF0C;&amp;#x628A;&amp;#x7ECF;">
+<meta property="og:description" content="3D touch也出了很长时间了，这次花时间好好研究了一下，把经验与大家分享一下 主界面重按APP图标，弹出Touch菜单　静态快速选项　　　(iOS数组)给APP指定静态主屏幕的快速选项，这个键包含了一个字典数组，每个字典包含关于一个快速选项的详细信息。你可以指定静态快速选项给你的APP用一个字典数组。　UIApplicationShortcutItems (iOS数组)给APP指定静态主屏幕的">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://nanshanyi.github.io/2016/04/20/3dtouch/966908-a293ac389bddf444.png">
 <meta property="og:image" content="http://nanshanyi.github.io/2016/04/20/3dtouch/966908-b0ccf43482e4f83d.png">
 <meta property="og:image" content="http://nanshanyi.github.io/2016/04/20/3dtouch/966908-976af00f57dd4439.png">
 <meta property="og:updated_time" content="2016-08-01T12:13:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="3DTouch应用详解">
-<meta name="twitter:description" content="3D touch&amp;#x4E5F;&amp;#x51FA;&amp;#x4E86;&amp;#x5F88;&amp;#x957F;&amp;#x65F6;&amp;#x95F4;&amp;#x4E86;&amp;#xFF0C;&amp;#x8FD9;&amp;#x6B21;&amp;#x82B1;&amp;#x65F6;&amp;#x95F4;&amp;#x597D;&amp;#x597D;&amp;#x7814;&amp;#x7A76;&amp;#x4E86;&amp;#x4E00;&amp;#x4E0B;&amp;#xFF0C;&amp;#x628A;&amp;#x7ECF;">
+<meta name="twitter:description" content="3D touch也出了很长时间了，这次花时间好好研究了一下，把经验与大家分享一下 主界面重按APP图标，弹出Touch菜单　静态快速选项　　　(iOS数组)给APP指定静态主屏幕的快速选项，这个键包含了一个字典数组，每个字典包含关于一个快速选项的详细信息。你可以指定静态快速选项给你的APP用一个字典数组。　UIApplicationShortcutItems (iOS数组)给APP指定静态主屏幕的">
 <meta name="twitter:image" content="http://nanshanyi.github.io/2016/04/20/3dtouch/966908-a293ac389bddf444.png">
 
 
@@ -140,7 +142,7 @@
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">南山忆的技术博客</span>
       <span class="logo-line-after"><i></i></span>
@@ -167,7 +169,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br>
             
             首页
           </a>
@@ -177,7 +179,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br>
             
             归档
           </a>
@@ -187,7 +189,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br>
             
             标签
           </a>
@@ -200,7 +202,7 @@
             <a href="#" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -301,17 +303,17 @@
       
 
       
-        <p>3D touch&#x4E5F;&#x51FA;&#x4E86;&#x5F88;&#x957F;&#x65F6;&#x95F4;&#x4E86;&#xFF0C;&#x8FD9;&#x6B21;&#x82B1;&#x65F6;&#x95F4;&#x597D;&#x597D;&#x7814;&#x7A76;&#x4E86;&#x4E00;&#x4E0B;&#xFF0C;&#x628A;&#x7ECF;&#x9A8C;&#x4E0E;&#x5927;&#x5BB6;&#x5206;&#x4EAB;&#x4E00;&#x4E0B;</p>
-<h4 id="&#x4E3B;&#x754C;&#x9762;&#x91CD;&#x6309;APP&#x56FE;&#x6807;&#xFF0C;&#x5F39;&#x51FA;Touch&#x83DC;&#x5355;"><a href="#&#x4E3B;&#x754C;&#x9762;&#x91CD;&#x6309;APP&#x56FE;&#x6807;&#xFF0C;&#x5F39;&#x51FA;Touch&#x83DC;&#x5355;" class="headerlink" title="&#x4E3B;&#x754C;&#x9762;&#x91CD;&#x6309;APP&#x56FE;&#x6807;&#xFF0C;&#x5F39;&#x51FA;Touch&#x83DC;&#x5355;"></a>&#x4E3B;&#x754C;&#x9762;&#x91CD;&#x6309;APP&#x56FE;&#x6807;&#xFF0C;&#x5F39;&#x51FA;Touch&#x83DC;&#x5355;</h4><p>&#x3000;&#x9759;&#x6001;&#x5FEB;&#x901F;&#x9009;&#x9879;<br>&#x3000;&#x3000;&#x3000;(iOS&#x6570;&#x7EC4;)&#x7ED9;APP&#x6307;&#x5B9A;&#x9759;&#x6001;&#x4E3B;&#x5C4F;&#x5E55;&#x7684;&#x5FEB;&#x901F;&#x9009;&#x9879;&#xFF0C;&#x8FD9;&#x4E2A;&#x952E;&#x5305;&#x542B;&#x4E86;&#x4E00;&#x4E2A;&#x5B57;&#x5178;&#x6570;&#x7EC4;&#xFF0C;&#x6BCF;&#x4E2A;&#x5B57;&#x5178;&#x5305;&#x542B;&#x5173;&#x4E8E;&#x4E00;&#x4E2A;&#x5FEB;&#x901F;&#x9009;&#x9879;&#x7684;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x9759;&#x6001;&#x5FEB;&#x901F;&#x9009;&#x9879;&#x7ED9;&#x4F60;&#x7684;APP&#x7528;&#x4E00;&#x4E2A;&#x5B57;&#x5178;&#x6570;&#x7EC4;&#x3002;<br><img src="/2016/04/20/3dtouch/966908-a293ac389bddf444.png" alt=""><br>&#x3000;UIApplicationShortcutItems (iOS&#x6570;&#x7EC4;)&#x7ED9;APP&#x6307;&#x5B9A;&#x9759;&#x6001;&#x4E3B;&#x5C4F;&#x5E55;&#x7684;&#x5FEB;&#x901F;&#x9009;&#x9879;&#xFF0C;&#x8FD9;&#x4E2A;&#x952E;&#x5305;&#x542B;&#x4E86;&#x4E00;&#x4E2A;&#x5B57;&#x5178;&#x6570;&#x7EC4;&#xFF0C;&#x6BCF;&#x4E2A;&#x5B57;&#x5178;&#x5305;&#x542B;&#x5173;&#x4E8E;&#x4E00;&#x4E2A;&#x5FEB;&#x901F;&#x9009;&#x9879;&#x7684;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x9759;&#x6001;&#x5FEB;&#x901F;&#x9009;&#x9879;&#x7ED9;&#x4F60;&#x7684;APP&#x7528;&#x4E00;&#x4E2A;&#x5B57;&#x5178;&#x6570;&#x7EC4;&#x3002;<br><a id="more"></a><br>&#x9759;&#x6001;&#x5B9A;&#x4E49;&#x5FEB;&#x901F;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x7528;&#x7684;key:<br>UIApplicationShortcutItemType (&#x5FC5;&#x987B;&#x4F7F;&#x7528;) &#x7528;&#x6765;&#x533A;&#x5206;&#x4E0E;&#x5176;&#x4ED6;&#x5FEB;&#x901F;&#x9009;&#x9879;&#x7684;&#x5206;&#x7C7B;<br>UIApplicationShortcutItemTitle (&#x5FC5;&#x987B;&#x4F7F;&#x7528;) &#x5FEB;&#x901F;&#x9009;&#x9879;&#x663E;&#x793A;&#x7684;&#x6807;&#x9898;<br>UIApplicationShortcutItemSubtitle &#x5FEB;&#x901F;&#x9009;&#x9879;&#x663E;&#x793A;&#x7684;&#x5B50;&#x6807;&#x9898;<br>UIApplicationShortcutItemIconType &#x56FE;&#x7247;&#x7C7B;&#x578B;&#x7531;&#x7CFB;&#x7EDF;&#x63D0;&#x4F9B;&#xFF08; iOS9.1&#x4E4B;&#x540E;&#x65B0;&#x6DFB;&#x52A0;&#x4E86;&#x8BB8;&#x591A;&#x56FE;&#x7247;&#x7C7B;&#x578B;&#xFF09;<br>UIApplicationShortcutItemIconFile &#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x56FE;&#x6807;<br>UIApplicationShortcutItemUserInfo &#x9644;&#x52A0;&#x4FE1;&#x606F;</p>
-<h4 id="&#x52A8;&#x6001;&#x5FEB;&#x901F;&#x9009;&#x9879;"><a href="#&#x52A8;&#x6001;&#x5FEB;&#x901F;&#x9009;&#x9879;" class="headerlink" title="&#x52A8;&#x6001;&#x5FEB;&#x901F;&#x9009;&#x9879;"></a>&#x52A8;&#x6001;&#x5FEB;&#x901F;&#x9009;&#x9879;</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions {</span><br><span class="line"><span class="built_in">UIApplicationShortcutItem</span> * item = [[<span class="built_in">UIApplicationShortcutItem</span> alloc]initWithType:<span class="string">@&quot;two&quot;</span> localizedTitle:<span class="string">@&quot;&#x641C;&#x7D22;&quot;</span> localizedSubtitle:<span class="string">@&quot;&#x4E00;&#x6B65;&#x5230;&#x8FBE;&#x6307;&#x5B9A;&#x5730;&#x70B9;&quot;</span> icon:[<span class="built_in">UIApplicationShortcutIcon</span> iconWithType:<span class="built_in">UIApplicationShortcutIconTypeSearch</span>] userInfo:<span class="literal">nil</span>];</span><br><span class="line"><span class="built_in">UIApplicationShortcutItem</span> * item1 = [[<span class="built_in">UIApplicationShortcutItem</span> alloc]initWithType:<span class="string">@&quot;three&quot;</span> localizedTitle:<span class="string">@&quot;&#x9644;&#x8FD1;&quot;</span> localizedSubtitle:<span class="string">@&quot;&#x597D;&#x5403;&#x7684;&quot;</span> icon:[<span class="built_in">UIApplicationShortcutIcon</span> iconWithType:<span class="built_in">UIApplicationShortcutIconTypeMarkLocation</span>] userInfo:<span class="literal">nil</span>];</span><br><span class="line">[<span class="built_in">UIApplication</span> sharedApplication].shortcutItems = @[item,item1];</span><br></pre></td></tr></table></figure>
-<p><img src="/2016/04/20/3dtouch/966908-b0ccf43482e4f83d.png" alt=""></p>
-<h4 id="&#x9009;&#x62E9;item&#x540E;&#x89E6;&#x53D1;&#x7684;&#x65B9;&#x6CD5;"><a href="#&#x9009;&#x62E9;item&#x540E;&#x89E6;&#x53D1;&#x7684;&#x65B9;&#x6CD5;" class="headerlink" title="&#x9009;&#x62E9;item&#x540E;&#x89E6;&#x53D1;&#x7684;&#x65B9;&#x6CD5;"></a>&#x9009;&#x62E9;item&#x540E;&#x89E6;&#x53D1;&#x7684;&#x65B9;&#x6CD5;</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> - (<span class="keyword">void</span>)application:(<span class="built_in">UIApplication</span> *)application performActionForShortcutItem:(nonnull     <span class="built_in">UIApplicationShortcutItem</span> *)shortcutItem completionHandler:(nonnull <span class="keyword">void</span>   (^)(<span class="built_in">BOOL</span>))completionHandler{</span><br><span class="line">&#x3000;&#x3000;<span class="comment">//&#x901A;&#x8FC7;shortcutItem.type&#x6765;&#x5224;&#x65AD;&#x70B9;&#x51FB;&#x7684;&#x662F;&#x54EA;&#x4E00;&#x4E2A;item&#xFF0C;&#x6765;&#x8FDB;&#x884C;&#x4E0D;&#x540C;&#x7684;&#x64CD;&#x4F5C;</span></span><br><span class="line">  <span class="keyword">if</span> ([shortcutItem.type isEqualToString:<span class="string">@&quot;one&quot;</span>]) {</span><br><span class="line">        <span class="built_in">UITabBarController</span> *mytab = (<span class="built_in">UITabBarController</span>*)<span class="keyword">self</span>.window.rootViewController;</span><br><span class="line">        mytab.selectedIndex = <span class="number">0</span>;</span><br><span class="line">    }<span class="keyword">else</span> <span class="keyword">if</span> ([shortcutItem.type isEqualToString:<span class="string">@&quot;two&quot;</span>]){</span><br><span class="line">        SearchVC *searchVC = [[SearchVC alloc]init];</span><br><span class="line">        <span class="built_in">UITabBarController</span> *mytab = (<span class="built_in">UITabBarController</span>*)<span class="keyword">self</span>.window.rootViewController;</span><br><span class="line">        <span class="built_in">UINavigationController</span> *myNAV = [mytab.viewControllers firstObject];</span><br><span class="line">      [myNAV pushViewController:searchVC animated:<span class="literal">YES</span>];</span><br><span class="line"><span class="comment">// [self.window.rootViewController presentViewController:searchVC animated:YES completion:nil];</span></span><br><span class="line">  }<span class="keyword">else</span>{</span><br><span class="line">      FPHNearbyVC *vc = [[FPHNearbyVC alloc] init];</span><br><span class="line">      <span class="built_in">UITabBarController</span> *mytab = (<span class="built_in">UITabBarController</span>*)<span class="keyword">self</span>.window.rootViewController;</span><br><span class="line">      <span class="built_in">UINavigationController</span> *myNAV = [mytab.viewControllers firstObject];</span><br><span class="line">      vc.hidesBottomBarWhenPushed = <span class="literal">YES</span>;</span><br><span class="line">       [myNAV pushViewController:vc animated:<span class="literal">YES</span>];</span><br><span class="line">     }</span><br><span class="line">     completionHandler(<span class="literal">YES</span>);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-<h4 id="APP&#x5185;&#x90E8;peek&#x548C;pop&#x7684;&#x4F7F;&#x7528;&#xFF08;&#x4EE5;tableView&#x4E2D;&#x7684;&#x4F7F;&#x7528;&#x4E3A;&#x4F8B;&#xFF09;"><a href="#APP&#x5185;&#x90E8;peek&#x548C;pop&#x7684;&#x4F7F;&#x7528;&#xFF08;&#x4EE5;tableView&#x4E2D;&#x7684;&#x4F7F;&#x7528;&#x4E3A;&#x4F8B;&#xFF09;" class="headerlink" title="APP&#x5185;&#x90E8;peek&#x548C;pop&#x7684;&#x4F7F;&#x7528;&#xFF08;&#x4EE5;tableView&#x4E2D;&#x7684;&#x4F7F;&#x7528;&#x4E3A;&#x4F8B;&#xFF09;"></a>APP&#x5185;&#x90E8;peek&#x548C;pop&#x7684;&#x4F7F;&#x7528;&#xFF08;&#x4EE5;tableView&#x4E2D;&#x7684;&#x4F7F;&#x7528;&#x4E3A;&#x4F8B;&#xFF09;</h4><p>&#x3000;&#x3000;&#x9996;&#x5148;&#x9075;&#x5B88;&#x534F;&#x8BAE;UIViewControllerPreviewingDelegate<br>&#x3000;&#x3000;&#x68C0;&#x6D4B;&#x662F;&#x5426;&#x6709;3Dtouch&#xFF1B;<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)check3DTouch{</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">self</span>.traitCollection.forceTouchCapability == <span class="built_in">UIForceTouchCapabilityAvailable</span>)</span><br><span class="line">{</span><br><span class="line">   <span class="built_in">NSLog</span>(<span class="string">@&quot;3D Touch &#x5F00;&#x542F;&quot;</span>);</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">   <span class="keyword">else</span>{</span><br><span class="line"></span><br><span class="line">      }</span><br><span class="line">  }</span><br></pre></td></tr></table></figure></p>
-<p>&#x3000;&#x3000;&#x4E0B;&#x9762;&#x6765;&#x5B9E;&#x73B0;&#x76F8;&#x5E94;&#x7684;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//peek&#x7684;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;&#xFF0C;&#x8F7B;&#x6309;&#x5373;&#x53EF;&#x89E6;&#x53D1;&#x5F39;&#x51FA;vc</span></span><br><span class="line"> - (<span class="built_in">UIViewController</span> *)previewingContext:(<span class="keyword">id</span> &lt;<span class="built_in">UIViewControllerPreviewing</span>&gt;)previewingContext viewControllerForLocation:(<span class="built_in">CGPoint</span>)location{</span><br><span class="line">     <span class="built_in">NSIndexPath</span> *indexPath = [_tableView indexPathForCell:(<span class="built_in">UITableViewCell</span>* )[previewingContext sourceView]];</span><br><span class="line"><span class="comment">//&#x901A;&#x8FC7;[previewingContext sourceView]&#x62FF;&#x5230;&#x5BF9;&#x5E94;&#x7684;cell&#xFF1B;&#x3000;&#x3000;</span></span><br><span class="line">  NewVC *vc = [[FPHNewHouseDetailVC alloc] init];</span><br><span class="line">  newModel *model= [_tableView objectAtIndex:indexPath.row];</span><br><span class="line">  vc.pid = house.id;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">NSLog</span>(<span class="string">@&quot;%@&quot;</span>,location);</span><br><span class="line">  <span class="keyword">return</span> vc;</span><br><span class="line">   }</span><br><span class="line"><span class="comment">//pop&#x7684;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;&#xFF0C;&#x5728;&#x6B64;&#x5904;&#x53EF;&#x5BF9;&#x5C06;&#x8981;&#x8FDB;&#x5165;&#x7684;vc&#x8FDB;&#x884C;&#x5904;&#x7406;&#xFF0C;&#x6BD4;&#x5982;&#x9690;&#x85CF;tabBar&#xFF1B;</span></span><br><span class="line"> - (<span class="keyword">void</span>)previewingContext:(<span class="keyword">id</span> &lt;<span class="built_in">UIViewControllerPreviewing</span>&gt;)previewingContext commitViewController:(<span class="built_in">UIViewController</span> *)viewControllerToCommit</span><br><span class="line"> {</span><br><span class="line">     viewControllerToCommit.hidesBottomBarWhenPushed = <span class="literal">YES</span>;</span><br><span class="line">    [<span class="keyword">self</span> showViewController:viewControllerToCommit sender:<span class="keyword">self</span>];</span><br><span class="line"> }</span><br></pre></td></tr></table></figure></p>
-<p> <strong>&#x6CE8;&#x610F;&#xFF1A;</strong>tableView&#x5728;<br>&#x3000;&#x3000;&#x3000;&#x3000;- (UITableViewCell<em>)tableView:(UITableView </em>)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath<br>&#x3000;&#x3000;&#x65B9;&#x6CD5;&#x4E2D;&#x4E00;&#x5B9A;&#x8981;&#x5BF9;&#x6BCF;&#x4E2A;cell&#x8FDB;&#x884C;&#x6CE8;&#x518C;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;&#x5982;&#x4E0B;<br>&#x3000;&#x3000;[self registerForPreviewingWithDelegate:self sourceView:cell];</p>
-<h4 id="&#x9884;&#x89C8;&#x65F6;&#x5E95;&#x90E8;&#x83DC;&#x5355;&#x7684;&#x6DFB;&#x52A0;"><a href="#&#x9884;&#x89C8;&#x65F6;&#x5E95;&#x90E8;&#x83DC;&#x5355;&#x7684;&#x6DFB;&#x52A0;" class="headerlink" title="&#x9884;&#x89C8;&#x65F6;&#x5E95;&#x90E8;&#x83DC;&#x5355;&#x7684;&#x6DFB;&#x52A0;"></a>&#x9884;&#x89C8;&#x65F6;&#x5E95;&#x90E8;&#x83DC;&#x5355;&#x7684;&#x6DFB;&#x52A0;</h4><p>&#x5728;&#x8981;&#x9884;&#x89C8;&#x7684;VC&#x4E2D;&#x6DFB;&#x52A0;&#x4EE5;&#x4E0B;&#x4EE3;&#x7801;&#xFF1A;</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="built_in">NSArray</span>&lt;<span class="keyword">id</span>&lt;<span class="built_in">UIPreviewActionItem</span>&gt;&gt; *)previewActionItems</span><br><span class="line">{</span><br><span class="line"><span class="built_in">UIPreviewAction</span> * action1 = [<span class="built_in">UIPreviewAction</span> actionWithTitle:<span class="string">@&quot;&#x6807;&#x9898;1&quot;</span> style:<span class="number">1</span> handler:^(<span class="built_in">UIPreviewAction</span> * _Nonnull action, <span class="built_in">UIViewController</span> * _Nonnull previewViewController) {</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;&#x6807;&#x9898;1&quot;</span>);</span><br><span class="line"> }];</span><br><span class="line"></span><br><span class="line"><span class="built_in">UIPreviewAction</span> * action2 = [<span class="built_in">UIPreviewAction</span> actionWithTitle:<span class="string">@&quot;&#x6807;&#x9898;2&quot;</span> style:<span class="number">0</span> handler:^(<span class="built_in">UIPreviewAction</span> * _Nonnull action, <span class="built_in">UIViewController</span> * _Nonnull previewViewController) {</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;&#x6807;&#x9898;2&quot;</span>);</span><br><span class="line"></span><br><span class="line"> }];</span><br><span class="line"><span class="built_in">UIPreviewAction</span> * action3 = [<span class="built_in">UIPreviewAction</span> actionWithTitle:<span class="string">@&quot;&#x6807;&#x9898;3&quot;</span> style:<span class="number">2</span> handler:^(<span class="built_in">UIPreviewAction</span> * _Nonnull action, <span class="built_in">UIViewController</span> * _Nonnull previewViewController) {</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;&#x6807;&#x9898;3&quot;</span>);</span><br><span class="line"> }];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSArray</span> * actions = @[action1,action2,action3];</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> actions;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-<p>&#x3000;&#x3000;&#x3000;&#x3000;block&#x91CC;&#x9762;&#x76F4;&#x63A5;&#x5199;&#x70B9;&#x51FB;&#x540E;&#x8981;&#x5B9E;&#x73B0;&#x7684;&#x64CD;&#x4F5C;<br>&#x6700;&#x7EC8;&#x6548;&#x679C;&#xFF1A;<br><img src="/2016/04/20/3dtouch/966908-976af00f57dd4439.png" alt=""><br> &#x3000;&#x3000;&#x6682;&#x65F6;&#x5C31;&#x5199;&#x8FD9;&#x4E48;&#x591A;&#xFF0C;&#x6709;&#x4EC0;&#x4E48;&#x4E0D;&#x5BF9;&#x7684;&#x5730;&#x65B9;&#x8BF7;&#x5927;&#x5BB6;&#x6307;&#x6559;&#xFF0C;&#x5927;&#x5BB6;&#x4E92;&#x76F8;&#x5B66;&#x4E60;&#x3002;</p>
+        <p>3D touch也出了很长时间了，这次花时间好好研究了一下，把经验与大家分享一下</p>
+<h4 id="主界面重按APP图标，弹出Touch菜单"><a href="#主界面重按APP图标，弹出Touch菜单" class="headerlink" title="主界面重按APP图标，弹出Touch菜单"></a>主界面重按APP图标，弹出Touch菜单</h4><p>　静态快速选项<br>　　　(iOS数组)给APP指定静态主屏幕的快速选项，这个键包含了一个字典数组，每个字典包含关于一个快速选项的详细信息。你可以指定静态快速选项给你的APP用一个字典数组。<br><img src="/2016/04/20/3dtouch/966908-a293ac389bddf444.png" alt><br>　UIApplicationShortcutItems (iOS数组)给APP指定静态主屏幕的快速选项，这个键包含了一个字典数组，每个字典包含关于一个快速选项的详细信息。你可以指定静态快速选项给你的APP用一个字典数组。<br><a id="more"></a><br>静态定义快速在运行时常用的key:<br>UIApplicationShortcutItemType (必须使用) 用来区分与其他快速选项的分类<br>UIApplicationShortcutItemTitle (必须使用) 快速选项显示的标题<br>UIApplicationShortcutItemSubtitle 快速选项显示的子标题<br>UIApplicationShortcutItemIconType 图片类型由系统提供（ iOS9.1之后新添加了许多图片类型）<br>UIApplicationShortcutItemIconFile 自定义的图标<br>UIApplicationShortcutItemUserInfo 附加信息</p>
+<h4 id="动态快速选项"><a href="#动态快速选项" class="headerlink" title="动态快速选项"></a>动态快速选项</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions &#123;</span><br><span class="line"><span class="built_in">UIApplicationShortcutItem</span> * item = [[<span class="built_in">UIApplicationShortcutItem</span> alloc]initWithType:<span class="string">@"two"</span> localizedTitle:<span class="string">@"搜索"</span> localizedSubtitle:<span class="string">@"一步到达指定地点"</span> icon:[<span class="built_in">UIApplicationShortcutIcon</span> iconWithType:<span class="built_in">UIApplicationShortcutIconTypeSearch</span>] userInfo:<span class="literal">nil</span>];</span><br><span class="line"><span class="built_in">UIApplicationShortcutItem</span> * item1 = [[<span class="built_in">UIApplicationShortcutItem</span> alloc]initWithType:<span class="string">@"three"</span> localizedTitle:<span class="string">@"附近"</span> localizedSubtitle:<span class="string">@"好吃的"</span> icon:[<span class="built_in">UIApplicationShortcutIcon</span> iconWithType:<span class="built_in">UIApplicationShortcutIconTypeMarkLocation</span>] userInfo:<span class="literal">nil</span>];</span><br><span class="line">[<span class="built_in">UIApplication</span> sharedApplication].shortcutItems = @[item,item1];</span><br></pre></td></tr></table></figure>
+<p><img src="/2016/04/20/3dtouch/966908-b0ccf43482e4f83d.png" alt></p>
+<h4 id="选择item后触发的方法"><a href="#选择item后触发的方法" class="headerlink" title="选择item后触发的方法"></a>选择item后触发的方法</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> - (<span class="keyword">void</span>)application:(<span class="built_in">UIApplication</span> *)application performActionForShortcutItem:(<span class="keyword">nonnull</span>     <span class="built_in">UIApplicationShortcutItem</span> *)shortcutItem completionHandler:(<span class="keyword">nonnull</span> <span class="keyword">void</span>   (^)(<span class="built_in">BOOL</span>))completionHandler&#123;</span><br><span class="line">　　<span class="comment">//通过shortcutItem.type来判断点击的是哪一个item，来进行不同的操作</span></span><br><span class="line">  <span class="keyword">if</span> ([shortcutItem.type isEqualToString:<span class="string">@"one"</span>]) &#123;</span><br><span class="line">        <span class="built_in">UITabBarController</span> *mytab = (<span class="built_in">UITabBarController</span>*)<span class="keyword">self</span>.window.rootViewController;</span><br><span class="line">        mytab.selectedIndex = <span class="number">0</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> ([shortcutItem.type isEqualToString:<span class="string">@"two"</span>])&#123;</span><br><span class="line">        SearchVC *searchVC = [[SearchVC alloc]init];</span><br><span class="line">        <span class="built_in">UITabBarController</span> *mytab = (<span class="built_in">UITabBarController</span>*)<span class="keyword">self</span>.window.rootViewController;</span><br><span class="line">        <span class="built_in">UINavigationController</span> *myNAV = [mytab.viewControllers firstObject];</span><br><span class="line">      [myNAV pushViewController:searchVC animated:<span class="literal">YES</span>];</span><br><span class="line"><span class="comment">// [self.window.rootViewController presentViewController:searchVC animated:YES completion:nil];</span></span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      FPHNearbyVC *vc = [[FPHNearbyVC alloc] init];</span><br><span class="line">      <span class="built_in">UITabBarController</span> *mytab = (<span class="built_in">UITabBarController</span>*)<span class="keyword">self</span>.window.rootViewController;</span><br><span class="line">      <span class="built_in">UINavigationController</span> *myNAV = [mytab.viewControllers firstObject];</span><br><span class="line">      vc.hidesBottomBarWhenPushed = <span class="literal">YES</span>;</span><br><span class="line">       [myNAV pushViewController:vc animated:<span class="literal">YES</span>];</span><br><span class="line">     &#125;</span><br><span class="line">     completionHandler(<span class="literal">YES</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="APP内部peek和pop的使用（以tableView中的使用为例）"><a href="#APP内部peek和pop的使用（以tableView中的使用为例）" class="headerlink" title="APP内部peek和pop的使用（以tableView中的使用为例）"></a>APP内部peek和pop的使用（以tableView中的使用为例）</h4><p>　　首先遵守协议UIViewControllerPreviewingDelegate<br>　　检测是否有3Dtouch；<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)check3DTouch&#123;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">self</span>.traitCollection.forceTouchCapability == <span class="built_in">UIForceTouchCapabilityAvailable</span>)</span><br><span class="line">&#123;</span><br><span class="line">   <span class="built_in">NSLog</span>(<span class="string">@"3D Touch 开启"</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">   <span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　下面来实现相应的代理方法<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//peek的代理方法，轻按即可触发弹出vc</span></span><br><span class="line"> - (<span class="built_in">UIViewController</span> *)previewingContext:(<span class="keyword">id</span> &lt;<span class="built_in">UIViewControllerPreviewing</span>&gt;)previewingContext viewControllerForLocation:(<span class="built_in">CGPoint</span>)location&#123;</span><br><span class="line">     <span class="built_in">NSIndexPath</span> *indexPath = [_tableView indexPathForCell:(<span class="built_in">UITableViewCell</span>* )[previewingContext sourceView]];</span><br><span class="line"><span class="comment">//通过[previewingContext sourceView]拿到对应的cell；　　</span></span><br><span class="line">  NewVC *vc = [[FPHNewHouseDetailVC alloc] init];</span><br><span class="line">  newModel *model= [_tableView objectAtIndex:indexPath.row];</span><br><span class="line">  vc.pid = house.id;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,location);</span><br><span class="line">  <span class="keyword">return</span> vc;</span><br><span class="line">   &#125;</span><br><span class="line"><span class="comment">//pop的代理方法，在此处可对将要进入的vc进行处理，比如隐藏tabBar；</span></span><br><span class="line"> - (<span class="keyword">void</span>)previewingContext:(<span class="keyword">id</span> &lt;<span class="built_in">UIViewControllerPreviewing</span>&gt;)previewingContext commitViewController:(<span class="built_in">UIViewController</span> *)viewControllerToCommit</span><br><span class="line"> &#123;</span><br><span class="line">     viewControllerToCommit.hidesBottomBarWhenPushed = <span class="literal">YES</span>;</span><br><span class="line">    [<span class="keyword">self</span> showViewController:viewControllerToCommit sender:<span class="keyword">self</span>];</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<p> <strong>注意：</strong>tableView在<br>　　　　- (UITableViewCell<em>)tableView:(UITableView </em>)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath<br>　　方法中一定要对每个cell进行注册代理方法如下<br>　　[self registerForPreviewingWithDelegate:self sourceView:cell];</p>
+<h4 id="预览时底部菜单的添加"><a href="#预览时底部菜单的添加" class="headerlink" title="预览时底部菜单的添加"></a>预览时底部菜单的添加</h4><p>在要预览的VC中添加以下代码：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="built_in">NSArray</span>&lt;<span class="keyword">id</span>&lt;<span class="built_in">UIPreviewActionItem</span>&gt;&gt; *)previewActionItems</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">UIPreviewAction</span> * action1 = [<span class="built_in">UIPreviewAction</span> actionWithTitle:<span class="string">@"标题1"</span> style:<span class="number">1</span> handler:^(<span class="built_in">UIPreviewAction</span> * _Nonnull action, <span class="built_in">UIViewController</span> * _Nonnull previewViewController) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"标题1"</span>);</span><br><span class="line"> &#125;];</span><br><span class="line"></span><br><span class="line"><span class="built_in">UIPreviewAction</span> * action2 = [<span class="built_in">UIPreviewAction</span> actionWithTitle:<span class="string">@"标题2"</span> style:<span class="number">0</span> handler:^(<span class="built_in">UIPreviewAction</span> * _Nonnull action, <span class="built_in">UIViewController</span> * _Nonnull previewViewController) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"标题2"</span>);</span><br><span class="line"></span><br><span class="line"> &#125;];</span><br><span class="line"><span class="built_in">UIPreviewAction</span> * action3 = [<span class="built_in">UIPreviewAction</span> actionWithTitle:<span class="string">@"标题3"</span> style:<span class="number">2</span> handler:^(<span class="built_in">UIPreviewAction</span> * _Nonnull action, <span class="built_in">UIViewController</span> * _Nonnull previewViewController) &#123;</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"标题3"</span>);</span><br><span class="line"> &#125;];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSArray</span> * actions = @[action1,action2,action3];</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> actions;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　　　　block里面直接写点击后要实现的操作<br>最终效果：<br><img src="/2016/04/20/3dtouch/966908-976af00f57dd4439.png" alt><br> 　　暂时就写这么多，有什么不对的地方请大家指教，大家互相学习。</p>
 
       
     </div>
@@ -373,8 +375,7 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/20/3dtouch/"
-           data-title="3DTouch应用详解" data-url="http://nanshanyi.github.io/2016/04/20/3dtouch/">
+      <div class="ds-thread" data-thread-key="2016/04/20/3dtouch/" data-title="3DTouch应用详解" data-url="http://nanshanyi.github.io/2016/04/20/3dtouch/">
       </div>
     
   </div>
@@ -399,7 +400,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -410,9 +411,7 @@
 
       <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.png"
-               alt="南山忆" />
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="南山忆">
           <p class="site-author-name" itemprop="name">南山忆</p>
           <p class="site-description motion-element" itemprop="description"></p>
         </div>
@@ -494,7 +493,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy;  2015 - 
   <span itemprop="copyrightYear">2020</span>
