@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon128.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon64.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nanshanyi.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Protocol Buffer简介  Protocol Buffer是google于2008推出的一种数据交换的格式，它独立于语言，独立于平台。，google 提供了多种语言的实现，每一种实现都包含了相应语言的编译器以及库文件。由于它是一种二进制的格式，比使用 xml 和 json 进行数据交换快许多。可以把它用于分布式应用之间的数据通信或者异构环境下的数据交换。作为一种效率和兼容性都很优秀的二进">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ProtocolBuffer 入门使用：iOS">
+<meta property="og:url" content="http://nanshanyi.github.io/2017/08/14/ProtocolBuffer入门使用iOS/index.html">
+<meta property="og:site_name" content="南山忆的技术博客">
+<meta property="og:description" content="Protocol Buffer简介  Protocol Buffer是google于2008推出的一种数据交换的格式，它独立于语言，独立于平台。，google 提供了多种语言的实现，每一种实现都包含了相应语言的编译器以及库文件。由于它是一种二进制的格式，比使用 xml 和 json 进行数据交换快许多。可以把它用于分布式应用之间的数据通信或者异构环境下的数据交换。作为一种效率和兼容性都很优秀的二进">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-14T12:07:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ProtocolBuffer 入门使用：iOS">
+<meta name="twitter:description" content="Protocol Buffer简介  Protocol Buffer是google于2008推出的一种数据交换的格式，它独立于语言，独立于平台。，google 提供了多种语言的实现，每一种实现都包含了相应语言的编译器以及库文件。由于它是一种二进制的格式，比使用 xml 和 json 进行数据交换快许多。可以把它用于分布式应用之间的数据通信或者异构环境下的数据交换。作为一种效率和兼容性都很优秀的二进">
+
+<link rel="canonical" href="http://nanshanyi.github.io/2017/08/14/ProtocolBuffer入门使用iOS/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>ProtocolBuffer 入门使用：iOS | 南山忆的技术博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">南山忆的技术博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">回忆是抓不住的月光，握紧就变黑暗</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://nanshanyi.github.io/2017/08/14/ProtocolBuffer入门使用iOS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatarMe.png">
+      <meta itemprop="name" content="南山忆">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="南山忆的技术博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ProtocolBuffer 入门使用：iOS
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2017-08-14 20:07:22 / Modified: 20:07:00" itemprop="dateCreated datePublished" datetime="2017-08-14T20:07:22+08:00">2017-08-14</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="Protocol-Buffer简介"><a href="#Protocol-Buffer简介" class="headerlink" title="Protocol Buffer简介"></a>Protocol Buffer简介</h4><p>  <em>Protocol Buffer</em>是google于2008推出的一种数据交换的格式，它独立于语言，独立于平台。，google 提供了多种语言的实现，每一种实现都包含了相应语言的编译器以及库文件。由于它是一种二进制的格式，比使用 xml 和 json 进行数据交换快许多。可以把它用于分布式应用之间的数据通信或者异构环境下的数据交换。作为一种效率和兼容性都很优秀的二进制数据传输格式，可以用于诸如网络传输、配置文件、数据存储等诸多领域。现今经过多个版本迭代已经到了3.x版本<br>  其实说白了Protocol Buffer就是一个协议，和解释器。可以用proto文件把model或者其他数据序列化Or反序列化（把二进制数据解析为Model或者把Model转为二进制数据）。它添加了多语言的支持，在不同语言下，遵守同样的协议（使用同样的proto），这样就可以保证在不同端，数据可以交互，而且不用担心数据的序列化问题。<br>  下面是支持的语言：</p>
+<table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C++ (include C++ runtime and protoc)</td>
+<td><a href="https://github.com/google/protobuf/tree/master/src" target="_blank" rel="noopener">src</a></td>
+</tr>
+<tr>
+<td>Java</td>
+<td><a href="https://github.com/google/protobuf/tree/master/java" target="_blank" rel="noopener">java</a></td>
+</tr>
+<tr>
+<td>Python</td>
+<td><a href="https://github.com/google/protobuf/tree/master/python" target="_blank" rel="noopener">python</a></td>
+</tr>
+<tr>
+<td>Objective-C</td>
+<td><a href="https://github.com/google/protobuf/tree/master/objectivec" target="_blank" rel="noopener">objectivec</a></td>
+</tr>
+<tr>
+<td>C#</td>
+<td><a href="https://github.com/google/protobuf/tree/master/csharp" target="_blank" rel="noopener">csharp</a></td>
+</tr>
+<tr>
+<td>JavaNano</td>
+<td><a href="https://github.com/google/protobuf/tree/master/javanano" target="_blank" rel="noopener">javanano</a></td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td><a href="https://github.com/google/protobuf/tree/master/js" target="_blank" rel="noopener">js</a></td>
+</tr>
+<tr>
+<td>Ruby</td>
+<td><a href="https://github.com/google/protobuf/tree/master/ruby" target="_blank" rel="noopener">ruby</a></td>
+</tr>
+<tr>
+<td>Go</td>
+<td><a href="https://github.com/golang/protobuf" target="_blank" rel="noopener">golang/protobuf</a></td>
+</tr>
+<tr>
+<td>PHP</td>
+<td><a href="https://github.com/google/protobuf/tree/master/php" target="_blank" rel="noopener">php</a></td>
+</tr>
+<tr>
+<td>Dart</td>
+<td><a href="https://github.com/dart-lang/protobuf" target="_blank" rel="noopener">dart-lang/protobuf</a></td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<h4 id="为什么选择Protocol-Buffer"><a href="#为什么选择Protocol-Buffer" class="headerlink" title="为什么选择Protocol Buffer"></a>为什么选择Protocol Buffer</h4><p>（1）模式本身很不错<br>（2）无偿向后兼容<br>（3）更少的样本代码<br>（4）验证和可扩展性<br>（5）建议的语言互操作性<br>  详细可以参考<a href="https://www.oschina.net/translate/choose-protocol-buffers" target="_blank" rel="noopener">这里</a>选择PB的五个理由,写的很好。一门技术的选择需要多个条件，没有最好，只有最适合自己项目使用的 。所以请根据实际情况合理选择使用</p>
+<h4 id="前期环境准备"><a href="#前期环境准备" class="headerlink" title="前期环境准备"></a>前期环境准备</h4><p>  现在的release版本是3.3.0，安装需要用到软件包管理工具。这里推荐使用Homebrew，它是一个很好的软件包管理工具，首先安装<a href="https://brew.sh/index_zh-cn.html" target="_blank" rel="noopener">HomeBrew</a>直接在终端执行以下命令  </p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
+<p>  接下来安装Protobuf Compiler，执行一下几个命令即可：<br>  <em>Automake</em> 是一种帮助『自动』产生 Makefile 文件的软件，并且让开发出来的的软件可以象 Apache，MySQL 和常见的 GNU 软件一样，程序设计者只需要写一些预先定义好的宏 (macro)，提交给Automake处理后会产生一个可以供 Autoconf 使用的 Makefile.in文件。再配合利用 Autoconf产生的自动配置设置文件 configure 即可产生一份符合 GNU Makefile 惯例的 Makeifle 了.<br><em>libtool</em>是一种属于GNU建构系统的GNU程序设计工具，用来产生便携式的库</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">brew install automake </span><br><span class="line">brew install libtool </span><br><span class="line">brew install protobuf</span><br></pre></td></tr></table></figure>
+<p>  接下来把github上的protobuf拉到本地，在 protobuf/objectivec/DevTools目录下有个shell脚本，full_mac_build.sh执行这个脚本</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/google/protobuf.git</span><br><span class="line"><span class="built_in">cd</span> protobuf/objectivec/DevTools</span><br><span class="line">./full_mac_build.sh</span><br></pre></td></tr></table></figure>
+<p>  如果在执行脚本的过程中遇到以下错误，是由于没有安装libtool造成的。我装的时候遇到下面的错误，按照我现在这个步骤应该不会有错。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">configure.ac:30: error: possibly undefined macro: AC_PROG_LIBTOOL</span><br><span class="line">      If this token and others are legitimate, please use m4_pattern_allow.</span><br><span class="line">      See the Autoconf documentation.</span><br><span class="line">autoreconf: /usr/<span class="built_in">local</span>/Cellar/autoconf/2.69/bin/autoconf failed with <span class="built_in">exit</span> status: 1</span><br></pre></td></tr></table></figure>
+<p>  接下来要在自己的项目中加入protobuf的库文件，这里推荐使用cocoapod来添加，在podfile文件中添加 pod ‘Protobuf’, ‘~&gt; 3.3.0’ 。当然你也可以直接把protobuf拖进自己的项目中使用。cocoapod的使用，相信大家都会，不会的话可以找google</p>
+<h4 id="proto的生成与使用"><a href="#proto的生成与使用" class="headerlink" title="proto的生成与使用"></a>proto的生成与使用</h4><p>  首先要创建.proto文件，文件名自起。后缀要用.proto，比如这里使用的 UserModel.proto。 syntax = “proto3”，指定使用的proto版本，没有会报以下错误：<br>No syntax specified for the proto file: UserModel.proto. Please use ‘syntax = “proto2”;’ or ‘syntax = “proto3”;’ to specify a syntax version. (Defaulted to proto2 syntax.)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">syntax = &quot;proto3&quot;;</span><br><span class="line">package first_pro;</span><br><span class="line">message UserModel&#123;</span><br><span class="line">     string user_name = 1;</span><br><span class="line">     string user_id = 2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  另外在proto3中移除了显式的optional,如果你是用了optional关键词像这样：optional string user_id = 2; 会报以下错误： 意思就是在proto3中移除了显式的optional关键字，不加默认就是optional</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UserModel.proto:5:15: Explicit &apos;optional&apos; labels are disallowed in the Proto3 syntax. </span><br><span class="line">To define &apos;optional&apos; fields in Proto3, simply remove the &apos;optional&apos; label, as fields are &apos;optional&apos; by default.</span><br></pre></td></tr></table></figure>
+<p>  cd到UserModel.proto所在的目录下之后执行一下命令，这里做一个解释<br>–plugin=/usr/local/bin/protoc-gen-objc 这一段是不能更改的，指的是使用这个目录下的protoc-gen-objc来编译，<br>*.proto 其中*号为通配符，意思匹配当前目录所有.proto后缀的文件，当然你也可以指定文件名<br>–objc_out=”./“  这个是输出文件的目录，./意为当前目录，这个是可以自定义的，你可以指定自己的目录路径  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">protoc --plugin=/usr/local/bin/protoc-gen-objc *.proto --objc_out=&quot;./&quot;</span><br></pre></td></tr></table></figure>
+<p>  之后会生成两个文件 UserModel.pbobjc.h 和UserModel.pbobjc.m 把这两个文件拖到项目中即可使用。comd+B,这时候你会发现报错了，这就尴尬了。查了下，原来这玩意用的是mrc,所以要在Build Phase -&gt; Compile Sources 中在UserModel.pbobjc.m文件加上-fno-objc-arc，意思就不解释了，大家应该都懂<br>  下面是报错信息，意思是，arc禁止在struct中使用oc对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">protoc arc forbids object-c object in struct</span><br><span class="line">//引用官方文档的说明</span><br><span class="line">//Add objectivec/\*.h &amp; objectivec/\*.m except for objectivec/GPBProtocolBuffers.m to your project.</span><br><span class="line">//If the target is using ARC, remember to turn off ARC (-fno-objc-arc) for the .m files.</span><br><span class="line">//The files generated by protoc for the *.proto files (\*.pbobjc.h and \*.pbobjc.m) are then also added to the target.</span><br></pre></td></tr></table></figure>
+<p>  我把生成的两个文件也贴一下，大家可以看下（代码比较多，这个可以跳过不看)</p>
+<h5 id="h文件"><a href="#h文件" class="headerlink" title=".h文件"></a>.h文件</h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Generated by the protocol buffer compiler.  DO NOT EDIT!</span></span><br><span class="line"><span class="comment">// source: UserModel.proto</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// This CPP symbol can be defined to use imports that match up to the framework</span></span><br><span class="line"><span class="comment">// imports needed when using CocoaPods.</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> !defined(GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS)</span></span><br><span class="line"> <span class="meta">#<span class="meta-keyword">define</span> GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS 0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS</span></span><br><span class="line"> <span class="meta">#import <span class="meta-string">&lt;Protobuf/GPBProtocolBuffers.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"> <span class="meta">#import <span class="meta-string">"GPBProtocolBuffers.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> GOOGLE_PROTOBUF_OBJC_VERSION &lt; 30002</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">error</span> This file was generated by a newer version of protoc which is incompatible with your Protocol Buffer library sources.</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> 30002 &lt; GOOGLE_PROTOBUF_OBJC_MIN_SUPPORTED_VERSION</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">error</span> This file was generated by an older version of protoc which is incompatible with your Protocol Buffer library sources.</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// @@protoc_insertion_point(imports)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> clang diagnostic push</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> clang diagnostic ignored <span class="meta-string">"-Wdeprecated-declarations"</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">CF_EXTERN_C_BEGIN</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_BEGIN</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> mark - UserModelRoot</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Exposes the extension registry for this file.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * The base class provides:</span></span><br><span class="line"><span class="comment"> * @code</span></span><br><span class="line"><span class="comment"> *   + (GPBExtensionRegistry *)extensionRegistry;</span></span><br><span class="line"><span class="comment"> * @endcode</span></span><br><span class="line"><span class="comment"> * which is a @c GPBExtensionRegistry that includes all the extensions defined by</span></span><br><span class="line"><span class="comment"> * this file and all files that it depends on.</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">UserModelRoot</span> : <span class="title">GPBRootObject</span></span></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> mark - UserModel</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> GPB_ENUM(UserModel_FieldNumber) &#123;</span><br><span class="line">  UserModel_FieldNumber_UserName = <span class="number">1</span>,</span><br><span class="line">  UserModel_FieldNumber_UserId = <span class="number">2</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">UserModel</span> : <span class="title">GPBMessage</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">readwrite</span>, <span class="keyword">copy</span>, <span class="keyword">null_resettable</span>) <span class="built_in">NSString</span> *userName;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">readwrite</span>, <span class="keyword">copy</span>, <span class="keyword">null_resettable</span>) <span class="built_in">NSString</span> *userId;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_END</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">CF_EXTERN_C_END</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> clang diagnostic pop</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// @@protoc_insertion_point(global_scope)</span></span><br></pre></td></tr></table></figure>
+<h5 id="m文件"><a href="#m文件" class="headerlink" title=".m文件"></a>.m文件</h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Generated by the protocol buffer compiler.  DO NOT EDIT!</span></span><br><span class="line"><span class="comment">// source: UserModel.proto</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// This CPP symbol can be defined to use imports that match up to the framework</span></span><br><span class="line"><span class="comment">// imports needed when using CocoaPods.</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> !defined(GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS)</span></span><br><span class="line"> <span class="meta">#<span class="meta-keyword">define</span> GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS 0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS</span></span><br><span class="line"> <span class="meta">#import <span class="meta-string">&lt;Protobuf/GPBProtocolBuffers_RuntimeSupport.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"> <span class="meta">#import <span class="meta-string">"GPBProtocolBuffers_RuntimeSupport.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"> <span class="meta">#import <span class="meta-string">"UserModel.pbobjc.h"</span></span></span><br><span class="line"><span class="comment">// @@protoc_insertion_point(imports)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> clang diagnostic push</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> clang diagnostic ignored <span class="meta-string">"-Wdeprecated-declarations"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> mark - UserModelRoot</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">UserModelRoot</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// No extensions in the file and no imports, so no need to generate</span></span><br><span class="line"><span class="comment">// +extensionRegistry.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> mark - UserModelRoot_FileDescriptor</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> GPBFileDescriptor *UserModelRoot_FileDescriptor(<span class="keyword">void</span>) &#123;</span><br><span class="line">  <span class="comment">// This is called by +initialize so there is no need to worry</span></span><br><span class="line">  <span class="comment">// about thread safety of the singleton.</span></span><br><span class="line">  <span class="keyword">static</span> GPBFileDescriptor *descriptor = <span class="literal">NULL</span>;</span><br><span class="line">  <span class="keyword">if</span> (!descriptor) &#123;</span><br><span class="line">    GPB_DEBUG_CHECK_RUNTIME_VERSIONS();</span><br><span class="line">    descriptor = [[GPBFileDescriptor alloc] initWithPackage:<span class="string">@"first_pro"</span></span><br><span class="line">                                                     syntax:GPBFileSyntaxProto3];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> descriptor;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> mark - UserModel</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">UserModel</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@dynamic</span> userName;</span><br><span class="line"><span class="keyword">@dynamic</span> userId;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> UserModel__storage_ &#123;</span><br><span class="line">  uint32_t _has_storage_[<span class="number">1</span>];</span><br><span class="line">  <span class="built_in">NSString</span> *userName;</span><br><span class="line">  <span class="built_in">NSString</span> *userId;</span><br><span class="line">&#125; UserModel__storage_;</span><br><span class="line"></span><br><span class="line"><span class="comment">// This method is threadsafe because it is initially called</span></span><br><span class="line"><span class="comment">// in +initialize for each subclass.</span></span><br><span class="line">+ (GPBDescriptor *)descriptor &#123;</span><br><span class="line">  <span class="keyword">static</span> GPBDescriptor *descriptor = <span class="literal">nil</span>;</span><br><span class="line">  <span class="keyword">if</span> (!descriptor) &#123;</span><br><span class="line">    <span class="keyword">static</span> GPBMessageFieldDescription fields[] = &#123;</span><br><span class="line">      &#123;</span><br><span class="line">        .name = <span class="string">"userName"</span>,</span><br><span class="line">        .dataTypeSpecific.className = <span class="literal">NULL</span>,</span><br><span class="line">        .number = UserModel_FieldNumber_UserName,</span><br><span class="line">        .hasIndex = <span class="number">0</span>,</span><br><span class="line">        .offset = (uint32_t)offsetof(UserModel__storage_, userName),</span><br><span class="line">        .flags = GPBFieldOptional,</span><br><span class="line">        .dataType = GPBDataTypeString,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        .name = <span class="string">"userId"</span>,</span><br><span class="line">        .dataTypeSpecific.className = <span class="literal">NULL</span>,</span><br><span class="line">        .number = UserModel_FieldNumber_UserId,</span><br><span class="line">        .hasIndex = <span class="number">1</span>,</span><br><span class="line">        .offset = (uint32_t)offsetof(UserModel__storage_, userId),</span><br><span class="line">        .flags = GPBFieldOptional,</span><br><span class="line">        .dataType = GPBDataTypeString,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">    GPBDescriptor *localDescriptor =</span><br><span class="line">        [GPBDescriptor allocDescriptorForClass:[UserModel <span class="keyword">class</span>]</span><br><span class="line">                                     rootClass:[UserModelRoot <span class="keyword">class</span>]</span><br><span class="line">                                          file:UserModelRoot_FileDescriptor()</span><br><span class="line">                                        fields:fields</span><br><span class="line">                                    fieldCount:(uint32_t)(<span class="keyword">sizeof</span>(fields) / <span class="keyword">sizeof</span>(GPBMessageFieldDescription))</span><br><span class="line">                                   storageSize:<span class="keyword">sizeof</span>(UserModel__storage_)</span><br><span class="line">                                         flags:GPBDescriptorInitializationFlag_None];</span><br><span class="line">    <span class="built_in">NSAssert</span>(descriptor == <span class="literal">nil</span>, <span class="string">@"Startup recursed!"</span>);</span><br><span class="line">    descriptor = localDescriptor;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> descriptor;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> clang diagnostic pop</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// @@protoc_insertion_point(global_scope)</span></span><br></pre></td></tr></table></figure>
+<p>  现在就可以在项目中使用了呢,这里举个简单的例子，记得引用头文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">    UserModel *model = [[UserModel alloc]init];</span><br><span class="line">    model.userName = @&quot;lee&quot;;</span><br><span class="line">    model.userId = @&quot;123456&quot;;</span><br><span class="line">    </span><br><span class="line">    NSData *data = model.data;</span><br><span class="line">    </span><br><span class="line">    UserModel *deModel = [[UserModel alloc]initWithData:data error:nil];</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">  下面来个稍微复杂一点的.proto。嵌套型的proto,注意修饰词。使用基本同上。其实主要就是在proto文件的编写与定义  </span><br><span class="line">```objectivec</span><br><span class="line">syntax = &quot;proto3&quot;;</span><br><span class="line">message Response&#123;</span><br><span class="line">    int32 result = 1;</span><br><span class="line">    string result_message = 2;</span><br><span class="line">    repeated Musicdata musicdata = 3;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">message Musicdata&#123;</span><br><span class="line">    string music_name = 1;</span><br><span class="line">    string mudic_url = 2;</span><br><span class="line">    int64 music_id = 3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  具体的语法使用还有好多东西要学这里不在一一说明。贴上<a href="https://developers.google.com/protocol-buffers/" target="_blank" rel="noopener">官方语法说明文档</a>，这里有<a href="http://colobu.com/2015/01/07/Protobuf-language-guide/" target="_blank" rel="noopener">翻译好的</a>，这个是2.x的，与3有些不太一样,但可以作为参考。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/05/12/加快Xcode的编译速度/" rel="prev" title="加快Xcode的编译速度">
+      <i class="fa fa-chevron-left"></i> 加快Xcode的编译速度
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/08/12/valueForKeyPath-的妙用/" rel="next" title="valueForKeyPath:的妙用">
+      valueForKeyPath:的妙用 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Protocol-Buffer简介"><span class="nav-number">1.</span> <span class="nav-text">Protocol Buffer简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么选择Protocol-Buffer"><span class="nav-number">2.</span> <span class="nav-text">为什么选择Protocol Buffer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前期环境准备"><span class="nav-number">3.</span> <span class="nav-text">前期环境准备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#proto的生成与使用"><span class="nav-number">4.</span> <span class="nav-text">proto的生成与使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#h文件"><span class="nav-number">4.1.</span> <span class="nav-text">.h文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#m文件"><span class="nav-number">4.2.</span> <span class="nav-text">.m文件</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="南山忆"
+      src="/images/avatarMe.png">
+  <p class="site-author-name" itemprop="name">南山忆</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/nanshanyi" title="GitHub → https://github.com/nanshanyi" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/liguohuai_lee@163.com" title="E-Mail → liguohuai_lee@163.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">南山忆</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

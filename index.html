@@ -295,6 +295,193 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://nanshanyi.github.io/2019/08/12/valueForKeyPath-的妙用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatarMe.png">
+      <meta itemprop="name" content="南山忆">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="南山忆的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/12/valueForKeyPath-的妙用/" class="post-title-link" itemprop="url">valueForKeyPath:的妙用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-08-12 20:04:07 / Modified: 21:30:00" itemprop="dateCreated datePublished" datetime="2019-08-12T20:04:07+08:00">2019-08-12</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="KVC"><a href="#KVC" class="headerlink" title="KVC"></a>KVC</h4><p>　　（KVC）键值编码相信大家都不陌生，常用来访问对象属性，也可以访问集合属性。还有一些可以给通过此方法访问一些系统没有开放的API，通过KVC的方式进行使用。（今天的重点不在这里，有需要自己看）<br><img src="/2019/08/12/valueForKeyPath-的妙用/valueforkeypath.jpg" width="%50" height="%50"></p>
+<h4 id="重点valueForKeyPath"><a href="#重点valueForKeyPath" class="headerlink" title="重点valueForKeyPath:"></a>重点valueForKeyPath:</h4><h5 id="了解valueForKeyPath-方法"><a href="#了解valueForKeyPath-方法" class="headerlink" title="了解valueForKeyPath:方法"></a>了解valueForKeyPath:方法</h5><p>&emsp;&emsp;它返回指定的键路径对应的值。如果keyPath中包含不符合规定的字符（比如没有这个属性字符）就会接收到一条<a href="https://developer.apple.com/documentation/objectivec/nsobject/1413457-valueforundefinedkey" target="_blank" rel="noopener">valueForUndefinedKey:</a>消息。<br></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/08/12/valueForKeyPath-的妙用/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://nanshanyi.github.io/2017/08/14/ProtocolBuffer入门使用iOS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatarMe.png">
+      <meta itemprop="name" content="南山忆">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="南山忆的技术博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/08/14/ProtocolBuffer入门使用iOS/" class="post-title-link" itemprop="url">ProtocolBuffer 入门使用：iOS</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2017-08-14 20:07:22 / Modified: 20:07:00" itemprop="dateCreated datePublished" datetime="2017-08-14T20:07:22+08:00">2017-08-14</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="Protocol-Buffer简介"><a href="#Protocol-Buffer简介" class="headerlink" title="Protocol Buffer简介"></a>Protocol Buffer简介</h4><p>  <em>Protocol Buffer</em>是google于2008推出的一种数据交换的格式，它独立于语言，独立于平台。，google 提供了多种语言的实现，每一种实现都包含了相应语言的编译器以及库文件。由于它是一种二进制的格式，比使用 xml 和 json 进行数据交换快许多。可以把它用于分布式应用之间的数据通信或者异构环境下的数据交换。作为一种效率和兼容性都很优秀的二进制数据传输格式，可以用于诸如网络传输、配置文件、数据存储等诸多领域。现今经过多个版本迭代已经到了3.x版本<br>  其实说白了Protocol Buffer就是一个协议，和解释器。可以用proto文件把model或者其他数据序列化Or反序列化（把二进制数据解析为Model或者把Model转为二进制数据）。它添加了多语言的支持，在不同语言下，遵守同样的协议（使用同样的proto），这样就可以保证在不同端，数据可以交互，而且不用担心数据的序列化问题。<br>  下面是支持的语言：</p>
+<table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C++ (include C++ runtime and protoc)</td>
+<td><a href="https://github.com/google/protobuf/tree/master/src" target="_blank" rel="noopener">src</a></td>
+</tr>
+<tr>
+<td>Java</td>
+<td><a href="https://github.com/google/protobuf/tree/master/java" target="_blank" rel="noopener">java</a></td>
+</tr>
+<tr>
+<td>Python</td>
+<td><a href="https://github.com/google/protobuf/tree/master/python" target="_blank" rel="noopener">python</a></td>
+</tr>
+<tr>
+<td>Objective-C</td>
+<td><a href="https://github.com/google/protobuf/tree/master/objectivec" target="_blank" rel="noopener">objectivec</a></td>
+</tr>
+<tr>
+<td>C#</td>
+<td><a href="https://github.com/google/protobuf/tree/master/csharp" target="_blank" rel="noopener">csharp</a></td>
+</tr>
+<tr>
+<td>JavaNano</td>
+<td><a href="https://github.com/google/protobuf/tree/master/javanano" target="_blank" rel="noopener">javanano</a></td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td><a href="https://github.com/google/protobuf/tree/master/js" target="_blank" rel="noopener">js</a></td>
+</tr>
+<tr>
+<td>Ruby</td>
+<td><a href="https://github.com/google/protobuf/tree/master/ruby" target="_blank" rel="noopener">ruby</a></td>
+</tr>
+<tr>
+<td>Go</td>
+<td><a href="https://github.com/golang/protobuf" target="_blank" rel="noopener">golang/protobuf</a></td>
+</tr>
+<tr>
+<td>PHP</td>
+<td><a href="https://github.com/google/protobuf/tree/master/php" target="_blank" rel="noopener">php</a></td>
+</tr>
+<tr>
+<td>Dart</td>
+<td><a href="https://github.com/dart-lang/protobuf" target="_blank" rel="noopener">dart-lang/protobuf</a></td>
+</tr>
+</tbody>
+</table>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2017/08/14/ProtocolBuffer入门使用iOS/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://nanshanyi.github.io/2017/05/12/加快Xcode的编译速度/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -722,155 +909,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://nanshanyi.github.io/2016/06/05/hexoBlog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatarMe.png">
-      <meta itemprop="name" content="南山忆">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="南山忆的技术博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/06/05/hexoBlog/" class="post-title-link" itemprop="url">hexo创建个人博客</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-06-05 09:52:05" itemprop="dateCreated datePublished" datetime="2016-06-05T09:52:05+08:00">2016-06-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-05 19:06:50" itemprop="dateModified" datetime="2020-04-05T19:06:50+08:00">2020-04-05</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>你是不是见多了各种大v的个人博客，是不是也想拥有这样的一个个人博客，（静静的装B！）看这里，就对了。一步一步教你创建自己的博客。<br>　　现在用的比较多的就是<a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">hexo</a>（快速、简洁且高效的博客框架），支持markDown，有丰富的插件和主题</p>
-<h3 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h3><p>　　安装<a href="https://git-scm.com/" target="_blank" rel="noopener">git</a> 和 <a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a>,git就不用多说了，如果连git都不会装，请出去把门关上。<br>　　Node.js 的安装可以使用两种方法，1、点击前面链接直接下载安装即可 2、通过终端命令行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl https://raw.github.com/creationix/nvm/master/install.sh | sh</span><br></pre></td></tr></table></figure></p>
-<p>之后重启终端，如果还找不到nvm命令可尝试重启电脑<br>接着执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nvm install 4</span><br></pre></td></tr></table></figure></p>
-<p>即可安装完成<br>以上两个条件已具备的话，即可开始安装hexo博客框架<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure></p>
-<p>执行完成后hexo就安装成功了，第一步结束，环境配置完毕可以开始创建自己的博客了<br></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2016/06/05/hexoBlog/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://nanshanyi.github.io/2016/05/22/jstooc/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatarMe.png">
-      <meta itemprop="name" content="南山忆">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="南山忆的技术博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/05/22/jstooc/" class="post-title-link" itemprop="url">iOS JavaScriptCore实现OC与JS的交互</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-05-22 15:46:14" itemprop="dateCreated datePublished" datetime="2016-05-22T15:46:14+08:00">2016-05-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2016-08-01 20:08:16" itemprop="dateModified" datetime="2016-08-01T20:08:16+08:00">2016-08-01</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>  JS 与 OC 的交互原来没有好好研究过，用的都是比较简单拦截 Url 的方式，通过定义专用的 Url 来拦截关键字来进行特定处理。但这只能用于简单的传值，进行一些简单的交互。涉及到，JS 调用 OC 方法或者 OC 调用 JS 方法，一些比较复杂的交互逻辑的时候这种方式就显得力不从心了。满足不了我们的需求。当然也有比较好的第三方库如：WebViewJavascriptBridge。但一般系统的方法足够用的时候，就没必要使用第三方库。这样即有利于减小安装包体积，又可以减少第三方的不稳定性等因素的干扰</p>
-<h3 id="拦截url的方式，进行简单交互"><a href="#拦截url的方式，进行简单交互" class="headerlink" title="拦截url的方式，进行简单交互"></a>拦截url的方式，进行简单交互</h3><p>　　在webView的代理方法中处理<br>　　这里简单介绍一下 URL 里面的一些属性<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *scheme = url.scheme;<span class="comment">//协议：http</span></span><br><span class="line"><span class="built_in">NSString</span> *host = url.host;<span class="comment">//主机名</span></span><br><span class="line"><span class="built_in">NSNumber</span> *port = url.port;<span class="comment">//端口号</span></span><br><span class="line"><span class="built_in">NSString</span> *path = url.path;<span class="comment">//一般用来表示主机上的一个目录或文件地址</span></span><br><span class="line"><span class="built_in">NSString</span> *query = url.query;<span class="comment">//参数，发给服务器的参数</span></span><br></pre></td></tr></table></figure></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2016/05/22/jstooc/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -942,7 +980,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
