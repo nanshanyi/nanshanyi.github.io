@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon128.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon64.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nanshanyi.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="本文提供两种简单的AttributedString的生成方式&amp;emsp;&amp;emsp;iOS中的NSAttributedString一直觉得不太好用，每次要加一个稍微复杂点的特征字符串就很麻烦，你可能会看到这样的代码 123456789let attrS = NSMutableAttributedString(string: &quot;回忆是抓不到的月光，&quot;)let att1 = NSAttributedS">
+<meta name="keywords" content="iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="封装一个好用的AttributedString">
+<meta property="og:url" content="http://nanshanyi.github.io/2020/04/05/封装一个好用的AttributedString/index.html">
+<meta property="og:site_name" content="南山忆的技术博客">
+<meta property="og:description" content="本文提供两种简单的AttributedString的生成方式&amp;emsp;&amp;emsp;iOS中的NSAttributedString一直觉得不太好用，每次要加一个稍微复杂点的特征字符串就很麻烦，你可能会看到这样的代码 123456789let attrS = NSMutableAttributedString(string: &quot;回忆是抓不到的月光，&quot;)let att1 = NSAttributedS">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://nanshanyi.github.io/2020/04/05/封装一个好用的AttributedString/image1.png">
+<meta property="og:updated_time" content="2020-04-05T12:20:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="封装一个好用的AttributedString">
+<meta name="twitter:description" content="本文提供两种简单的AttributedString的生成方式&amp;emsp;&amp;emsp;iOS中的NSAttributedString一直觉得不太好用，每次要加一个稍微复杂点的特征字符串就很麻烦，你可能会看到这样的代码 123456789let attrS = NSMutableAttributedString(string: &quot;回忆是抓不到的月光，&quot;)let att1 = NSAttributedS">
+<meta name="twitter:image" content="http://nanshanyi.github.io/2020/04/05/封装一个好用的AttributedString/image1.png">
+
+<link rel="canonical" href="http://nanshanyi.github.io/2020/04/05/封装一个好用的AttributedString/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>封装一个好用的AttributedString | 南山忆的技术博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">南山忆的技术博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">回忆是抓不住的月光，握紧就变黑暗</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://nanshanyi.github.io/2020/04/05/封装一个好用的AttributedString/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatarMe.png">
+      <meta itemprop="name" content="南山忆">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="南山忆的技术博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          封装一个好用的AttributedString
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-04-05 20:13:53 / Modified: 20:20:00" itemprop="dateCreated datePublished" datetime="2020-04-05T20:13:53+08:00">2020-04-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="本文提供两种简单的AttributedString的生成方式"><a href="#本文提供两种简单的AttributedString的生成方式" class="headerlink" title="本文提供两种简单的AttributedString的生成方式"></a>本文提供两种简单的AttributedString的生成方式</h4><p>&emsp;&emsp;iOS中的NSAttributedString一直觉得不太好用，每次要加一个稍微复杂点的特征字符串就很麻烦，你可能会看到这样的代码</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> attrS = <span class="type">NSMutableAttributedString</span>(string: <span class="string">"回忆是抓不到的月光，"</span>)</span><br><span class="line"><span class="keyword">let</span> att1 = <span class="type">NSAttributedString</span>(string: <span class="string">"握紧就变黑暗"</span>, attributes: [.font: <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">20</span>), .foregroundColor: <span class="type">UIColor</span>.red ])</span><br><span class="line">attrS.append(att1)</span><br><span class="line">attrS.append(<span class="type">NSAttributedString</span>(string: <span class="string">"，让虚假的背影消失于晴朗，阳光在"</span>))</span><br><span class="line"><span class="keyword">let</span> attch = <span class="type">NSTextAttachment</span>()</span><br><span class="line">attch.image = <span class="type">UIImage</span>(named: <span class="string">"Lock"</span>)</span><br><span class="line">attch.bounds = <span class="type">CGRect</span>(x: <span class="number">0</span>, y: -<span class="number">20</span>, width: <span class="number">50</span>, height: <span class="number">50</span>)</span><br><span class="line">attrS.append(<span class="type">NSAttributedString</span>(attachment: attch))</span><br><span class="line">attrS.append(<span class="type">NSAttributedString</span>(string: <span class="string">"身上流转，等所有业障被原谅"</span>))</span><br></pre></td></tr></table></figure>
+<p>创建一个不太复杂的字符串就需要很长的代码，而且不是很直观。<br><a id="more"></a></p>
+<h5 id="为NSMutableAttributedString加拓展的方式"><a href="#为NSMutableAttributedString加拓展的方式" class="headerlink" title="为NSMutableAttributedString加拓展的方式"></a>为NSMutableAttributedString加拓展的方式</h5><p>&emsp;&emsp;为了解决这个问题，笔者试用链式语法的方式对NSMutableAttributedString做了一个拓展，同时创建了一个Attributes的类。可以使用链式语法加闭包的方式快速简单的实现AttributedString，用了之后会再也回不去。<br>这里举个栗子，简单的方式就可以实现上述同样的方式。而且一些重复的工作一句就搞定</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> attr = <span class="type">NSMutableAttributedString</span>()</span><br><span class="line">attr.add(<span class="string">"回忆是抓不到的月光，"</span>)</span><br><span class="line">     .add(<span class="string">"握紧就变黑暗"</span>) &#123;$<span class="number">0</span>.font(<span class="number">20</span>).color(.red)&#125;</span><br><span class="line">     .add(<span class="string">"，让虚假的背影消失于晴朗，阳光在"</span>)</span><br><span class="line">     .addImage(<span class="string">"Lock"</span>, <span class="type">CGRect</span>(x: <span class="number">0</span>, y: -<span class="number">20</span>, width: <span class="number">50</span>, height: <span class="number">50</span>))</span><br><span class="line">     .add(<span class="string">"身上流转，等所有业障被原谅"</span>)</span><br><span class="line">     .add &#123;$<span class="number">0</span>.color(.blue)&#125;<span class="comment">//此方法只对整个字符串没有加color特征的部分生效</span></span><br></pre></td></tr></table></figure>
+<p>主要方法下三个</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 添加字符串并为此段添加对应的Attribute</span></span><br><span class="line">    <span class="comment">/// - Parameters:</span></span><br><span class="line">    <span class="comment">///   - text: 要添加的String</span></span><br><span class="line">    <span class="comment">///   - arrtibutes: Attribute特征</span></span><br><span class="line">    <span class="comment">/// - Returns: self</span></span><br><span class="line">    <span class="meta">@discardableResult</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(<span class="number">_</span> text: String, arrtibutes: <span class="params">(<span class="params">(<span class="keyword">inout</span> Attributes)</span></span></span></span> -&gt; ())? = <span class="literal">nil</span>) -&gt; <span class="type">NSMutableAttributedString</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> arrtibute = <span class="type">Attributes</span>()</span><br><span class="line">        arrtibutes?(&amp;arrtibute)</span><br><span class="line">        <span class="keyword">let</span> arrStr = <span class="type">NSMutableAttributedString</span>(string: text, attributes: arrtibute.attributes)</span><br><span class="line">        append(arrStr)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="comment">/// 添加Attribute作用于当前整体字符串，如果不包含传入的attribute，则增加当前特征</span></span><br><span class="line">    <span class="comment">/// - Parameter arrtibutes: Attribute的DIc</span></span><br><span class="line">    <span class="meta">@discardableResult</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(arrtibutes: <span class="params">(<span class="keyword">inout</span> Attributes)</span></span></span> -&gt; ()) -&gt; <span class="type">NSMutableAttributedString</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> range = <span class="type">NSRange</span>(string.startIndex..&lt;string.endIndex, <span class="keyword">in</span>: string)</span><br><span class="line">        <span class="keyword">var</span> attribute = <span class="type">Attributes</span>()</span><br><span class="line">        arrtibutes(&amp;attribute)</span><br><span class="line">        enumerateAttributes(<span class="keyword">in</span>: range, options: .<span class="built_in">reverse</span>) &#123; (oldAttribute, range, <span class="number">_</span>) <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">var</span> newAtt = oldAttribute</span><br><span class="line">            attribute.attributes.forEach &#123; (newkey, value) <span class="keyword">in</span></span><br><span class="line">                <span class="keyword">if</span> !oldAttribute.keys.<span class="built_in">contains</span>(newkey) &#123;</span><br><span class="line">                    newAtt[newkey] = value</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            addAttributes(newAtt, range: range)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/// 为AttributeString添加图片</span></span><br><span class="line">    <span class="comment">/// - Parameters:</span></span><br><span class="line">    <span class="comment">///   - name: 图片名字</span></span><br><span class="line">    <span class="comment">///   - bounds: 图片的bounds</span></span><br><span class="line">    <span class="comment">/// - Returns: self</span></span><br><span class="line">    <span class="meta">@discardableResult</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">addImage</span><span class="params">(<span class="number">_</span> name: String, <span class="number">_</span> bounds: CGRect)</span></span> -&gt; <span class="type">NSMutableAttributedString</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> attch = <span class="type">NSTextAttachment</span>()</span><br><span class="line">        attch.image = <span class="type">UIImage</span>(named: name)</span><br><span class="line">        attch.bounds = bounds</span><br><span class="line">        <span class="keyword">let</span> attchAttri = <span class="type">NSAttributedString</span>(attachment: attch)</span><br><span class="line">        append(attchAttri)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp; 1.<em>func add(_ text: String, arrtibutes: ((inout Attributes) -&gt; ())? = nil) -&gt; NSMutableAttributedString</em><br>此方法为基础方法，添加字符串同时增加Attributes，对本段字符串生效，这里试用参数默认值的方式，如果只是添加字符串不加特征，可以省略闭包<br>&emsp;&emsp; 2.<em>func add(arrtibutes: (inout Attributes) -&gt; ()) -&gt; NSMutableAttributedString </em><br>我们也会遇到，一段字符串，中间几段特殊，然后其他的特征是一样的，这就可以使用这个方法。<br>该方法会对当前整体生效（调用该方法时候的字符串，不影响后序添加的字符），对已有的属性不影响，只会为不包含当前属性的添加该特征<br>&emsp;&emsp; 3.<em>func addImage(_ name: String, _ bounds: CGRect) -&gt; NSMutableAttributedString</em><br>添加Image的支持<br>其中Attributes的类比较简单这里就不提了，可以直接看<a href="https://github.com/nanshanyi/AttributedString" target="_blank" rel="noopener">源码</a></p>
+<h5 id="使用字符串插值协议"><a href="#使用字符串插值协议" class="headerlink" title="使用字符串插值协议"></a>使用字符串插值协议</h5><p>最近又发现一个好玩的东西StringInterpolationProtocol，它可以让你使用\()的方式为字符串插值<br>下面这种形式你应该不陌生</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> time = <span class="number">10</span></span><br><span class="line"><span class="keyword">let</span> string = <span class="string">"The time is \(time)."</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;使用\()的方式可以在字符串中方便的插值这个是很早就有的，而在swift5中，swift增加了StringInterpolationProtocol。这个协议允许你来以自己的方式来实现字符串插值。这就为特征字符串的生成方式提供了新的可能，这里不再详细介绍协议的用法，主要说说如何用来做特征字符串的实现，我们先来看结果：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一行太长这里用回车做了分隔，实际是一句代码</span></span><br><span class="line"><span class="keyword">let</span> str: <span class="type">AttributedString</span> = <span class="string">"\("</span>回忆<span class="string">", .weithtFont(20, .semibold), .color(.cyan), .stroke(.blue, 3))是抓不到的月光，</span></span><br><span class="line"><span class="string">\("</span>握紧就变黑暗<span class="string">", .font(20), .color(.red), .paragraphStyle&#123;$0.alignment(.center)&#125;, .strike(.black, .double))，让</span></span><br><span class="line"><span class="string">\("</span>虚假<span class="string">", .font(20), .kern(5), .obliqueness(-0.2), .color(.orange))的背影消失于</span></span><br><span class="line"><span class="string">\("</span>晴朗<span class="string">", .font(20), .underline(.blue, .double))，阳光在</span></span><br><span class="line"><span class="string">\(image: UIImage(named: "</span><span class="type">Lock</span><span class="string">"), bounds: CGRect(x: 0, y: -20, width: 50, height: 50))</span></span><br><span class="line"><span class="string">身上流转，等所有业障被原谅"</span></span><br></pre></td></tr></table></figure>
+<p><img src="/2020/04/05/封装一个好用的AttributedString/image1.png" width="%60" height="%60"><br>这里AttributedString是自己创建的类，主要方法是下面两个</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">appendInterpolation</span><span class="params">(<span class="number">_</span> string: String, <span class="number">_</span> attributes: AttributedString.Attributes...)</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> attr = [<span class="type">NSAttributedString</span>.<span class="type">Key</span> : <span class="type">Any</span>]()</span><br><span class="line">    attributes.forEach &#123; attr.merge($<span class="number">0</span>.attributes, uniquingKeysWith: &#123;$<span class="number">1</span>&#125;)&#125;</span><br><span class="line">    <span class="keyword">let</span> astr = <span class="type">NSAttributedString</span>(string: string, attributes: attr)</span><br><span class="line">    <span class="keyword">self</span>.attributedString.append(astr)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">appendInterpolation</span><span class="params">(image: UIImage?, bounds: CGRect)</span></span> &#123;</span><br><span class="line">    <span class="keyword">let</span> attch = <span class="type">NSTextAttachment</span>()</span><br><span class="line">    attch.image = image</span><br><span class="line">    attch.bounds = bounds</span><br><span class="line">    <span class="keyword">let</span> attchAttri = <span class="type">NSAttributedString</span>(attachment: attch)</span><br><span class="line">    <span class="keyword">self</span>.attributedString.append(attchAttri)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>appendInterpolation</em> 也是这个协议中最主要的方法，每次有\()的时候就会走进你定定义的方法。后面的Attributes也是自定义的新的类，用来添加Attribtue这里使用了可变形参函数，可以传入多个Attributes<br>具体代码逻辑可以<a href="https://github.com/nanshanyi/AttributedString" target="_blank" rel="noopener">看这里</a></p>
+<p>关于<em>StringInterpolationProtocol</em>Swift中有详尽的描述和例子，可以参考代码和文档理解</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/iOS/" rel="tag"># iOS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/02/iOS自定义转场动画/" rel="prev" title="iOS自定义转场动画">
+      <i class="fa fa-chevron-left"></i> iOS自定义转场动画
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#本文提供两种简单的AttributedString的生成方式"><span class="nav-number">1.</span> <span class="nav-text">本文提供两种简单的AttributedString的生成方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#为NSMutableAttributedString加拓展的方式"><span class="nav-number">1.1.</span> <span class="nav-text">为NSMutableAttributedString加拓展的方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用字符串插值协议"><span class="nav-number">1.2.</span> <span class="nav-text">使用字符串插值协议</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="南山忆"
+      src="/images/avatarMe.png">
+  <p class="site-author-name" itemprop="name">南山忆</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/nanshanyi" title="GitHub → https://github.com/nanshanyi" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/liguohuai_lee@163.com" title="E-Mail → liguohuai_lee@163.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">南山忆</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
